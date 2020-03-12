@@ -1,0 +1,6 @@
+package constant
+
+const (
+	INNER_NOTICE_STATUS_SENDED = 1
+	INNER_NOTICE_STATUS_READED = 2
+)

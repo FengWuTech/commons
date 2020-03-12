@@ -1,0 +1,13 @@
+package constant
+
+const (
+	STAFF_MESSAGE_TYPE_SIMPLE_MSG           = 1 //简单消息
+	STAFF_MESSAGE_TYPE_INNER_NOTICE         = 2 //内部通知
+	STAFF_MESSAGE_TYPE_REPAIR_TODO          = 3 //报修工单维修待办
+	STAFF_MESSAGE_TYPE_VERIFY_TODO          = 4 //报修工单验证待办
+	STAFF_MESSAGE_TYPE_REPAIR_OVERTIME_WARN = 5 //报修工单维修超时报警
+	STAFF_MESSAGE_TYPE_VERIFY_OVERTIME_WARN = 6 //报修工单验证超时报警
+
+	STAFF_MESSAGE_STATUS_SENDED = 1 //已发送
+	STAFF_MESSAGE_STATUS_READED = 2 //已阅读
+)
