@@ -18,9 +18,10 @@ const (
 	BILL_BIND_OBJECT_TYPE_OTHER = 6 //其他
 
 	//账单支付状态
-	BILL_PAY_STATUS_UNPAID   = 0 //未支付
-	BILL_PAY_STATUS_PAID     = 1 //已支付
-	BILL_PAY_STATUS_REFUNDED = 2 //已退款
+	BILL_PAY_STATUS_UNPAID    = 0 //未支付
+	BILL_PAY_STATUS_PAID      = 1 //已支付
+	BILL_PAY_STATUS_REFUNDED  = 2 //已退款
+	BILL_PAY_STATUS_REFUNDING = 3 //退款中
 )
 
 var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
