@@ -11,6 +11,11 @@ const (
 	RECHARGE_TYPE_DEDUCT            = 3 //抵扣
 	RECHARGE_TYPE_REFUND_TO_USER    = 4 //退款
 
+	RECHARGE_METHOD_FREEDOM = 0 //自由充值
+	RECHARGE_METHOD_FIXED   = 1 //固定充值宝充值
+
+	RECHARGE_RECORD_HISTORY_STATUS_CREATED  = 1 //已创建
+	RECHARGE_RECORD_HISTORY_STATUS_FINISHED = 2 //已完成
 )
 
 var RECHARGE_MAP = map[int]map[int]map[string]interface{}{
