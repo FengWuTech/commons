@@ -89,3 +89,14 @@ func GetBookingFEConf(which int) []map[string]interface{} {
 func GetBookingTypeFEConf() []map[string]interface{} {
 	return GetBookingFEConf(BOOKING_TYPE)
 }
+
+func BookingTypeToName(type_ int) string {
+       types := BOOKING_INFO_MAP[BOOKING_TYPE]
+       for k, v := range types {
+               value, _ := v["value"]
+               if k == type_ {
+                       return value.(string)
+               }
+       }
+       return "其他"
+}
