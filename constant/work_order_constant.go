@@ -183,6 +183,10 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": APPEAL_ORDER_SOURCE_WECHAT,
 				"label": "微信",
 			},
+			{
+				"value": APPEAL_ORDER_SOURCE_INTEL_HARDWARE,
+				"label": "智慧硬件",
+			},
 		},
 		"APPEAL_ORDER_STATUS": {
 			{
