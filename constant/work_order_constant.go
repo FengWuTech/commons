@@ -225,7 +225,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_VERIFIED,
-				"label": "已验证",
+				"label": "已核验",
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_TRANSFER,
