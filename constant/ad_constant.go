@@ -8,6 +8,7 @@ const (
 	AD_POS_TOP       = 1 //首页轮播图
 	AD_POS_RECOMMEND = 2 //首页推荐位
 	AD_POS_ARTICLE   = 3 //文章底部
+	AD_POS_SERVICE   = 4 //服务业轮播图
 )
 
 var AD_INFO_MAP = map[int]map[int]map[string]interface{}{
@@ -21,6 +22,9 @@ var AD_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 		AD_POS_ARTICLE: {
 			"value": "文章底部",
+		},
+		AD_POS_SERVICE: {
+			"value": "服务业轮播图",
 		},
 	},
 }
