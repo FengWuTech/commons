@@ -81,7 +81,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_TYPE_REPAIR,
-				"label": "公区报修",
+				"label": "报修",
 			},
 			{
 				"value": APPEAL_TYPE_COMPLAINT,
