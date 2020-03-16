@@ -24,7 +24,7 @@ var AD_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "文章底部",
 		},
 		AD_POS_SERVICE: {
-			"value": "服务业轮播图",
+			"value": "服务页轮播图",
 		},
 	},
 }

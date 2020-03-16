@@ -81,7 +81,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_TYPE_REPAIR,
-				"label": "报修",
+				"label": "公区报修",
 			},
 			{
 				"value": APPEAL_TYPE_COMPLAINT,
@@ -288,32 +288,32 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 }
 
 func ObjectTypeToName(type_ int) string {
-       types := GetOrderFeConf("APPEAL_OBJECT_TYPE")
-       for _, v := range types {
-               value, _ := v["value"]
-               if value == type_ {
-                       label, _ := v["label"]
-                       return label.(string)
-               }
-       }
+	types := GetOrderFeConf("APPEAL_OBJECT_TYPE")
+	for _, v := range types {
+		value, _ := v["value"]
+		if value == type_ {
+			label, _ := v["label"]
+			return label.(string)
+		}
+	}
 
-       types = GetOrderFeConf("APPEAL_OBJECT_TYPE_THING")
-       for _, v := range types {
-               value, _ := v["value"]
-               if value == type_ {
-                       label, _ := v["label"]
-                       return label.(string)
-               }
-       }
+	types = GetOrderFeConf("APPEAL_OBJECT_TYPE_THING")
+	for _, v := range types {
+		value, _ := v["value"]
+		if value == type_ {
+			label, _ := v["label"]
+			return label.(string)
+		}
+	}
 
-       types = GetOrderFeConf("APPEAL_OBJECT_TYPE_REPAIR")
-       for _, v := range types {
-               value, _ := v["value"]
-               if value == type_ {
-                       label, _ := v["label"]
-                       return label.(string)
-               }
-       }
+	types = GetOrderFeConf("APPEAL_OBJECT_TYPE_REPAIR")
+	for _, v := range types {
+		value, _ := v["value"]
+		if value == type_ {
+			label, _ := v["label"]
+			return label.(string)
+		}
+	}
 
-       return ""
+	return ""
 }
