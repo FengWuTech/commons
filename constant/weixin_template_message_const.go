@@ -2,6 +2,16 @@ package constant
 
 const (
 
+	//工单超时
+	//{{first.DATA}}
+	//工单号：{{keyword1.DATA}}
+	//工单类别：{{keyword2.DATA}}
+	//工单状态：{{keyword3.DATA}}
+	//处理人员：{{keyword4.DATA}}
+	//具体内容：{{keyword5.DATA}}
+	//{{remark.DATA}}
+	MINIP_STAFF_TEMPLATE_MESSAGE_ORDER_TIMEOUT = "Ou0pvIyiy01wmQtsiZMAtSIvAe3Qf2j1Ah1-HSGGo0g"
+
 	//工单处理提醒
 	//{{first.DATA}}
 	//工单关联位置：{{keyword1.DATA}}
