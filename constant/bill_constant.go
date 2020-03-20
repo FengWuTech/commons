@@ -22,6 +22,9 @@ const (
 	BILL_PAY_STATUS_PAID      = 1 //已支付
 	BILL_PAY_STATUS_REFUNDED  = 2 //已退款
 	BILL_PAY_STATUS_REFUNDING = 3 //退款中
+
+	BILL_SOURCE_TYPE_CRON   = 0
+	BILL_SOURCE_TYPE_QRCODE = 1
 )
 
 var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
