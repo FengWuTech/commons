@@ -2,6 +2,14 @@ package constant
 
 const (
 
+	//物业管理通知
+	//{{first.DATA}}
+	//标题：{{keyword1.DATA}}
+	//发布时间：{{keyword2.DATA}}
+	//内容：{{keyword3.DATA}}
+	//{{remark.DATA}}
+	MINIP_STAFF_TEMPLATE_MESSAGE_MANAGE_NOTICE = "Uwsj-eyoeopnqLuJJlM-VpFTRdW_AD137BSrRQ2dbWU"
+
 	//工单超时
 	//{{first.DATA}}
 	//工单号：{{keyword1.DATA}}
