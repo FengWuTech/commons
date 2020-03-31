@@ -53,8 +53,15 @@ func GetProjectID(c *gin.Context) (int, bool) {
 	return -1, false
 }
 
+func SetStaffID(c *gin.Context, staffID int) {
+	if c.Keys == nil {
+		c.Keys = make(map[string]interface{})
+	}
+	c.Keys["staffID"] = staffID
+}
+
 func GetStaffID(c *gin.Context) (int, bool) {
-	staffID := GetContextData(c, "staff_id")
+	staffID := GetContextData(c, "staffID")
 	if staffID != nil {
 		return int(staffID.(int)), true
 	} else {
