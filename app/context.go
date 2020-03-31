@@ -60,12 +60,12 @@ func SetStaffID(c *gin.Context, staffID int) {
 	c.Keys["staffID"] = staffID
 }
 
-func GetStaffID(c *gin.Context) (int, bool) {
+func GetStaffID(c *gin.Context) int {
 	staffID := GetContextData(c, "staffID")
 	if staffID != nil {
-		return int(staffID.(int)), true
+		return int(staffID.(int))
 	} else {
-		return -1, false
+		return 0
 	}
 }
 
