@@ -29,7 +29,7 @@ type App struct {
 
 	DivisionPrecision int
 
-	CdnURL     string
+	CdnUrl     string
 	QBoxBucket string
 	QBoxAccess string
 	QBoxSecret string
@@ -48,9 +48,8 @@ var AppSetting = &App{}
 
 type Remote struct {
 	MinipUserBaseUrl  string
-	PayCenterBaseUrl  string
+	MinipStaffBaseUrl string
 	EsServiceUrl      string
-	MinipStaffBaseURL string
 	SentryDSN         string
 }
 
@@ -104,12 +103,20 @@ type Sso struct {
 var SsoSetting = &Sso{}
 
 type Cas struct {
-	BaseURL string
+	BaseUrl string
 	AppID   string
 	ApiKey  string
 }
 
 var CasSetting = &Cas{}
+
+type PayCenter struct {
+	BaseUrl string
+	AppID   string
+	ApiKey  string
+}
+
+var PayCenterSetting = &PayCenter{}
 
 type Urm struct {
 	AppID     string
@@ -162,6 +169,7 @@ func Setup(env *string) {
 	mapTo("cas", CasSetting)
 	mapTo("urm", UrmSetting)
 	mapTo("aliyun", AliyunSetting)
+	mapTo("pay_center", PayCenterSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
