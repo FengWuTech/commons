@@ -70,6 +70,10 @@ const (
 
 	DISPATCH_EMERGENCY_LEVEL_NORMAL = 1 //普通
 	DISPATCH_EMERGENCY_LEVEL_URGENT = 2 //加急
+
+	APPEAL_ORDER_SOURCE_MOBILE_CALL = 1 //电话
+	APPEAL_ORDER_SOURCE_COME_VISIT  = 2 //来访
+	APPEAL_ORDER_SOURCE_WEIXIN      = 3 //微信
 )
 
 func GetOrderFeConf(key string) []map[string]interface{} {
