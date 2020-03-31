@@ -5,6 +5,9 @@ import (
 	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	"github.com/FengWuTech/commons/logger"
 	"github.com/gin-gonic/gin"
+	"regexp"
+	"strconv"
+	"strings"
 )
 
 type ExcelRow []string
@@ -70,4 +73,58 @@ func BindExcel(c *gin.Context, data *ExcelData) error {
 	}
 	data.InitHeaderMap()
 	return nil
+}
+
+func (g *Gin) ExcelResponse(filename string, data *ExcelData) {
+	g.C.Header("Content-Type", "application/octet-stream")
+	g.C.Header("Content-Disposition", "attachment; filename="+filename)
+	g.C.Header("Content-Transfer-Encoding", "binary")
+
+	xlsx := excelize.NewFile()
+	sheetName := "Sheet1"
+	sheetId := xlsx.NewSheet(sheetName)
+	xlsx.SetActiveSheet(sheetId)
+
+	headerAxis := "A1"
+	xlsx.SetSheetRow(sheetName, headerAxis, &data.Header)
+	lockAndRedStyle, _ := xlsx.NewStyle(`{"font":{"color":"#FF0000"}, "protection":{"locked":true}}`)
+	unlockStyle, _ := xlsx.NewStyle(`{"protection":{"locked": false}}`)
+
+	for index, header := range data.Header {
+		rowName := "1"
+		colName, _ := excelize.ColumnNumberToName(index + 1)
+		// 默认设置不保护
+		xlsx.SetColStyle(sheetName, colName, unlockStyle)
+		// 保护表头带星号单元格
+		if strings.Contains(header, "*") {
+			xlsx.SetCellStyle(sheetName, colName+rowName, colName+rowName, lockAndRedStyle)
+		}
+	}
+
+	re, _ := regexp.Compile(`\[(.*?)\]`)
+
+	for rowNum, _ := range data.Content {
+		rowName := strconv.Itoa(rowNum + 2)
+		obj := data.Content[rowNum]
+		for index, field := range obj {
+			colName, _ := excelize.ColumnNumberToName(index + 1)
+			if re.MatchString(field) {
+				matched := re.FindStringSubmatch(field)
+				if matched != nil {
+					elements := strings.Split(matched[1], ",")
+					dvRange := excelize.NewDataValidation(true)
+					dvRange.Sqref = fmt.Sprintf("%s%s:%s%s", colName, rowName, colName, rowName)
+					dvRange.SetDropList(elements)
+					xlsx.AddDataValidation(sheetName, dvRange)
+					obj[index] = ""
+				}
+			}
+		}
+		xlsx.SetSheetRow(sheetName, "A"+rowName, &obj)
+	}
+
+	// 保护工作簿
+	// xlsx.ProtectSheet(sheetName, nil)
+
+	_ = xlsx.Write(g.C.Writer)
 }
