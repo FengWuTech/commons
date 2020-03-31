@@ -70,6 +70,10 @@ const (
 
 	DISPATCH_EMERGENCY_LEVEL_NORMAL = 1 //普通
 	DISPATCH_EMERGENCY_LEVEL_URGENT = 2 //加急
+
+	APPEAL_ORDER_EFFECT_EFFECTIVE    = 1 //有效的
+	APPEAL_ORDER_EFFECT_COMMUNICABLE = 2 //可沟通的
+	APPEAL_ORDER_EFFECT_INVALID      = 3 //无效的
 )
 
 func GetOrderFeConf(key string) []map[string]interface{} {
