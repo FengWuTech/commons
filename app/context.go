@@ -50,3 +50,33 @@ func GetStaffID(c *gin.Context) (int, bool) {
 		return -1, false
 	}
 }
+
+func SetUserID(c *gin.Context, userID int) {
+	if c.Keys == nil {
+		c.Keys = make(map[string]interface{})
+	}
+	c.Keys["userID"] = userID
+}
+
+func GetUserID(c *gin.Context) int {
+	if c.Keys == nil {
+		return 0
+	}
+
+	v, ok := c.Keys["userID"]
+	if ok {
+		return int(v.(int))
+	} else {
+		return 0
+	}
+}
+
+func GetAppID(c *gin.Context) (appID int) {
+	strAppID := c.Param("appID")
+	return com.StrTo(strAppID).MustInt()
+}
+
+func GetGroupID(c *gin.Context) int {
+	groupID := c.GetHeader("groupid")
+	return com.StrTo(groupID).MustInt()
+}
