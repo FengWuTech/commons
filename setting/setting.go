@@ -108,6 +108,13 @@ type Cas struct {
 
 var CasSetting = &Cas{}
 
+type Urm struct {
+	AppID     string
+	AppSecret string
+}
+
+var UrmSetting = &Urm{}
+
 var cfg *ini.File
 
 // Setup initialize the configuration instance
@@ -141,6 +148,7 @@ func Setup(env *string) {
 	mapTo("database_flow", DatabaseFlowSetting)
 	mapTo("remote", RemoteSetting)
 	mapTo("cas", CasSetting)
+	mapTo("urm", UrmSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
