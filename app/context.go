@@ -19,12 +19,23 @@ func GetContextData(c *gin.Context, key string) interface{} {
 	return c.Keys[key]
 }
 
-func GetCompanyID(c *gin.Context) (int, bool) {
-	companyID := GetContextData(c, "company_id")
-	if companyID != nil {
-		return companyID.(int), true
+func SetCompanyID(c *gin.Context, companyID int) {
+	if c.Keys == nil {
+		c.Keys = make(map[string]interface{})
+	}
+	c.Keys["companyID"] = companyID
+}
+
+func GetCompanyID(c *gin.Context) int {
+	if c.Keys == nil {
+		return 0
+	}
+
+	v, ok := c.Keys["companyID"]
+	if ok {
+		return v.(int)
 	} else {
-		return -1, false
+		return 0
 	}
 }
 
