@@ -39,6 +39,9 @@ type App struct {
 	MinipStaffOriID         string
 	MinipStaffToken         string
 	MinipStaffEncodedAESKey string
+
+	WxAppID     string
+	WxAppSecret string
 }
 
 var AppSetting = &App{}
