@@ -118,6 +118,15 @@ type Urm struct {
 
 var UrmSetting = &Urm{}
 
+type Aliyun struct {
+	RegionID     string
+	AccessID     string
+	AccessSecret string
+	SliderAppKey string
+}
+
+var AliyunSetting = &Aliyun{}
+
 var cfg *ini.File
 
 // Setup initialize the configuration instance
@@ -152,6 +161,7 @@ func Setup(env *string) {
 	mapTo("remote", RemoteSetting)
 	mapTo("cas", CasSetting)
 	mapTo("urm", UrmSetting)
+	mapTo("aliyun", AliyunSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
