@@ -60,5 +60,5 @@ func UploadHttpFile(url string, dstFileName string) string {
 		fmt.Printf("%v\n", err)
 		return ""
 	}
-	return setting.AppSetting.CdnURL + "/" + dstFileName
+	return setting.AppSetting.CdnUrl + "/" + dstFileName
 }
