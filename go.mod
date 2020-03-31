@@ -3,6 +3,10 @@ module github.com/FengWuTech/commons
 go 1.14
 
 require (
+	github.com/360EntSecGroup-Skylar/excelize v1.4.1 // indirect
+	github.com/360EntSecGroup-Skylar/excelize/v2 v2.1.0 // indirect
+	github.com/astaxie/beego v1.12.1 // indirect
+	github.com/gin-gonic/gin v1.6.2 // indirect
 	github.com/go-ini/ini v1.55.0 // indirect
 	github.com/json-iterator/go v1.1.9 // indirect
 	github.com/noaway/dateparse v0.0.0-20171117034806-ad2b19d7b298 // indirect
