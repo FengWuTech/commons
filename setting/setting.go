@@ -42,6 +42,7 @@ type App struct {
 
 	WxAppID     string
 	WxAppSecret string
+	NoticeList  string
 }
 
 var AppSetting = &App{}
