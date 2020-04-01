@@ -7,13 +7,6 @@ import (
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/afs"
 )
 
-var (
-	REGION_ID     = setting.AliyunSetting.RegionID
-	ACCESS_ID     = setting.AliyunSetting.AccessID
-	ACCESS_SECRET = setting.AliyunSetting.AccessSecret
-	APPKEY        = setting.AliyunSetting.SliderAppKey
-)
-
 type SliderReq struct {
 	Sig       string `json:"sig" valid:"Required"`
 	SessionId string `json:"session_id" valid:"Required"`
@@ -22,7 +15,13 @@ type SliderReq struct {
 }
 
 func CheckAliyunUserSlider(form SliderReq, clientIp string) bool {
-	client, err := afs.NewClientWithAccessKey(REGION_ID, ACCESS_ID, ACCESS_SECRET)
+	var (
+		regionId     = setting.AliyunSetting.RegionID
+		accessId     = setting.AliyunSetting.AccessID
+		accessSecret = setting.AliyunSetting.AccessSecret
+		appkey       = setting.AliyunSetting.SliderAppKey
+	)
+	client, err := afs.NewClientWithAccessKey(regionId, accessId, accessSecret)
 	if err != nil {
 		return false
 	}
@@ -32,7 +31,7 @@ func CheckAliyunUserSlider(form SliderReq, clientIp string) bool {
 	request.SessionId = form.SessionId
 	request.Token = form.Token
 	request.Scene = form.Scene
-	request.AppKey = APPKEY
+	request.AppKey = appkey
 	// TODO use real ip
 	request.RemoteIp = clientIp
 	response, err := client.AuthenticateSig(request)
