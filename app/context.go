@@ -5,6 +5,8 @@ import (
 	"github.com/unknwon/com"
 )
 
+const WEB_APP_CODE = "fpms"
+
 func SetContextData(c *gin.Context, key string, value interface{}) {
 	if c.Keys == nil {
 		c.Keys = make(map[string]interface{})
@@ -97,4 +99,9 @@ func GetAppID(c *gin.Context) (appID int) {
 func GetGroupID(c *gin.Context) int {
 	groupID := c.GetHeader("groupid")
 	return com.StrTo(groupID).MustInt()
+}
+
+func IsWebRequest(c *gin.Context) bool {
+	appCode := GetContextData(c, "app_code").(string)
+	return appCode == WEB_APP_CODE
 }
