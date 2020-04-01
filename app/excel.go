@@ -129,3 +129,91 @@ func (g *Gin) ExcelResponse(filename string, data *ExcelData) {
 
 	_ = xlsx.Write(g.C.Writer)
 }
+
+
+type HeaderItem struct {
+	Name  string
+	Width int
+}
+type PayFlowRow []string
+type BillRow []string
+type BillRowList []BillRow
+type PayFlowExcelRow struct {
+	PayFlowRow  PayFlowRow
+	BillRowList BillRowList
+}
+
+type PayFlowExcelData struct {
+	Header  []HeaderItem
+	Content []PayFlowExcelRow
+}
+
+func (g *Gin) PayFlowExcelResponse(filename string, data *PayFlowExcelData) {
+	g.C.Header("Content-Type", "application/octet-stream")
+	g.C.Header("Content-Disposition", "attachment; filename="+filename)
+	g.C.Header("Content-Transfer-Encoding", "binary")
+
+	xlsx := excelize.NewFile()
+	sheetName := "Sheet1"
+	sheetId := xlsx.NewSheet(sheetName)
+	xlsx.SetActiveSheet(sheetId)
+
+	//headerStyle, _ := xlsx.NewStyle(`{"horizontal":"center", "vertical":"center"}`)
+	contentStyle, _ := xlsx.NewStyle(`{"alignment":{"horizontal":"left", "vertical":"center"}}`)
+
+	headerAxis := "A1"
+	_ = xlsx.SetSheetRow(sheetName, headerAxis, &data.Header)
+
+	xlsx.SetRowHeight(sheetName, 1, 24)
+	for index, item := range data.Header {
+		rowName := "1"
+		colName, _ := excelize.ColumnNumberToName(index + 1)
+		xlsx.SetCellValue(sheetName, colName+rowName, item.Name)
+		xlsx.SetColWidth(sheetName, colName, colName, float64(item.Width))
+		xlsx.SetColStyle(sheetName, colName, contentStyle)
+	}
+
+	mergeStartRow := 2
+	mergeEndRow := mergeStartRow
+	for _, rowData := range data.Content {
+		payFlowRow := rowData.PayFlowRow
+		billRowList := rowData.BillRowList
+
+		billRowHeight := len(billRowList)
+		if billRowHeight <= 0 {
+			billRowHeight = 1
+		}
+		mergeEndRow += billRowHeight - 1
+
+		for i := 1; i <= len(rowData.PayFlowRow); i++ {
+			column, _ := excelize.ColumnNumberToName(i)
+			mergeHCell := fmt.Sprintf("%s%d", column, mergeStartRow)
+			mergeVCell := fmt.Sprintf("%s%d", column, mergeEndRow)
+			_ = xlsx.MergeCell(sheetName, mergeHCell, mergeVCell)
+		}
+
+		for idx, value := range payFlowRow {
+			column, _ := excelize.ColumnNumberToName(idx + 1)
+			axis := fmt.Sprintf("%s%d", column, mergeStartRow)
+			_ = xlsx.SetCellValue(sheetName, axis, value)
+		}
+
+		payFlowRowWidth := len(payFlowRow)
+		for rowIdx, billRow := range billRowList {
+			for widthIdx, value := range billRow {
+				column, _ := excelize.ColumnNumberToName(payFlowRowWidth + widthIdx + 1)
+				axis := fmt.Sprintf("%s%d", column, mergeStartRow+rowIdx)
+				_ = xlsx.SetCellValue(sheetName, axis, value)
+			}
+		}
+
+		for i := 0; i < billRowHeight; i++ {
+			xlsx.SetRowHeight(sheetName, mergeStartRow+i, 24)
+		}
+
+		mergeStartRow += billRowHeight
+		mergeEndRow = mergeStartRow
+	}
+
+	_ = xlsx.Write(g.C.Writer)
+}
