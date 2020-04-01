@@ -71,6 +71,7 @@ type Database struct {
 	Password    string
 	Host        string
 	Name        string
+	PmsName     string
 	TablePrefix string
 }
 
