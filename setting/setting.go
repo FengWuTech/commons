@@ -29,7 +29,7 @@ type App struct {
 
 	DivisionPrecision int
 
-	CdnURL     string
+	CdnUrl     string
 	QBoxBucket string
 	QBoxAccess string
 	QBoxSecret string
@@ -39,15 +39,18 @@ type App struct {
 	MinipStaffOriID         string
 	MinipStaffToken         string
 	MinipStaffEncodedAESKey string
+
+	WxAppID     string
+	WxAppSecret string
+	NoticeList  string
 }
 
 var AppSetting = &App{}
 
 type Remote struct {
 	MinipUserBaseUrl  string
-	PayCenterBaseUrl  string
+	MinipStaffBaseUrl string
 	EsServiceUrl      string
-	MinipStaffBaseURL string
 	SentryDSN         string
 }
 
@@ -68,6 +71,7 @@ type Database struct {
 	Password    string
 	Host        string
 	Name        string
+	PmsName     string
 	TablePrefix string
 }
 
@@ -101,12 +105,36 @@ type Sso struct {
 var SsoSetting = &Sso{}
 
 type Cas struct {
-	BaseURL string
+	BaseUrl string
 	AppID   string
 	ApiKey  string
 }
 
 var CasSetting = &Cas{}
+
+type PayCenter struct {
+	BaseUrl string
+	AppID   string
+	ApiKey  string
+}
+
+var PayCenterSetting = &PayCenter{}
+
+type Urm struct {
+	AppID     string
+	AppSecret string
+}
+
+var UrmSetting = &Urm{}
+
+type Aliyun struct {
+	RegionID     string
+	AccessID     string
+	AccessSecret string
+	SliderAppKey string
+}
+
+var AliyunSetting = &Aliyun{}
 
 var cfg *ini.File
 
@@ -141,6 +169,9 @@ func Setup(env *string) {
 	mapTo("database_flow", DatabaseFlowSetting)
 	mapTo("remote", RemoteSetting)
 	mapTo("cas", CasSetting)
+	mapTo("urm", UrmSetting)
+	mapTo("aliyun", AliyunSetting)
+	mapTo("pay_center", PayCenterSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
