@@ -31,4 +31,4 @@ jobs:
         fi
 
     - name: Build
-      run: go test ./... | grep -v "no test files"
+      run: go test ./...
