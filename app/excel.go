@@ -103,20 +103,34 @@ func (g *Gin) ExcelResponse(filename string, data *ExcelData) {
 	}
 
 	re, _ := regexp.Compile(`\[(.*?)\]`)
+	// 因为选项不支持跨sheet，所以放在同一个sheet中，在有内容区域往右放置选项
+	optionOffset := len(data.Header) + 10
 
 	for rowNum, _ := range data.Content {
 		rowName := strconv.Itoa(rowNum + 2)
 		obj := data.Content[rowNum]
 		for index, field := range obj {
 			colName, _ := excelize.ColumnNumberToName(index + 1)
+			// 提供下拉样式
 			if re.MatchString(field) {
 				matched := re.FindStringSubmatch(field)
 				if matched != nil {
-					elements := strings.Split(matched[1], ",")
-					dvRange := excelize.NewDataValidation(true)
-					dvRange.Sqref = fmt.Sprintf("%s%s:%s%s", colName, rowName, colName, rowName)
-					dvRange.SetDropList(elements)
-					xlsx.AddDataValidation(sheetName, dvRange)
+					optionColName, _ := excelize.ColumnNumberToName(index + optionOffset)
+					// 第二行开始放置选项，只用处理一次，把同一列都使用选项约束
+					if v, _ := xlsx.GetCellValue(sheetName, optionColName + "2"); v == "" {
+						elements := strings.Split(matched[1], ",")
+						for optionIndex, element := range elements {
+							optionRowName := strconv.Itoa(optionIndex + 2)
+							xlsx.SetSheetRow(sheetName, optionColName+optionRowName, &[]interface{}{element,})
+						}
+						// https://xuri.me/excelize/zh-hans/data.html#AddDataValidation
+						dvRange := excelize.NewDataValidation(true)
+						// 需要增加选项的列
+						dvRange.Sqref = fmt.Sprintf("%s%s:%s%s", colName, "2", colName, strconv.Itoa(len(data.Content) + 2))
+						// 选项来源的列
+						dvRange.SetSqrefDropList(fmt.Sprintf("$%s$%s:$%s$%s", optionColName, "2", optionColName, strconv.Itoa(len(elements) + 2)), true)
+						xlsx.AddDataValidation(sheetName, dvRange)
+					}
 					obj[index] = ""
 				}
 			}
