@@ -47,7 +47,7 @@ const (
 	APPEAL_ORDER_STATUS_FINISHED       = 6 //已结单
 
 	DISPATCH_ORDER_STATUS_DISPATCHED = 1 //已派工
-	DISPATCH_ORDER_STATUS_RESPONSED  = 2 //已响应
+	DISPATCH_ORDER_STATUS_ACCEPTED   = 2 //已接单
 	DISPATCH_ORDER_STATUS_REPAIRED   = 3 //已修复
 	DISPATCH_ORDER_STATUS_VERIFIED   = 4 //已验证
 	DISPATCH_ORDER_STATUS_TRANSFER   = 5 //已转办
@@ -225,7 +225,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "已派工",
 			},
 			{
-				"value": DISPATCH_ORDER_STATUS_RESPONSED,
+				"value": DISPATCH_ORDER_STATUS_ACCEPTED,
 				"label": "已响应",
 			},
 			{
