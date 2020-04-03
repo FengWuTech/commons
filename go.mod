@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/360EntSecGroup-Skylar/excelize/v2 v2.1.0
-	github.com/aliyun/alibaba-cloud-sdk-go v1.61.78 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.61.78
 	github.com/astaxie/beego v1.12.1
 	github.com/elazarl/goproxy v0.0.0-20200315184450-1f3cb6622dad // indirect
 	github.com/getsentry/sentry-go v0.5.1

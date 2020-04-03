@@ -91,7 +91,7 @@ func GetUserID(c *gin.Context) int {
 	}
 }
 
-func GetAppID(c *gin.Context) (appID int) {
+func GetAppID(c *gin.Context) int {
 	strAppID := c.Param("appID")
 	return com.StrTo(strAppID).MustInt()
 }
