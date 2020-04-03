@@ -10,4 +10,7 @@ func TestGetInitiallist(t *testing.T) {
 	if !reflect.DeepEqual(list, []string{"XQ"}) {
 		t.Errorf("GetInitiallist %v != %v", list, []string{"XQ"})
 	}
+	if !reflect.DeepEqual(list, []string{"X"}) {
+		t.Errorf("GetInitiallist %v != %v", list, []string{"X"})
+	}
 }
