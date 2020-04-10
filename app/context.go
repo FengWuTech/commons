@@ -5,7 +5,12 @@ import (
 	"github.com/unknwon/com"
 )
 
-const WEB_APP_CODE = "fpms"
+const (
+	WEB_APP_CODE = "fpms"
+	CompanyKey   = "companyID"
+	StaffKey     = "staffID"
+	UserKey      = "userID"
+)
 
 func SetContextData(c *gin.Context, key string, value interface{}) {
 	if c.Keys == nil {
@@ -22,19 +27,12 @@ func GetContextData(c *gin.Context, key string) interface{} {
 }
 
 func SetCompanyID(c *gin.Context, companyID int) {
-	if c.Keys == nil {
-		c.Keys = make(map[string]interface{})
-	}
-	c.Keys["companyID"] = companyID
+	SetContextData(c, CompanyKey, companyID)
 }
 
 func GetCompanyID(c *gin.Context) int {
-	if c.Keys == nil {
-		return 0
-	}
-
-	v, ok := c.Keys["companyID"]
-	if ok {
+	v := GetContextData(c, CompanyKey)
+	if v != nil {
 		return v.(int)
 	} else {
 		return 0
@@ -56,36 +54,26 @@ func GetProjectID(c *gin.Context) (int, bool) {
 }
 
 func SetStaffID(c *gin.Context, staffID int) {
-	if c.Keys == nil {
-		c.Keys = make(map[string]interface{})
-	}
-	c.Keys["staffID"] = staffID
+	SetContextData(c, StaffKey, staffID)
 }
 
 func GetStaffID(c *gin.Context) int {
-	staffID := GetContextData(c, "staffID")
-	if staffID != nil {
-		return int(staffID.(int))
+	v := GetContextData(c, StaffKey)
+	if v != nil {
+		return v.(int)
 	} else {
 		return 0
 	}
 }
 
 func SetUserID(c *gin.Context, userID int) {
-	if c.Keys == nil {
-		c.Keys = make(map[string]interface{})
-	}
-	c.Keys["userID"] = userID
+	SetContextData(c, UserKey, userID)
 }
 
 func GetUserID(c *gin.Context) int {
-	if c.Keys == nil {
-		return 0
-	}
-
-	v, ok := c.Keys["userID"]
-	if ok {
-		return int(v.(int))
+	v := GetContextData(c, UserKey)
+	if v != nil {
+		return v.(int)
 	} else {
 		return 0
 	}
