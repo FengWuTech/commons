@@ -136,6 +136,14 @@ type Aliyun struct {
 
 var AliyunSetting = &Aliyun{}
 
+type Machinery struct {
+	ResultBackend   string
+	Broker          string
+	ResultsExpireIn int
+}
+
+var MachinerySetting = &Machinery{}
+
 var cfg *ini.File
 
 // Setup initialize the configuration instance
@@ -172,6 +180,7 @@ func Setup(env *string) {
 	mapTo("urm", UrmSetting)
 	mapTo("aliyun", AliyunSetting)
 	mapTo("pay_center", PayCenterSetting)
+	mapTo("machinery", MachinerySetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
@@ -186,4 +195,3 @@ func mapTo(section string, v interface{}) {
 		fmt.Printf("Cfg.MapTo %s err: %v", section, err)
 	}
 }
-
