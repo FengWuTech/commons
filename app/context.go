@@ -11,6 +11,7 @@ const (
 	StaffKey     = "staffID"
 	UserKey      = "userID"
 	LoginFrom    = "loginFrom"
+	Token        = "token"
 )
 
 func SetContextData(c *gin.Context, key string, value interface{}) {
@@ -102,4 +103,13 @@ func SetLoginFrom(c *gin.Context, from string) {
 func GetLoginFrom(c *gin.Context) string {
 	from := GetContextData(c, LoginFrom)
 	return from.(string)
+}
+
+func SetToken(c *gin.Context, token string) {
+	SetContextData(c, Token, token)
+}
+
+func GetToken(c *gin.Context) string {
+	token := GetContextData(c, Token)
+	return token.(string)
 }
