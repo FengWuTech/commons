@@ -1,0 +1,6 @@
+package constant
+
+const (
+	MACHINERY_REDIS_BROKER_FPMS       = 1
+	MACHINERY_REDIS_BROKER_PAY_CENTER = 2
+)
