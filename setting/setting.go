@@ -94,6 +94,7 @@ type Redis struct {
 	MaxIdle     int
 	MaxActive   int
 	IdleTimeout time.Duration
+	MachineryDB int
 }
 
 var RedisSetting = &Redis{}
