@@ -10,6 +10,7 @@ const (
 	CompanyKey   = "companyID"
 	StaffKey     = "staffID"
 	UserKey      = "userID"
+	LoginFrom    = "loginFrom"
 )
 
 func SetContextData(c *gin.Context, key string, value interface{}) {
@@ -92,4 +93,13 @@ func GetGroupID(c *gin.Context) int {
 func IsWebRequest(c *gin.Context) bool {
 	appCode := GetContextData(c, "app_code").(string)
 	return appCode == WEB_APP_CODE
+}
+
+func SetLoginFrom(c *gin.Context, from string) {
+	SetContextData(c, LoginFrom, from)
+}
+
+func GetLoginFrom(c *gin.Context) string {
+	from := GetContextData(c, LoginFrom)
+	return from.(string)
 }
