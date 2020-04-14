@@ -56,14 +56,15 @@ const (
 	KEY_USER_EDU_DOCTOR        = 6 //博士
 
 	//年龄段
-	KEY_USER_AGE_0  = 0 //25岁以下
-	KEY_USER_AGE_25 = 1 //25-30岁
-	KEY_USER_AGE_30 = 2 //31-35岁
-	KEY_USER_AGE_35 = 3 //36-40岁
-	KEY_USER_AGE_40 = 4 //41-45岁
-	KEY_USER_AGE_45 = 5 //46-50岁
-	KEY_USER_AGE_50 = 6 //51-55岁
-	KEY_USER_AGE_55 = 7 //55岁以上
+	KEY_USER_AGE_UNKNOW = 0 //未知
+	KEY_USER_AGE_0      = 1 //25岁以下
+	KEY_USER_AGE_25     = 2 //25-30岁
+	KEY_USER_AGE_30     = 3 //31-35岁
+	KEY_USER_AGE_35     = 4 //36-40岁
+	KEY_USER_AGE_40     = 5 //41-45岁
+	KEY_USER_AGE_45     = 6 //46-50岁
+	KEY_USER_AGE_50     = 7 //51-55岁
+	KEY_USER_AGE_55     = 8 //55岁以上
 
 	//性别
 	KEY_USER_SEX_MALE   = 0 //男
@@ -159,6 +160,9 @@ var USER_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 	},
 	KEY_USER_AGE_GROUP: {
+		KEY_USER_AGE_UNKNOW: {
+			"value": "未知",
+		},
 		KEY_USER_AGE_0: {
 			"value": "25岁以下",
 		},
