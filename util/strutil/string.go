@@ -5,8 +5,10 @@ import (
 	"crypto/rand"
 	"github.com/unknwon/com"
 	"math/big"
+	mrand "math/rand"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func IntSliceToStringSlice(ints []int) []string {
@@ -45,4 +47,14 @@ func CreateRandomString(len int) string {
 		container += string(str[randomInt.Int64()])
 	}
 	return container
+}
+
+func GenNonceStr(len int) string {
+	var nonce = make([]byte, len)
+	var r = mrand.New(mrand.NewSource(time.Now().Unix()))
+	for i := 0; i < len; i++ {
+		b := r.Intn(26) + 65
+		nonce[i] = byte(b)
+	}
+	return string(nonce)
 }

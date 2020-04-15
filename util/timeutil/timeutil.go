@@ -144,6 +144,7 @@ func GetDayStartTime(year int, month int, day int) time.Time {
 func GetDayEndTime(year int, month int, day int) time.Time {
 	return GetDayStartTime(year, month, day).AddDate(0, 0, 1)
 }
+
 //-----------------------------------
 
 func ParseExcelDate(i string) time.Time {
@@ -158,4 +159,30 @@ func ParseExcelDate(i string) time.Time {
 	days := com.StrTo(i).MustInt()
 	date = date.AddDate(0, 0, days-2)
 	return date
+}
+
+func GetLastDayWithoutOver(year int, month int) int {
+	now := time.Now()
+	monthStartTime := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.Local)
+	nextMonthStartTime := monthStartTime.AddDate(0, 1, 0)
+
+	statisticsTime := time.Date(year, time.Month(month), 1, 0, 0, 0, 0, time.Local)
+
+	if statisticsTime.Unix() < monthStartTime.Unix() { //当前月之前的时间
+		return statisticsTime.AddDate(0, 1, -1).Day()
+	} else if statisticsTime.Unix() >= nextMonthStartTime.Unix() { //当前月之后的时间
+		return 0
+	} else {
+		return now.Day()
+	}
+}
+
+func GetLastMonthWithoutOver(year int) int {
+	if year < time.Now().Year() {
+		return 12
+	} else if year > time.Now().Year() {
+		return 0
+	} else {
+		return int(time.Now().Month())
+	}
 }
