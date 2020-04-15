@@ -40,9 +40,11 @@ type App struct {
 	MinipStaffToken         string
 	MinipStaffEncodedAESKey string
 
-	WxAppID     string
-	WxAppSecret string
-	NoticeList  string
+	MinipServiceProviderMchID  string
+	MinipServiceProviderAppID  string
+	MinipServiceProviderApiKey string
+
+	NoticeList string
 }
 
 var AppSetting = &App{}
@@ -50,6 +52,7 @@ var AppSetting = &App{}
 type Remote struct {
 	MinipUserBaseUrl  string
 	MinipStaffBaseUrl string
+	PayCenterBaseUrl  string
 	EsServiceUrl      string
 	SentryDSN         string
 }
