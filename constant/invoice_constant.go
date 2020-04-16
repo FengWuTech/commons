@@ -3,10 +3,12 @@ package constant
 import "sort"
 
 const (
-	INVOICE_STATUS       = 0
-	INVOICE_STATUS_START = 1 //申请中
-	INVOICE_STATUS_DONE  = 2 //完成
-	INVOICE_STATUS_FAIL  = 3 //失败
+	INVOICE_STATUS             = 0
+	INVOICE_STATUS_START       = 1 //申请中
+	INVOICE_STATUS_DONE        = 2 //开票成功
+	INVOICE_STATUS_FAIL        = 3 //开票失败
+	INVOICE_STATUS_CANCEL_DONE = 4 //销票成功
+	INVOICE_STATUS_CANCEL_FAIL = 5 //销票失败
 
 	INVOICE_TYPE                 = 1
 	INVOICE_TYPE_PERSONAL        = 1 //个人
@@ -23,7 +25,13 @@ var INVOICE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "已开票",
 		},
 		INVOICE_STATUS_FAIL: {
-			"value": "失败",
+			"value": "开票失败",
+		},
+		INVOICE_STATUS_CANCEL_DONE: {
+			"value": "已销票",
+		},
+		INVOICE_STATUS_CANCEL_FAIL: {
+			"value": "销票失败",
 		},
 	},
 	INVOICE_TYPE: {
