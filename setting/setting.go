@@ -44,8 +44,7 @@ type App struct {
 	MinipServiceProviderAppID  string
 	MinipServiceProviderApiKey string
 
-	PayCenterFPMSAppID string
-	NoticeList         string
+	NoticeList string
 }
 
 var AppSetting = &App{}
