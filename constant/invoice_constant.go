@@ -11,6 +11,7 @@ const (
 	INVOICE_STATUS_CANCEL_FAIL   = 5 //销票失败
 
 	SPECIAL_INVOICE_STATUS       = 2
+	SPECIAL_INVOICE_STATUS_INIT  = 1 //申请中
 	SPECIAL_INVOICE_STATUS_START = 6 //专票待处理
 	SPECIAL_INVOICE_STATUS_DONE  = 7 //专票已开票
 
@@ -39,6 +40,9 @@ var INVOICE_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 	},
 	SPECIAL_INVOICE_STATUS: {
+		SPECIAL_INVOICE_STATUS_INIT: {
+			"value": "申请中",
+		},
 		SPECIAL_INVOICE_STATUS_START: {
 			"value": "专票待处理",
 		},
