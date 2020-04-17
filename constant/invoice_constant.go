@@ -3,10 +3,17 @@ package constant
 import "sort"
 
 const (
-	INVOICE_STATUS       = 0
-	INVOICE_STATUS_START = 1 //申请中
-	INVOICE_STATUS_DONE  = 2 //完成
-	INVOICE_STATUS_FAIL  = 3 //失败
+	INVOICE_STATUS               = 0
+	INVOICE_STATUS_START         = 1 //申请中
+	INVOICE_STATUS_DONE          = 2 //开票成功
+	INVOICE_STATUS_FAIL          = 3 //开票失败
+	INVOICE_STATUS_CANCEL_DONE   = 4 //销票成功
+	INVOICE_STATUS_CANCEL_FAIL   = 5 //销票失败
+
+	SPECIAL_INVOICE_STATUS       = 2
+	SPECIAL_INVOICE_STATUS_INIT  = 1 //申请中
+	SPECIAL_INVOICE_STATUS_START = 6 //专票待处理
+	SPECIAL_INVOICE_STATUS_DONE  = 7 //专票已开票
 
 	INVOICE_TYPE                 = 1
 	INVOICE_TYPE_PERSONAL        = 1 //个人
@@ -23,7 +30,24 @@ var INVOICE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "已开票",
 		},
 		INVOICE_STATUS_FAIL: {
-			"value": "失败",
+			"value": "开票失败",
+		},
+		INVOICE_STATUS_CANCEL_DONE: {
+			"value": "已销票",
+		},
+		INVOICE_STATUS_CANCEL_FAIL: {
+			"value": "销票失败",
+		},
+	},
+	SPECIAL_INVOICE_STATUS: {
+		SPECIAL_INVOICE_STATUS_INIT: {
+			"value": "申请中",
+		},
+		SPECIAL_INVOICE_STATUS_START: {
+			"value": "专票待处理",
+		},
+		SPECIAL_INVOICE_STATUS_DONE: {
+			"value": "专票已开票",
 		},
 	},
 	INVOICE_TYPE: {
@@ -65,11 +89,13 @@ func GetInvoiceFEConf(which int) []map[string]interface{} {
 }
 
 func GetInvoiceStatusFEConf() []map[string]interface{} {
-
 	return GetInvoiceFEConf(INVOICE_STATUS)
 }
 
-func GetInvoiceTypeFEConf() []map[string]interface{} {
+func GetSpecialInvoiceStatusFEConf() []map[string]interface{} {
+	return GetInvoiceFEConf(SPECIAL_INVOICE_STATUS)
+}
 
+func GetInvoiceTypeFEConf() []map[string]interface{} {
 	return GetInvoiceFEConf(INVOICE_TYPE)
 }
