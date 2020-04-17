@@ -89,11 +89,13 @@ func GetInvoiceFEConf(which int) []map[string]interface{} {
 }
 
 func GetInvoiceStatusFEConf() []map[string]interface{} {
-
 	return GetInvoiceFEConf(INVOICE_STATUS)
 }
 
-func GetInvoiceTypeFEConf() []map[string]interface{} {
+func GetSpecialInvoiceStatusFEConf() []map[string]interface{} {
+	return GetInvoiceFEConf(SPECIAL_INVOICE_STATUS)
+}
 
+func GetInvoiceTypeFEConf() []map[string]interface{} {
 	return GetInvoiceFEConf(INVOICE_TYPE)
 }
