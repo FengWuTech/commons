@@ -23,6 +23,9 @@ func ParseCSVToMap(content string, ignoreNum int) []map[string]string {
 	titleItems = strings.Split(rows[ignoreNum], ",")
 
 	for rowID := ignoreNum + 1; rowID < len(rows); rowID++ {
+		if rows[rowID] == "" {
+			continue
+		}
 		rowItems := strings.Split(rows[rowID], ",")
 		dataItem := make(map[string]string)
 		for k, v := range rowItems {
