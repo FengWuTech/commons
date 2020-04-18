@@ -1,6 +1,7 @@
 package util
 
 import (
+	"encoding/json"
 	"fmt"
 	"reflect"
 
@@ -34,6 +35,13 @@ func IsNil(i interface{}) bool {
 		return vi.IsNil()
 	}
 	return false
+}
+
+func StructToMapUseJson(st interface{}) map[string]interface{} {
+	var ret map[string]interface{}
+	jsonStr, _ := json.Marshal(st)
+	json.Unmarshal(jsonStr, &ret)
+	return ret
 }
 
 //struct转成map
