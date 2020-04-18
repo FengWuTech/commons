@@ -3,8 +3,8 @@ package constant
 import "sort"
 
 const (
-	CHARGE_TYPE_SEQUENCE_PAY = 1
-	CHARGE_TYPE_RANDOM_PAY   = 2
+	CHARGE_TYPE_SEQUENCE_PAY = 1 //顺序支付
+	CHARGE_TYPE_RANDOM_PAY   = 2 //随机支付
 
 	CHARGE_PROJECT_TYPE          = 1 //费项类别:0周期性、1临时性、2押金性
 	CHARGE_PROJECT_FEE_PRECISE   = 2 //费用精确位，枚举：1元、2角、3分
