@@ -10,23 +10,23 @@ const (
 
 var RECON_STATUS_MAP = []map[string]interface{}{
 	{
-		"label": "账单生成中",
+		"label": "生成中",
 		"value": RECON_STATUS_WAITED,
 	},
 	{
-		"label": "账单已生成",
+		"label": "已生成",
 		"value": RECON_STATUS_GENERATED,
 	},
 	{
-		"label": "财务审核中",
+		"label": "审核中",
 		"value": RECON_STATUS_SUBMITTED,
 	},
 	{
-		"label": "财务已确认",
+		"label": "已确认",
 		"value": RECON_STATUS_CONFIRMED,
 	},
 	{
-		"label": "账单已归档",
+		"label": "已归档",
 		"value": RECON_STATUS_FILED,
 	},
 }
