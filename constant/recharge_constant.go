@@ -29,9 +29,9 @@ var RECHARGE_MAP = map[int]map[int]map[string]interface{}{
 		RECHARGE_TYPE_DEDUCT: {
 			"value": "抵扣",
 		},
-		RECHARGE_TYPE_REFUND_TO_USER: {
-			"value": "退款",
-		},
+		//RECHARGE_TYPE_REFUND_TO_USER: {
+		//	"value": "退款",
+		//},
 	},
 }
 
