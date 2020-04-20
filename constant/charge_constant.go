@@ -766,17 +766,17 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "线下支付-POS机刷卡",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": "线下支付-微信转账",
+			"value": "线下支付-微信扫码",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": "线下支付-支付宝转账",
+			"value": "线下支付-支付宝扫码",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_BANK: {
 			"value": "线下支付-银行卡转账",
 		},
-		CHARGE_PAY_METHOD_OTHER: {
-			"value": "其他收款方式",
-		},
+		//CHARGE_PAY_METHOD_OTHER: {
+		//	"value": "其他收款方式",
+		//},
 	},
 	CHARGE_PAY_CYCLE: {
 		CHARGE_PAY_CYCLE_MONTH: {
