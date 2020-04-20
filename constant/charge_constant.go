@@ -1,7 +1,6 @@
 package constant
 
 import (
-	"github.com/FengWuTech/commons/util"
 	"sort"
 )
 
@@ -149,7 +148,7 @@ const (
 	ACCOUNT_FLOW_TYPE_REFUND_TO_USER    = 4 //退款给用户
 )
 
-var ACCOUNT_FLOW_TYPE = []util.KV{
+var ACCOUNT_FLOW_TYPE = []map[string]interface{}{
 	{
 		"type":  ACCOUNT_FLOW_TYPE_RECHARGE,
 		"label": "充值",
