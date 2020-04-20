@@ -6,9 +6,8 @@ const (
 	OPERATE_TYPE = 1 //操作类型
 
 	//操作类型
-	OPERATE_TYPE_LOGIN             = 0 //登录
-	OPERATE_TYPE_STAFF_ROLE_GRANT  = 1 //增加管理员
-	OPERATE_TYPE_STAFF_ROLE_CANCEL = 2 //删除管理员
+	OPERATE_TYPE_LOGIN             = 1 //登录
+	OPERATE_TYPE_STAFF_ROLE_GRANT  = 2 //增删管理员
 	OPERATE_TYPE_STAFF_SET_GROUP   = 3 //员工关联组团
 	OPERATE_TYPE_STAFF_SET_ACL     = 4 //员工权限
 	OPERATE_TYPE_BASIC_INFO_EDIT   = 5 //编辑基础信息
@@ -23,10 +22,7 @@ var OPERATE_HISTORY_MAP = map[int]map[int]map[string]interface{}{
 			"tpl":   "%v%v登录了系统",
 		},
 		OPERATE_TYPE_STAFF_ROLE_GRANT: {
-			"value": "增加管理员",
-		},
-		OPERATE_TYPE_STAFF_ROLE_CANCEL: {
-			"value": "删除管理员",
+			"value": "增删管理员",
 		},
 		OPERATE_TYPE_STAFF_SET_GROUP: {
 			"value": "员工关联组团",
