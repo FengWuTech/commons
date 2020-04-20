@@ -1,9 +1,11 @@
 package app
 
 import (
+	"bytes"
 	"encoding/json"
 	"github.com/FengWuTech/commons/logger"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -17,6 +19,12 @@ type Response struct {
 	Msg  string      `json:"msg"`
 	Data interface{} `json:"data"`
 	Time string      `json:"time"`
+}
+
+func SaveRawRequest(c *gin.Context) {
+	requestRawData, _ := ioutil.ReadAll(c.Request.Body)
+	c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestRawData))
+	c.Set("http_request_raw_data", string(requestRawData))
 }
 
 // Response setting gin.JSON
