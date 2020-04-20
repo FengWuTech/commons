@@ -1,6 +1,9 @@
 package constant
 
-import "sort"
+import (
+	"github.com/FengWuTech/commons/util"
+	"sort"
+)
 
 const (
 	CHARGE_TYPE_SEQUENCE_PAY = 1 //顺序支付
@@ -139,7 +142,31 @@ const (
 	CHARGE_PAY_CYCLE_SEASON   = 2 //每季度
 	CHARGE_PAY_CYCLE_HALFYEAR = 3 //每半年
 	CHARGE_PAY_CYCLE_YEAR     = 4 //每年
+
+	ACCOUNT_FLOW_TYPE_RECHARGE          = 1 //充值
+	ACCOUNT_FLOW_TYPE_REFUND_TO_ACCOUNT = 2 //退款到用户账户
+	ACCOUNT_FLOW_TYPE_DEDUCT            = 3 //划扣
+	ACCOUNT_FLOW_TYPE_REFUND_TO_USER    = 4 //退款给用户
 )
+
+var ACCOUNT_FLOW_TYPE = []util.KV{
+	{
+		"type":  ACCOUNT_FLOW_TYPE_RECHARGE,
+		"label": "充值",
+	},
+	{
+		"type":  ACCOUNT_FLOW_TYPE_REFUND_TO_ACCOUNT,
+		"label": "退款",
+	},
+	{
+		"type":  ACCOUNT_FLOW_TYPE_DEDUCT,
+		"label": "划扣",
+	},
+	{
+		"type":  ACCOUNT_FLOW_TYPE_REFUND_TO_USER,
+		"label": "退款",
+	},
+}
 
 //打印模板配置
 var CHARGE_RPINT_TPL_INFO = map[int][]map[string]interface{}{
