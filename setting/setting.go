@@ -151,6 +151,7 @@ type TencentCloud struct {
 	CaptchaAppSecretKey string
 	// 对象存储cos
 	CosBucket string
+	CosRegion string
 }
 
 var TencentCloudSetting = &TencentCloud{}
