@@ -30,3 +30,19 @@ var RECON_STATUS_MAP = []map[string]interface{}{
 		"value": RECON_STATUS_FILED,
 	},
 }
+
+const (
+	RECON_DAY_STATUS_GENERATED = 2
+	RECON_DAY_STATUS_SUBMITTED = 3
+)
+
+var RECON_DAY_STATUS_MAP = []map[string]interface{}{
+	{
+		"label": "已生成",
+		"value": RECON_DAY_STATUS_GENERATED,
+	},
+	{
+		"label": "已确认",
+		"value": RECON_DAY_STATUS_SUBMITTED,
+	},
+}
