@@ -19,6 +19,7 @@ require (
 	github.com/qiniu/api.v7/v7 v7.4.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726
+	github.com/tencentcloud/tencentcloud-sdk-go v3.0.158+incompatible
 	github.com/unknwon/com v1.0.1
 	go.uber.org/zap v1.14.1
 	gopkg.in/ini.v1 v1.55.0 // indirect

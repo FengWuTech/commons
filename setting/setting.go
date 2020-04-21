@@ -140,6 +140,15 @@ type Aliyun struct {
 
 var AliyunSetting = &Aliyun{}
 
+type TencentCloud struct {
+	SecretId            string
+	SecretKey           string
+	CaptchaAppId        uint64
+	CaptchaAppSecretKey string
+}
+
+var TencentCloudSetting = &TencentCloud{}
+
 type Machinery struct {
 	ResultBackend   string
 	Broker          string
@@ -183,6 +192,7 @@ func Setup(env *string) {
 	mapTo("cas", CasSetting)
 	mapTo("urm", UrmSetting)
 	mapTo("aliyun", AliyunSetting)
+	mapTo("tencent_cloud", TencentCloudSetting)
 	mapTo("pay_center", PayCenterSetting)
 	mapTo("machinery", MachinerySetting)
 
