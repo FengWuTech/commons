@@ -141,10 +141,16 @@ type Aliyun struct {
 var AliyunSetting = &Aliyun{}
 
 type TencentCloud struct {
-	SecretId            string
-	SecretKey           string
+	// 帐户层面
+	AppId     string
+	SecretId  string
+	SecretKey string
+
+	// 验证码
 	CaptchaAppId        uint64
 	CaptchaAppSecretKey string
+	// 对象存储cos
+	CosBucket string
 }
 
 var TencentCloudSetting = &TencentCloud{}
