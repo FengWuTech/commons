@@ -155,6 +155,7 @@ type TencentCloud struct {
 	//短信
 	SmsAppID  string
 	SmsAppKey string
+	SmsSignID string
 }
 
 var TencentCloudSetting = &TencentCloud{}
