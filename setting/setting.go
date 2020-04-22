@@ -152,6 +152,9 @@ type TencentCloud struct {
 	// 对象存储cos
 	CosBucket string
 	CosRegion string
+	//短信
+	SmsAppID  uint64
+	SmsAppKey string
 }
 
 var TencentCloudSetting = &TencentCloud{}
