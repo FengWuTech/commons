@@ -153,7 +153,7 @@ type TencentCloud struct {
 	CosBucket string
 	CosRegion string
 	//短信
-	SmsAppID  uint64
+	SmsAppID  string
 	SmsAppKey string
 }
 
