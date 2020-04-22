@@ -24,16 +24,16 @@ const (
 var INVOICE_INFO_MAP = map[int]map[int]map[string]interface{}{
 	INVOICE_STATUS: {
 		INVOICE_STATUS_START: {
-			"value": "申请中",
+			"value": "普票待开",
 		},
 		INVOICE_STATUS_DONE: {
-			"value": "已开票",
+			"value": "普票已开",
 		},
 		INVOICE_STATUS_FAIL: {
 			"value": "开票失败",
 		},
 		INVOICE_STATUS_CANCEL_DONE: {
-			"value": "已销票",
+			"value": "普票销票",
 		},
 		INVOICE_STATUS_CANCEL_FAIL: {
 			"value": "销票失败",
@@ -41,18 +41,18 @@ var INVOICE_INFO_MAP = map[int]map[int]map[string]interface{}{
 	},
 	SPECIAL_INVOICE_STATUS: {
 		SPECIAL_INVOICE_STATUS_INIT: {
-			"value": "申请中",
+			"value": "专票申请中",
 		},
 		SPECIAL_INVOICE_STATUS_START: {
-			"value": "专票待处理",
+			"value": "专票待开",
 		},
 		SPECIAL_INVOICE_STATUS_DONE: {
-			"value": "专票已开票",
+			"value": "专票已开",
 		},
 	},
 	INVOICE_TYPE: {
 		INVOICE_TYPE_PERSONAL: {
-			"value": "个人",
+			"value": "个人普票",
 		},
 		INVOICE_TYPE_COMPANY: {
 			"value": "公司普票",
