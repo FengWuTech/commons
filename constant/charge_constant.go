@@ -123,7 +123,8 @@ const (
 	CHARGE_PAY_METHOD_OFFLINE_POS            = 2  //线下支付-POS机刷卡
 	CHARGE_PAY_METHOD_OFFLINE_WEIXIN         = 3  //线下支付-微信扫码
 	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO       = 4  //线下支付-支付宝扫码
-	CHARGE_PAY_METHOD_OFFLINE_BANK           = 5  //线下支付-银行卡转账
+	CHARGE_PAY_METHOD_OFFLINE_BANK           = 5  //线下支付-转账
+	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN    = 12 //线下支付-聚合二维码
 	CHARGE_PAY_METHOD_ONLINE_WEIXIN          = 6  //线上支付-微信
 	CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO        = 7  //线上支付-支付宝
 	CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION = 8  //线上支付-银行托收
@@ -737,13 +738,16 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "线下支付-POS机刷卡",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": "线下支付-微信扫码",
+			"value": "线下支付-微信商户码",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": "线下支付-支付宝扫码",
+			"value": "线下支付-支付宝商户码",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": "线下支付-银行卡转账",
+			"value": "线下支付-转账",
+		},
+		CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN: {
+			"value": "线下支付-聚合二维码",
 		},
 		CHARGE_PAY_METHOD_ONLINE_WEIXIN: {
 			"value": "线上支付-微信",
@@ -766,17 +770,17 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "线下支付-POS机刷卡",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": "线下支付-微信扫码",
+			"value": "线下支付-微信商户码",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": "线下支付-支付宝扫码",
+			"value": "线下支付-支付宝商户码",
 		},
 		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": "线下支付-银行卡转账",
+			"value": "线下支付-转账",
 		},
-		//CHARGE_PAY_METHOD_OTHER: {
-		//	"value": "其他收款方式",
-		//},
+		CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN: {
+			"value": "线下支付-聚合二维码",
+		},
 	},
 	CHARGE_PAY_CYCLE: {
 		CHARGE_PAY_CYCLE_MONTH: {
