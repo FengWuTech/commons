@@ -597,20 +597,33 @@ func GetChargeFEConf(which int) []map[string]interface{} {
 	return slice
 }
 
-//允许修改第三方流水实收金额
-var PAY_METHOD_ALLOW_EDIT_REAL_AMOUNT = []int{
-	CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
-	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
-	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
-	CHARGE_PAY_METHOD_OFFLINE_POS,
+var THIRD_PAY_METHOD = []map[string]interface{}{
+	{
+		"key":   CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
+		"value": CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
+	},
+	{
+		"key":   CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
+		"value": CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
+	},
+	{
+		"key":   CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
+		"value": CHARGE_PAY_METHOD_OFFLINE_POS,
+	},
+	{
+		"key":   CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
+		"value": CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
+	},
 }
 
-//允许下载第三方流水明细
-var PAY_METHOD_ALLOW_DOWNLOAD_THIRD_FLOW = []int{
-	CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
-	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
-	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
-	CHARGE_PAY_METHOD_OFFLINE_POS,
+var THIRD_PAY_METHOD_IDS = GetThirdPayMethodIDS()
+
+func GetThirdPayMethodIDS() []int {
+	var ret []int
+	for _, itm := range THIRD_PAY_METHOD {
+		ret = append(ret, itm["value"].(int))
+	}
+	return ret
 }
 
 func GetPayMethodName(methodID int) string {
