@@ -180,6 +180,8 @@ func Setup(env *string) {
 		cfgFiles = []string{"conf/dev.ini"}
 	} else if *env == "test" {
 		cfgFiles = []string{"conf/test.ini"}
+	} else if *env == "prod" {
+		cfgFiles = []string{"conf/prod.ini"}
 	} else {
 		panic("invalid env")
 	}
