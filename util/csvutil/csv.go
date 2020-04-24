@@ -1,6 +1,7 @@
 package csvutil
 
 import (
+	"github.com/FengWuTech/commons/util/encodeutil"
 	"strings"
 
 	"github.com/axgle/mahonia"
@@ -19,6 +20,10 @@ func ParseCSVToMap(content string, ignoreNum int) []map[string]string {
 	var titleItems []string
 	var dataList = make([]map[string]string, 0)
 
+	if encodeutil.IsGBK([]byte(content)) {
+		content = GBKToUtf8(content)
+	}
+
 	rows := strings.Split(content, "\n")
 	titleItems = strings.Split(rows[ignoreNum], ",")
 
@@ -30,10 +35,8 @@ func ParseCSVToMap(content string, ignoreNum int) []map[string]string {
 		dataItem := make(map[string]string)
 		for k, v := range rowItems {
 			key := strings.TrimSpace(titleItems[k])
-			key = GBKToUtf8(key)
 			value := strings.TrimSpace(v)
 			value = strings.TrimLeft(value, "'")
-			value = GBKToUtf8(value)
 			dataItem[key] = value
 		}
 		dataList = append(dataList, dataItem)
