@@ -71,7 +71,12 @@ var PAY_METHOD_ALLOW_EDIT_REAL_AMOUNT = []int{
 }
 
 func GetPayMethodName(methodID int) string {
-	return CHARGE_PAY_METHOD_ALL[methodID]
+	name, ok := CHARGE_PAY_METHOD_ALL[methodID]
+	if ok {
+		return name
+	} else {
+		return "未知"
+	}
 }
 
 func GetAllChargePayMethodFEConf() []map[string]interface{} {
