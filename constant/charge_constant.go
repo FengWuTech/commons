@@ -27,11 +27,11 @@ const (
 	CHARGE_RPINT_TPL_CONTENT_NOTICE_FOOTER_ELEMENT  = 13 //通知-页脚显示内容
 	CHARGE_RPINT_TPL_CONTENT_NOTICE_BODY_ELEMENT    = 14 //通知-内容区显示内容
 
-	CHARGE_PAY_METHOD = 15 //付费方式
-	CHARGE_PAY_CYCLE  = 16 //收费周期
+	//CHARGE_PAY_METHOD = 15 //付费方式
+	CHARGE_PAY_CYCLE = 16 //收费周期
 	//17用掉了
 	//---------------------------------------------------
-	CHARGE_PAY_METHOD_ALL = 18 //所有收费方式，统计用
+	//CHARGE_PAY_METHOD_ALL = 18 //所有收费方式，统计用
 
 	//费项基本分类
 	CHARGE_PROJECT_TYPE_BASIC_CYCLE   = 0 //周期类

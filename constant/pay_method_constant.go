@@ -27,88 +27,37 @@ const (
 	CHARGE_PAY_METHOD_NAME_DEDUCTE                = "预充值抵扣"
 )
 
-var PAY_METHOD_MAP = map[int]map[int]map[string]interface{}{
-	//所有的支付渠道
-	CHARGE_PAY_METHOD_ALL: {
-		CHARGE_PAY_METHOD_OFFLINE_CASH: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_CASH,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_POS: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
-		},
-		CHARGE_PAY_METHOD_ONLINE_WEIXIN: {
-			"value": CHARGE_PAY_METHOD_NAME_ONLINE_WEIXIN,
-		},
-		CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO: {
-			"value": CHARGE_PAY_METHOD_NAME_ONLINE_ZHIFUBAO,
-		},
-		CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION: {
-			"value": CHARGE_PAY_METHOD_NAME_ONLINE_BANK_COLLECTION,
-		},
-		CHARGE_PAY_METHOD_OTHER: {
-			"value": CHARGE_PAY_METHOD_NAME_OTHER,
-		},
-	},
-	//线下支付可以选择的支付渠道
-	CHARGE_PAY_METHOD: {
-		CHARGE_PAY_METHOD_OFFLINE_CASH: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_CASH,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_POS: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
-		},
-	},
+//所有的支付渠道
+var CHARGE_PAY_METHOD_ALL = map[int]string{
+	CHARGE_PAY_METHOD_OFFLINE_CASH:           CHARGE_PAY_METHOD_NAME_OFFLINE_CASH,
+	CHARGE_PAY_METHOD_OFFLINE_POS:            CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
+	CHARGE_PAY_METHOD_OFFLINE_WEIXIN:         CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
+	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO:       CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
+	CHARGE_PAY_METHOD_OFFLINE_BANK:           CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
+	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN:    CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
+	CHARGE_PAY_METHOD_ONLINE_WEIXIN:          CHARGE_PAY_METHOD_NAME_ONLINE_WEIXIN,
+	CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO:        CHARGE_PAY_METHOD_NAME_ONLINE_ZHIFUBAO,
+	CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION: CHARGE_PAY_METHOD_NAME_ONLINE_BANK_COLLECTION,
+	CHARGE_PAY_METHOD_OTHER:                  CHARGE_PAY_METHOD_NAME_OTHER,
 }
 
-//可以配置项目关联的渠道ID列表
-var THIRD_PAY_METHOD_IDS = GetThirdPayMethodIDS()
+//后台支付可以选择的支付类型
+var CHARGE_PAY_METHOD = []int{
+	CHARGE_PAY_METHOD_OFFLINE_CASH,
+	CHARGE_PAY_METHOD_OFFLINE_POS,
+	CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
+	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
+	CHARGE_PAY_METHOD_OFFLINE_BANK,
+	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
+}
 
 //可以配置项目关联的渠道
-var THIRD_PAY_METHOD = []map[string]interface{}{
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
-		"value": CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
-		"value": CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
-		"value": CHARGE_PAY_METHOD_OFFLINE_POS,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
-		"value": CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
-		"value": CHARGE_PAY_METHOD_OFFLINE_BANK,
-	},
+var THIRD_PAY_METHOD = []int{
+	CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
+	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
+	CHARGE_PAY_METHOD_OFFLINE_POS,
+	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
+	CHARGE_PAY_METHOD_OFFLINE_BANK,
 }
 
 //允许修改真实收款金额的渠道
@@ -121,24 +70,39 @@ var PAY_METHOD_ALLOW_EDIT_REAL_AMOUNT = []int{
 	CHARGE_PAY_METHOD_OFFLINE_BANK,
 }
 
-func GetThirdPayMethodIDS() []int {
-	var ret []int
-	for _, itm := range THIRD_PAY_METHOD {
-		ret = append(ret, itm["value"].(int))
+func GetPayMethodName(methodID int) string {
+	return CHARGE_PAY_METHOD_ALL[methodID]
+}
+
+func GetAllChargePayMethodFEConf() []map[string]interface{} {
+	var ret []map[string]interface{}
+	for value, label := range CHARGE_PAY_METHOD_ALL {
+		ret = append(ret, map[string]interface{}{
+			"label": label,
+			"value": value,
+		})
 	}
 	return ret
 }
 
-func GetPayMethodName(methodID int) string {
-	return CHARGE_INFO_MAP[CHARGE_PAY_METHOD_ALL][methodID]["value"].(string)
-}
-
-func GetAllChargePayMethodFEConf() []map[string]interface{} {
-
-	return GetChargeFEConf(CHARGE_PAY_METHOD_ALL)
-}
-
 func GetChargePayMethodFEConf() []map[string]interface{} {
+	var ret []map[string]interface{}
+	for _, id := range CHARGE_PAY_METHOD {
+		ret = append(ret, map[string]interface{}{
+			"label": GetPayMethodName(id),
+			"value": id,
+		})
+	}
+	return ret
+}
 
-	return GetChargeFEConf(CHARGE_PAY_METHOD)
+func GetThirdPayMethodFEConf() []map[string]interface{} {
+	var ret []map[string]interface{}
+	for _, id := range THIRD_PAY_METHOD {
+		ret = append(ret, map[string]interface{}{
+			"label": GetPayMethodName(id),
+			"value": id,
+		})
+	}
+	return ret
 }
