@@ -118,31 +118,6 @@ const (
 	CHARGE_BIND_TYPE_METER_PUBLIC = 5 //公表费
 	CHARGE_BIND_TYPE_OTHER        = 6 //其他费用
 
-	//支付渠道
-	CHARGE_PAY_METHOD_OFFLINE_CASH           = 1  //线下支付-现金
-	CHARGE_PAY_METHOD_OFFLINE_POS            = 2  //线下支付-POS机刷卡
-	CHARGE_PAY_METHOD_OFFLINE_WEIXIN         = 3  //线下支付-微信扫码
-	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO       = 4  //线下支付-支付宝扫码
-	CHARGE_PAY_METHOD_OFFLINE_BANK           = 5  //线下支付-转账
-	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN    = 12 //线下支付-聚合二维码
-	CHARGE_PAY_METHOD_ONLINE_WEIXIN          = 6  //线上支付-微信
-	CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO        = 7  //线上支付-支付宝
-	CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION = 8  //线上支付-银行托收
-	CHARGE_PAY_METHOD_OTHER                  = 9  //其他收款方式
-	CHARGE_PAY_METHOD_DEDUCTE                = 10 //预充值抵扣（不传给fe）
-
-	CHARGE_PAY_METHOD_NAME_OFFLINE_CASH           = "线下-现金支付"
-	CHARGE_PAY_METHOD_NAME_OFFLINE_POS            = "线下-POS机刷卡"
-	CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN         = "线下-微信专用支付码"
-	CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO       = "线下-支付宝专用支付码"
-	CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN    = "线下-聚合支付码"
-	CHARGE_PAY_METHOD_NAME_OFFLINE_BANK           = "线下-转账"
-	CHARGE_PAY_METHOD_NAME_ONLINE_WEIXIN          = "线上-微信公众号"
-	CHARGE_PAY_METHOD_NAME_ONLINE_ZHIFUBAO        = "线上-支付宝小程序"
-	CHARGE_PAY_METHOD_NAME_ONLINE_BANK_COLLECTION = "线上-银行托收"
-	CHARGE_PAY_METHOD_NAME_OTHER                  = "其他收款方式"
-	CHARGE_PAY_METHOD_NAME_DEDUCTE                = "预充值抵扣"
-
 	//支付状态
 	CHARGE_PAY_STATUS_CREATED  = 1 //账单已创建
 	CHARGE_PAY_STATUS_PAID     = 2 //账单已支付
@@ -503,60 +478,6 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "车位面积(平方米)",
 		},
 	},
-	//所有的支付渠道
-	CHARGE_PAY_METHOD_ALL: {
-		CHARGE_PAY_METHOD_OFFLINE_CASH: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_CASH,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_POS: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
-		},
-		CHARGE_PAY_METHOD_ONLINE_WEIXIN: {
-			"value": CHARGE_PAY_METHOD_NAME_ONLINE_WEIXIN,
-		},
-		CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO: {
-			"value": CHARGE_PAY_METHOD_NAME_ONLINE_ZHIFUBAO,
-		},
-		CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION: {
-			"value": CHARGE_PAY_METHOD_NAME_ONLINE_BANK_COLLECTION,
-		},
-		CHARGE_PAY_METHOD_OTHER: {
-			"value": CHARGE_PAY_METHOD_NAME_OTHER,
-		},
-	},
-	//线下支付可以选择的支付渠道
-	CHARGE_PAY_METHOD: {
-		CHARGE_PAY_METHOD_OFFLINE_CASH: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_CASH,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_POS: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
-		},
-		CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN: {
-			"value": CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
-		},
-	},
 	CHARGE_PAY_CYCLE: {
 		CHARGE_PAY_CYCLE_MONTH: {
 			"value": "每月",
@@ -597,64 +518,9 @@ func GetChargeFEConf(which int) []map[string]interface{} {
 	return slice
 }
 
-var THIRD_PAY_METHOD = []map[string]interface{}{
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_WEIXIN,
-		"value": CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_ZHIFUBAO,
-		"value": CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_POS,
-		"value": CHARGE_PAY_METHOD_OFFLINE_POS,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_QRCODE_SCAN,
-		"value": CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
-	},
-	{
-		"label": CHARGE_PAY_METHOD_NAME_OFFLINE_BANK,
-		"value": CHARGE_PAY_METHOD_OFFLINE_BANK,
-	},
-}
-
-var PAY_METHOD_ALLOW_EDIT_REAL_AMOUNT = []int{
-	CHARGE_PAY_METHOD_OFFLINE_CASH,
-	CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
-	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
-	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
-	CHARGE_PAY_METHOD_OFFLINE_POS,
-	CHARGE_PAY_METHOD_OFFLINE_BANK,
-}
-var THIRD_PAY_METHOD_IDS = GetThirdPayMethodIDS()
-
-func GetThirdPayMethodIDS() []int {
-	var ret []int
-	for _, itm := range THIRD_PAY_METHOD {
-		ret = append(ret, itm["value"].(int))
-	}
-	return ret
-}
-
-func GetPayMethodName(methodID int) string {
-	return CHARGE_INFO_MAP[CHARGE_PAY_METHOD_ALL][methodID]["value"].(string)
-}
-
 func GetChargePayCycleFEConf() []map[string]interface{} {
 
 	return GetChargeFEConf(CHARGE_PAY_CYCLE)
-}
-
-func GetAllChargePayMethodFEConf() []map[string]interface{} {
-
-	return GetChargeFEConf(CHARGE_PAY_METHOD_ALL)
-}
-
-func GetChargePayMethodFEConf() []map[string]interface{} {
-
-	return GetChargeFEConf(CHARGE_PAY_METHOD)
 }
 
 func GetChargeTypeFEConf() []map[string]interface{} {
