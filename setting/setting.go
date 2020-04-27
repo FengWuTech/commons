@@ -125,6 +125,7 @@ type PayCenter struct {
 var PayCenterSetting = &PayCenter{}
 
 type Urm struct {
+	URL       string
 	AppID     string
 	AppSecret string
 }
