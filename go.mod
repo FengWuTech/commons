@@ -20,6 +20,8 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726
 	github.com/tencentcloud/tencentcloud-sdk-go v3.0.158+incompatible
+	github.com/tencentyun/cos-go-sdk-v5 v0.7.4 // indirect
+	github.com/tencentyun/qcloud-cos-sts-sdk v0.0.0-20200224031959-e05dcbd8be5a // indirect
 	github.com/unknwon/com v1.0.1
 	go.uber.org/zap v1.14.1
 	gopkg.in/ini.v1 v1.55.0 // indirect
