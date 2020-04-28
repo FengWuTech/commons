@@ -33,7 +33,11 @@ func NewClient(secretID string, secretKey string, appID string, bucket string, r
 
 func (cs *Cos) FilePath(suffix string) string {
 	timeNow := time.Now()
-	return fmt.Sprintf("pubsrv/%d%d%d/%s.%s", timeNow.Year(), timeNow.Month(), timeNow.Day(), uuid.NewV1().String(), suffix)
+	if suffix == "" {
+		return fmt.Sprintf("pubsrv/%d%d%d/%s", timeNow.Year(), timeNow.Month(), timeNow.Day(), uuid.NewV1().String())
+	} else {
+		return fmt.Sprintf("pubsrv/%d%d%d/%s.%s", timeNow.Year(), timeNow.Month(), timeNow.Day(), uuid.NewV1().String(), suffix)
+	}
 }
 
 type UploadToken struct {
@@ -87,7 +91,7 @@ func (cs *Cos) GetUploadToken(suffix string) *UploadToken {
 	}
 }
 
-func (cs *Cos) UploadBytes(content string, suffix string) string {
+func (cs *Cos) UploadBytes(content string) string {
 	u, _ := url.Parse(setting.TencentCloudSetting.CosBucket)
 	b := &cos.BaseURL{BucketURL: u}
 	c := cos.NewClient(b, &http.Client{
@@ -96,7 +100,7 @@ func (cs *Cos) UploadBytes(content string, suffix string) string {
 			SecretKey: cs.SecretKey,
 		},
 	})
-	name := cs.FilePath(suffix)
+	name := cs.FilePath("")
 	f := strings.NewReader(content)
 
 	_, err := c.Object.Put(context.Background(), name, f, nil)
