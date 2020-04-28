@@ -92,7 +92,8 @@ func (cs *Cos) GetUploadToken(suffix string) *UploadToken {
 }
 
 func (cs *Cos) UploadBytes(content string) string {
-	u, _ := url.Parse(setting.TencentCloudSetting.CosBucket)
+	//u, _ := url.Parse("https://" + setting.TencentCloudSetting.CosBucket)
+	u, _ := url.Parse(fmt.Sprintf("https://%s.cos.%s.myqcloud.com", setting.TencentCloudSetting.CosBucket, setting.TencentCloudSetting.CosRegion))
 	b := &cos.BaseURL{BucketURL: u}
 	c := cos.NewClient(b, &http.Client{
 		Transport: &cos.AuthorizationTransport{
