@@ -2,6 +2,8 @@ package gredis
 
 import (
 	"encoding/json"
+	"github.com/FengWuTech/commons/constant"
+	"github.com/FengWuTech/commons/logger"
 	"github.com/FengWuTech/commons/setting"
 	"github.com/gomodule/redigo/redis"
 	"strconv"
@@ -118,4 +120,31 @@ func LikeDeletes(key string) error {
 	}
 
 	return nil
+}
+
+func Publish(channel string, message string) (bool, error) {
+	conn := RedisConn.Get()
+	defer conn.Close()
+
+	return redis.Bool(conn.Do("PUBLISH", channel, message))
+}
+
+func Subscribe(channel string, fun func(message string)) error {
+	conn := RedisConn.Get()
+	psc := redis.PubSubConn{Conn: conn}
+	defer conn.Close()
+	defer psc.Close()
+	psc.Subscribe(constant.FPMS_WEBSOCKET_CHANNEL)
+
+	for {
+		v := psc.Receive()
+		switch v.(type) {
+		case redis.Message:
+			fun(string(v.(redis.Message).Data))
+		case redis.Subscription:
+		case error:
+			logger.Warnf("Subscribe异常 %v", v)
+			break
+		}
+	}
 }
