@@ -34,6 +34,9 @@ func ParseCSVToMap(content string, ignoreNum int) []map[string]string {
 		rowItems := strings.Split(rows[rowID], ",")
 		dataItem := make(map[string]string)
 		for k, v := range rowItems {
+			if k >= len(titleItems) {
+				continue
+			}
 			key := strings.TrimSpace(titleItems[k])
 			value := strings.TrimSpace(v)
 			value = strings.TrimLeft(value, "'")
