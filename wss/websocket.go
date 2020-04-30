@@ -34,7 +34,7 @@ func Init(channelName string) *Channel {
 	return &Channel{
 		Upgrader: websocket.Upgrader{
 			CheckOrigin: func(r *http.Request) bool {
-				return false
+				return true
 			},
 		},
 		RedisSubPubKey: channelName,
