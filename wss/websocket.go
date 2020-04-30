@@ -33,7 +33,6 @@ type Channel struct {
 func Init(channelName string) *Channel {
 	return &Channel{
 		Upgrader: websocket.Upgrader{
-			HandshakeTimeout: time.Hour * 10,
 			CheckOrigin: func(r *http.Request) bool {
 				return true
 			},
@@ -44,6 +43,8 @@ func Init(channelName string) *Channel {
 }
 
 func (channel *Channel) addConnect(companyID int, staffID int, wsConn *websocket.Conn, conn *impl.Connection) {
+	wsConn.SetReadDeadline(time.Now().AddDate(1, 0, 0))
+	wsConn.SetWriteDeadline(time.Now().AddDate(1, 0, 0))
 	connUUID := uuid.NewV1().String()
 	if channel.ClientConnect[companyID] == nil {
 		channel.ClientConnect[companyID] = make(map[string]ClientConnect)
