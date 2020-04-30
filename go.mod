@@ -13,6 +13,7 @@ require (
 	github.com/gin-gonic/gin v1.6.2
 	github.com/go-ini/ini v1.55.0
 	github.com/gomodule/redigo v2.0.0+incompatible
+	github.com/gorilla/websocket v1.4.0
 	github.com/json-iterator/go v1.1.9
 	github.com/noaway/dateparse v0.0.0-20171117034806-ad2b19d7b298
 	github.com/parnurzeal/gorequest v0.2.16
