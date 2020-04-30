@@ -33,6 +33,7 @@ type Channel struct {
 func Init(channelName string) *Channel {
 	return &Channel{
 		Upgrader: websocket.Upgrader{
+			HandshakeTimeout: time.Hour * 10,
 			CheckOrigin: func(r *http.Request) bool {
 				return true
 			},
