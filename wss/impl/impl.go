@@ -2,6 +2,7 @@ package impl
 
 import (
 	"errors"
+	"github.com/FengWuTech/commons/logger"
 	"github.com/gorilla/websocket"
 	"sync"
 )
@@ -70,6 +71,7 @@ func (conn *Connection) readLoop() {
 	)
 	for {
 		if _, data, err = conn.wsConnect.ReadMessage(); err != nil {
+			logger.Warnf("readLoop error  %v", err)
 			goto ERR
 		}
 		//阻塞在这里，等待inChan有空闲位置
@@ -98,6 +100,7 @@ func (conn *Connection) writeLoop() {
 			goto ERR
 		}
 		if err = conn.wsConnect.WriteMessage(websocket.TextMessage, data); err != nil {
+			logger.Warnf("writeLoop error  %v", err)
 			goto ERR
 		}
 	}
