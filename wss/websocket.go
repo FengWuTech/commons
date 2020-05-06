@@ -20,6 +20,7 @@ var Upgrader = websocket.Upgrader{
 type Message struct {
 	CompanyID int         `json:"company_id"`
 	Type      int         `json:"type"`
+	ProjectID int         `json:"project_id"`
 	Content   interface{} `json:"content"`
 }
 
@@ -34,6 +35,7 @@ type Channel struct {
 	Upgrader       websocket.Upgrader
 	RedisSubPubKey string
 	ClientConnect  map[int]map[string]ClientConnect
+	SendCheckFunc  func(staffID int, projectID int) bool
 }
 
 func Init(channelName string) *Channel {
@@ -75,26 +77,22 @@ func (channel *Channel) addConnect(companyID int, staffID int, wsConn *websocket
 	}()
 }
 
-func (channel *Channel) sendMessage(companyID int, msgType int, content interface{}) {
-	var msg = Message{
-		CompanyID: companyID,
-		Type:      msgType,
-		Content:   content,
-	}
-	str, _ := json.Marshal(msg)
-	connMap, ok := channel.ClientConnect[msg.CompanyID]
+func (channel *Channel) sendMessage(wsMsg Message) {
+	msgBytes, _ := json.Marshal(wsMsg)
+	connMap, ok := channel.ClientConnect[wsMsg.CompanyID]
 	if !ok {
-		logger.Warnf("客户端没有连接，无法进行数据推送 companyID[%v] message[%v]", msg.CompanyID, string(str))
+		logger.Warnf("客户端没有连接，无法进行数据推送 companyID[%v] message[%v]", wsMsg.CompanyID, string(msgBytes))
 		return
 	}
 
 	for connUUID, conn := range connMap {
-		tmp, _ := json.Marshal(msg)
-		err := conn.Conn.WriteMessage(tmp)
-		if err != nil {
-			delete(channel.ClientConnect[msg.CompanyID], connUUID)
-			logger.Warnf("推送消息时发现消息通道关闭: %v", err)
-			continue
+		if channel.SendCheckFunc != nil && wsMsg.ProjectID > 0 && conn.StaffID > 0 && channel.SendCheckFunc(conn.StaffID, wsMsg.ProjectID) {
+			err := conn.Conn.WriteMessage(msgBytes)
+			if err != nil {
+				delete(channel.ClientConnect[wsMsg.CompanyID], connUUID)
+				logger.Warnf("推送消息时发现消息通道关闭: %v", err)
+				continue
+			}
 		}
 	}
 }
@@ -129,7 +127,7 @@ func (channel *Channel) Run() {
 			err := gredis.Subscribe(channel.RedisSubPubKey, func(rdsMessage string) {
 				var wsMsg Message
 				_ = json.Unmarshal([]byte(rdsMessage), &wsMsg)
-				channel.sendMessage(wsMsg.CompanyID, wsMsg.Type, wsMsg.Content)
+				channel.sendMessage(wsMsg)
 			})
 			logger.Warnf("Subscribe失败，将于1分钟后重新订阅，错误消息为: %v", err)
 			time.Sleep(time.Minute)
