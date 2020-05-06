@@ -17,6 +17,9 @@ const (
 	SYSTEM_NOTICE_TYPE_NEW_USER_AUDIT       = 7 //新用户审核通知
 )
 
+type SystemNoticeText struct {
+}
+
 type SystemNoticeNewAppeal struct {
 	AppealID int    `json:"appeal_id"`
 	Detail   string `json:"detail"`
