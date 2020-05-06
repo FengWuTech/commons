@@ -71,7 +71,7 @@ func (channel *Channel) addConnect(companyID int, staffID int, wsConn *websocket
 }
 
 func (channel *Channel) sendMessage(companyID int, msgType int, content interface{}) {
-	var msg = constant.Message{
+	var msg = constant.SystemNotice{
 		CompanyID: companyID,
 		Type:      msgType,
 		Content:   content,
@@ -94,7 +94,7 @@ func (channel *Channel) sendMessage(companyID int, msgType int, content interfac
 	}
 }
 
-func (channel *Channel) DispatchMessage(message constant.Message) {
+func (channel *Channel) DispatchMessage(message constant.SystemNotice) {
 	str, _ := json.Marshal(message)
 	gredis.Publish(channel.RedisSubPubKey, string(str))
 }
@@ -122,7 +122,7 @@ func (channel *Channel) Run() {
 	go func() {
 		for {
 			err := gredis.Subscribe(channel.RedisSubPubKey, func(rdsMessage string) {
-				var wsMsg constant.Message
+				var wsMsg constant.SystemNotice
 				_ = json.Unmarshal([]byte(rdsMessage), &wsMsg)
 				channel.sendMessage(wsMsg.CompanyID, wsMsg.Type, wsMsg.Content)
 			})
