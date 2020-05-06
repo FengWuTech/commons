@@ -54,7 +54,8 @@ func (g *Gin) ResponseWithMsgAndCode(httpCode, errCode int, msg string, data int
 	}
 	var resStr, _ = json.Marshal(response)
 	var reqBody, _ = g.C.Get("http_request_raw_data")
-	logger.Infof("reqURL[%v] reqRawData[%v] resBody[%v]", g.C.Request.RequestURI, reqBody, string(resStr))
+	var reqHeader, _ = json.Marshal(g.C.Request.Header)
+	logger.Infof("reqURL[%v] reqHeader[%v] reqRawData[%v] resBody[%v]", g.C.Request.RequestURI, string(reqHeader), reqBody, string(resStr))
 	g.C.JSON(httpCode, response)
 	return
 }
