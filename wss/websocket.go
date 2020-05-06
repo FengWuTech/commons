@@ -2,7 +2,6 @@ package wss
 
 import (
 	"encoding/json"
-	"github.com/FengWuTech/commons/constant"
 	"github.com/FengWuTech/commons/gredis"
 	"github.com/FengWuTech/commons/logger"
 	"github.com/FengWuTech/commons/wss/impl"
@@ -16,6 +15,12 @@ var Upgrader = websocket.Upgrader{
 	CheckOrigin: func(r *http.Request) bool {
 		return true
 	},
+}
+
+type Message struct {
+	CompanyID int         `json:"company_id"`
+	Type      int         `json:"type"`
+	Content   interface{} `json:"content"`
 }
 
 type ClientConnect struct {
@@ -71,7 +76,7 @@ func (channel *Channel) addConnect(companyID int, staffID int, wsConn *websocket
 }
 
 func (channel *Channel) sendMessage(companyID int, msgType int, content interface{}) {
-	var msg = constant.SystemNotice{
+	var msg = Message{
 		CompanyID: companyID,
 		Type:      msgType,
 		Content:   content,
@@ -94,7 +99,7 @@ func (channel *Channel) sendMessage(companyID int, msgType int, content interfac
 	}
 }
 
-func (channel *Channel) DispatchMessage(message constant.SystemNotice) {
+func (channel *Channel) DispatchMessage(message Message) {
 	str, _ := json.Marshal(message)
 	gredis.Publish(channel.RedisSubPubKey, string(str))
 }
@@ -122,7 +127,7 @@ func (channel *Channel) Run() {
 	go func() {
 		for {
 			err := gredis.Subscribe(channel.RedisSubPubKey, func(rdsMessage string) {
-				var wsMsg constant.SystemNotice
+				var wsMsg Message
 				_ = json.Unmarshal([]byte(rdsMessage), &wsMsg)
 				channel.sendMessage(wsMsg.CompanyID, wsMsg.Type, wsMsg.Content)
 			})
