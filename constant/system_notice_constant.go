@@ -17,7 +17,7 @@ const (
 	SYSTEM_NOTICE_TYPE_NEW_USER_AUDIT       = 7 //新用户审核通知
 )
 
-type Message struct {
+type SystemNotice struct {
 	CompanyID int         `json:"company_id"`
 	Type      int         `json:"type"`
 	Content   interface{} `json:"content"`
