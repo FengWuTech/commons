@@ -93,6 +93,8 @@ func (channel *Channel) sendMessage(wsMsg Message) {
 				logger.Warnf("推送消息时发现消息通道关闭: %v", err)
 				continue
 			}
+		} else {
+			logger.Warnf("不符合发送条件限制 %v", wsMsg)
 		}
 	}
 }
