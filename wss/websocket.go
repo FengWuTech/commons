@@ -86,7 +86,7 @@ func (channel *Channel) sendMessage(wsMsg Message) {
 	}
 
 	for connUUID, conn := range connMap {
-		if channel.SendCheckFunc != nil && wsMsg.ProjectID > 0 && conn.StaffID > 0 && channel.SendCheckFunc(conn.StaffID, wsMsg.ProjectID) {
+		if channel.SendCheckFunc != nil && wsMsg.ProjectID > 0 && conn.StaffID > 0 && channel.SendCheckFunc(conn.StaffID, wsMsg.ProjectID, wsMsg) {
 			err := conn.Conn.WriteMessage(msgBytes)
 			if err != nil {
 				delete(channel.ClientConnect[wsMsg.CompanyID], connUUID)
