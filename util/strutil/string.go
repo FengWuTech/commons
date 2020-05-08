@@ -58,3 +58,12 @@ func GenNonceStr(len int) string {
 	}
 	return string(nonce)
 }
+
+func InArray(str string, arr []string) bool {
+	for _, s := range arr {
+		if str == s {
+			return true
+		}
+	}
+	return false
+}
