@@ -34,12 +34,17 @@ type App struct {
 	QBoxAccess string
 	QBoxSecret string
 
-	MinipStaffQrCodeURL     string
-	MinipStaffAppID         string
-	MinipStaffSecret        string
-	MinipStaffOriID         string
-	MinipStaffToken         string
-	MinipStaffEncodedAESKey string
+	MinipStaffQrCodeURL               string
+	MinipStaffAppID                   string
+	MinipStaffSecret                  string
+	MinipStaffOriID                   string
+	MinipStaffToken                   string
+	MinipStaffEncodedAESKey           string
+	MinipStaffTemplateMsgManageNotice string
+	MinipStaffTemplateMsgOrderTimeout string
+	MinipStaffTemplateMsgOrderRemind  string
+	MinipStaffTemplateMsgOrderFinish  string
+	MinipStaffTemplateMsgOrderNew     string
 
 	MinipServiceProviderMchID  string
 	MinipServiceProviderAppID  string
