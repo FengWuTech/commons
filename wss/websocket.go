@@ -35,7 +35,7 @@ type Channel struct {
 	Upgrader       websocket.Upgrader
 	RedisSubPubKey string
 	ClientConnect  map[int]map[string]ClientConnect
-	SendCheckFunc  func(staffID int, projectID int) bool
+	SendCheckFunc  func(staffID int, projectID int, message Message) bool
 }
 
 func Init(channelName string) *Channel {
