@@ -34,6 +34,7 @@ type App struct {
 	QBoxAccess string
 	QBoxSecret string
 
+	MinipStaffName                    string
 	MinipStaffQrCodeURL               string
 	MinipStaffAppID                   string
 	MinipStaffSecret                  string
