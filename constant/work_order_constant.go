@@ -97,7 +97,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "表扬赞赏",
 			},
 		},
-		"APPEAL_OBJECT_TYPE": {
+		"APPEAL_OBJECT_TYPE": { //表扬投诉用
 			{
 				"value": APPEAL_OBJECT_TYPE_CLEAN,
 				"label": "保洁",
@@ -123,7 +123,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "其他",
 			},
 		},
-		"APPEAL_OBJECT_TYPE_THING": {
+		"APPEAL_OBJECT_TYPE_THING": { //报事用
 			{
 				"value": APPEAL_OBJECT_TYPE_THING_CLEAN,
 				"label": "保洁",
@@ -149,7 +149,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "其他",
 			},
 		},
-		"APPEAL_OBJECT_TYPE_REPAIR": {
+		"APPEAL_OBJECT_TYPE_REPAIR": { //报修用
 			{
 				"value": APPEAL_OBJECT_TYPE_REPAIR_LIGHT,
 				"label": "公共照明",
