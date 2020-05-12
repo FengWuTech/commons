@@ -1,184 +1,185 @@
 package setting
 
 import (
+	"bytes"
 	"fmt"
+	"github.com/FengWuTech/commons/consul"
+	"gopkg.in/yaml.v2"
 	"time"
 
 	"github.com/go-ini/ini"
 )
 
 type App struct {
-	PageSize  int
-	PrefixUrl string
+	PageSize        int    `yaml:"PageSize"`
+	PrefixUrl       string `yaml:"PrefixUrl"`
+	RuntimeRootPath string `yaml:"RuntimeRootPath"`
 
-	RuntimeRootPath string
+	ImageSavePath  string   `yaml:"ImageSavePath"`
+	ImageMaxSize   int      `yaml:"ImageMaxSize"`
+	ImageAllowExts []string `yaml:"ImageAllowExts"`
 
-	ImageSavePath  string
-	ImageMaxSize   int
-	ImageAllowExts []string
+	ExportSavePath string `yaml:"ExportSavePath"`
+	QrCodeSavePath string `yaml:"QrCodeSavePath"`
+	FontSavePath   string `yaml:"FontSavePath"`
 
-	ExportSavePath string
-	QrCodeSavePath string
-	FontSavePath   string
+	LogSavePath string `yaml:"LogSavePath"`
+	LogSaveName string `yaml:"LogSaveName"`
+	LogFileExt  string `yaml:"LogFileExt"`
+	LogLevel    string `yaml:"LogLevel"`
+	TimeFormat  string `yaml:"TimeFormat"`
 
-	LogSavePath string
-	LogSaveName string
-	LogFileExt  string
-	LogLevel    string
-	TimeFormat  string
+	DivisionPrecision int `yaml:"DivisionPrecision"`
 
-	DivisionPrecision int
+	CdnUrl     string `yaml:"CdnUrl"`
+	QBoxBucket string `yaml:"QBoxBucket"`
+	QBoxAccess string `yaml:"QBoxAccess"`
+	QBoxSecret string `yaml:"QBoxSecret"`
 
-	CdnUrl     string
-	QBoxBucket string
-	QBoxAccess string
-	QBoxSecret string
+	MinipStaffName                    string `yaml:"MinipStaffName"`
+	MinipStaffQrCodeURL               string `yaml:"MinipStaffQrCodeURL"`
+	MinipStaffAppID                   string `yaml:"MinipStaffAppID"`
+	MinipStaffSecret                  string `yaml:"MinipStaffSecret"`
+	MinipStaffOriID                   string `yaml:"MinipStaffOriID"`
+	MinipStaffToken                   string `yaml:"MinipStaffToken"`
+	MinipStaffEncodedAESKey           string `yaml:"MinipStaffEncodedAESKey"`
+	MinipStaffTemplateMsgManageNotice string `yaml:"MinipStaffTemplateMsgManageNotice"`
+	MinipStaffTemplateMsgOrderTimeout string `yaml:"MinipStaffTemplateMsgOrderTimeout"`
+	MinipStaffTemplateMsgOrderRemind  string `yaml:"MinipStaffTemplateMsgOrderRemind"`
+	MinipStaffTemplateMsgOrderFinish  string `yaml:"MinipStaffTemplateMsgOrderFinish"`
+	MinipStaffTemplateMsgOrderNew     string `yaml:"MinipStaffTemplateMsgOrderNew"`
 
-	MinipStaffName                    string
-	MinipStaffQrCodeURL               string
-	MinipStaffAppID                   string
-	MinipStaffSecret                  string
-	MinipStaffOriID                   string
-	MinipStaffToken                   string
-	MinipStaffEncodedAESKey           string
-	MinipStaffTemplateMsgManageNotice string
-	MinipStaffTemplateMsgOrderTimeout string
-	MinipStaffTemplateMsgOrderRemind  string
-	MinipStaffTemplateMsgOrderFinish  string
-	MinipStaffTemplateMsgOrderNew     string
+	MinipServiceProviderMchID  string `yaml:"MinipServiceProviderMchID"`
+	MinipServiceProviderAppID  string `yaml:"MinipServiceProviderAppID"`
+	MinipServiceProviderApiKey string `yaml:"MinipServiceProviderApiKey"`
 
-	MinipServiceProviderMchID  string
-	MinipServiceProviderAppID  string
-	MinipServiceProviderApiKey string
-
-	NoticeList string
+	NoticeList string `yaml:"NoticeList"`
 }
 
 var AppSetting = &App{}
 
 type Remote struct {
-	MinipUserBaseUrl  string
-	MinipStaffBaseUrl string
-	PayCenterBaseUrl  string
-	EsServiceUrl      string
-	SentryDSN         string
+	MinipUserBaseUrl  string `yaml:"MinipUserBaseUrl"`
+	MinipStaffBaseUrl string `yaml:"MinipStaffBaseUrl"`
+	PayCenterBaseUrl  string `yaml:"PayCenterBaseUrl"`
+	EsServiceUrl      string `yaml:"EsServiceUrl"`
+	SentryDSN         string `yaml:"SentryDSN"`
 }
 
 var RemoteSetting = &Remote{}
 
 type Server struct {
-	RunMode      string
-	HttpPort     int
-	ReadTimeout  time.Duration
-	WriteTimeout time.Duration
+	RunMode      string        `yaml:"RunMode"`
+	HttpPort     int           `yaml:"HttpPort"`
+	ReadTimeout  time.Duration `yaml:"ReadTimeout"`
+	WriteTimeout time.Duration `yaml:"WriteTimeout"`
 }
 
 var ServerSetting = &Server{}
 
 type Database struct {
-	Type        string
-	User        string
-	Password    string
-	Host        string
-	Name        string
-	PmsName     string
-	TablePrefix string
+	Type        string `yaml:"Type"`
+	User        string `yaml:"User"`
+	Password    string `yaml:"Password"`
+	Host        string `yaml:"Host"`
+	Name        string `yaml:"Name"`
+	PmsName     string `yaml:"PmsName"`
+	TablePrefix string `yaml:"TablePrefix"`
 }
 
 var DatabaseSetting = &Database{}
 
 type DatabaseFlow struct {
-	Type        string
-	User        string
-	Password    string
-	Host        string
-	Name        string
-	TablePrefix string
+	Type        string `yaml:"Type"`
+	User        string `yaml:"User"`
+	Password    string `yaml:"Password"`
+	Host        string `yaml:"Host"`
+	Name        string `yaml:"Name"`
+	TablePrefix string `yaml:"TablePrefix"`
 }
 
 var DatabaseFlowSetting = &DatabaseFlow{}
 
 type Redis struct {
-	Host        string
-	Password    string
-	MaxIdle     int
-	MaxActive   int
-	IdleTimeout time.Duration
-	MachineryDB int
+	Host        string        `yaml:"Host"`
+	Password    string        `yaml:"Password"`
+	MaxIdle     int           `yaml:"MaxIdle"`
+	MaxActive   int           `yaml:"MaxActive"`
+	IdleTimeout time.Duration `yaml:"IdleTimeout"`
+	MachineryDB int           `yaml:"MachineryDB"`
 }
 
 var RedisSetting = &Redis{}
 
 type Sso struct {
-	Host string
+	Host string `yaml:"Host"`
 }
 
 var SsoSetting = &Sso{}
 
 type Cas struct {
-	BaseUrl string
-	AppID   string
-	ApiKey  string
+	BaseUrl string `yaml:"BaseUrl"`
+	AppID   string `yaml:"AppID"`
+	ApiKey  string `yaml:"ApiKey"`
 }
 
 var CasSetting = &Cas{}
 
 type PayCenter struct {
-	BaseUrl string
-	AppID   string
-	ApiKey  string
+	BaseUrl string `yaml:"BaseUrl"`
+	AppID   string `yaml:"AppID"`
+	ApiKey  string `yaml:"ApiKey"`
 }
 
 var PayCenterSetting = &PayCenter{}
 
 type Urm struct {
-	URL       string
-	AppID     string
-	AppSecret string
+	URL       string `yaml:"URL"`
+	AppID     string `yaml:"AppID"`
+	AppSecret string `yaml:"AppSecret"`
 }
 
 var UrmSetting = &Urm{}
 
 type Aliyun struct {
-	RegionID     string
-	AccessID     string
-	AccessSecret string
-	SliderAppKey string
+	RegionID     string `yaml:"RegionID"`
+	AccessID     string `yaml:"AccessID"`
+	AccessSecret string `yaml:"AccessSecret"`
+	SliderAppKey string `yaml:"SliderAppKey"`
 }
 
 var AliyunSetting = &Aliyun{}
 
 type TencentCloud struct {
 	// 帐户层面
-	AppId     string
-	SecretId  string
-	SecretKey string
+	AppId     string `yaml:"AppId"`
+	SecretId  string `yaml:"SecretId"`
+	SecretKey string `yaml:"SecretKey"`
 
 	// 验证码
-	CaptchaAppId        uint64
-	CaptchaAppSecretKey string
+	CaptchaAppId        uint64 `yaml:"CaptchaAppId"`
+	CaptchaAppSecretKey string `yaml:"CaptchaAppSecretKey"`
 	// 对象存储cos
-	CosBucket string
-	CosRegion string
+	CosBucket string `yaml:"CosBucket"`
+	CosRegion string `yaml:"CosRegion"`
 	//短信
-	SmsAppID  string
-	SmsAppKey string
-	SmsSignID string
+	SmsAppID  string `yaml:"SmsAppID"`
+	SmsAppKey string `yaml:"SmsAppKey"`
+	SmsSignID string `yaml:"SmsSignID"`
 }
 
 var TencentCloudSetting = &TencentCloud{}
 
 type Machinery struct {
-	ResultBackend   string
-	Broker          string
-	ResultsExpireIn int
+	ResultBackend   string `yaml:"ResultBackend"`
+	Broker          string `yaml:"Broker"`
+	ResultsExpireIn int    `yaml:"ResultsExpireIn"`
 }
 
 var MachinerySetting = &Machinery{}
 
 var cfg *ini.File
 
-// Setup initialize the configuration instance
 func Setup(env *string) {
 	var (
 		err      error
@@ -216,6 +217,53 @@ func Setup(env *string) {
 	mapTo("tencent_cloud", TencentCloudSetting)
 	mapTo("pay_center", PayCenterSetting)
 	mapTo("machinery", MachinerySetting)
+
+	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
+	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
+	ServerSetting.WriteTimeout = ServerSetting.WriteTimeout * time.Second
+	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
+}
+
+// Setup initialize the configuration instance
+func SetupFromRegistry(rc string, plt string) {
+	consul.Setup(rc)
+
+	kv, _, err := consul.Client().KV().Get(plt, nil)
+	if err != nil {
+		panic("读取配置文件失败")
+	}
+
+	var ret map[string]interface{}
+	err = yaml.NewDecoder(bytes.NewReader(kv.Value)).Decode(&ret)
+	if err != nil || ret == nil {
+		panic("配置解析失败")
+	}
+
+	fun := func(key string, out interface{}) {
+		if value, ok := ret[key]; ok {
+			outData, err := yaml.Marshal(value)
+			if err != nil {
+				panic(fmt.Sprintf("配置Marshal异常: %v", err))
+			}
+			err = yaml.Unmarshal(outData, out)
+			if err != nil {
+				panic(fmt.Sprintf("配置Unmarshal异常: %v", err))
+			}
+		}
+	}
+	fun("app", AppSetting)
+	fun("server", ServerSetting)
+	fun("database", DatabaseSetting)
+	fun("redis", RedisSetting)
+	fun("sso", SsoSetting)
+	fun("database_flow", DatabaseFlowSetting)
+	fun("remote", RemoteSetting)
+	fun("cas", CasSetting)
+	fun("urm", UrmSetting)
+	fun("aliyun", AliyunSetting)
+	fun("tencent_cloud", TencentCloudSetting)
+	fun("pay_center", PayCenterSetting)
+	fun("machinery", MachinerySetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
