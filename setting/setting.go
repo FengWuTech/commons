@@ -5,10 +5,24 @@ import (
 	"fmt"
 	"github.com/FengWuTech/commons/consul"
 	"gopkg.in/yaml.v2"
+	"io/ioutil"
 	"time"
 
 	"github.com/go-ini/ini"
 )
+
+type Config struct {
+	Name     string `yaml:"name"`
+	Registry struct {
+		Consul struct {
+			URL   string `yaml:"url"`
+			Token string `yaml:"token"`
+		}
+	} `yaml:"registry"`
+	Data struct {
+		Dir string `yaml:"dir"`
+	} `yaml:"data"`
+}
 
 type App struct {
 	PageSize        int    `yaml:"PageSize"`
@@ -183,27 +197,44 @@ var cfg *ini.File
 
 func Setup(env *string) {
 	var (
-		err      error
-		cfgFiles []string
+		iniFile  string
+		yamlFile string
 	)
-	if *env == "dev" {
-		cfgFiles = []string{"conf/dev.ini"}
-	} else if *env == "test" {
-		cfgFiles = []string{"conf/test.ini"}
-	} else if *env == "prod" {
-		cfgFiles = []string{"conf/prod.ini"}
-	} else {
+
+	switch *env {
+	case "dev":
+		iniFile = "conf/dev.ini"
+		yamlFile = "conf/dev.yaml"
+	case "test":
+		iniFile = "conf/test.ini"
+		yamlFile = "conf/test.yaml"
+	case "prod":
+		iniFile = "conf/prod.ini"
+		yamlFile = "conf/prod.yaml"
+	default:
 		panic("invalid env")
 	}
-	for _, cfgFile := range cfgFiles {
-		cfg, err = ini.Load(cfgFile)
-		if err != nil {
-			fmt.Printf("setting.Setup, fail to parse '%s': %v\n", cfgFile, err)
-		} else {
-			fmt.Printf("setting.Setup, parse '%s' success\n", cfgFile)
-			break
-		}
+
+	//试图从yaml加载配置文件
+	cnt, err := ioutil.ReadFile(yamlFile)
+	if err != nil || len(cnt) == 0 {
+		fmt.Printf("yaml文件不存在，现从ini开始加载\n")
+		setupFromIni(iniFile)
+	} else {
+		fmt.Printf("yaml文件存在，开始从yaml加载配置\n")
+		setupFromRegistry(yamlFile)
 	}
+}
+
+//从ini加载配置文件
+func setupFromIni(cfgFile string) {
+	cfgHandler, err := ini.Load(cfgFile)
+	if err != nil {
+		fmt.Printf("setting.Setup, fail to parse '%s': %v\n", cfgFile, err)
+	} else {
+		fmt.Printf("setting.Setup, parse '%s' success\n", cfgFile)
+	}
+	cfg = cfgHandler
 
 	mapTo("app", AppSetting)
 	mapTo("server", ServerSetting)
@@ -225,13 +256,29 @@ func Setup(env *string) {
 	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
 }
 
-// Setup initialize the configuration instance
-func SetupFromRegistry(rc string, plt string) {
-	consul.Setup(rc)
-
-	kv, _, err := consul.Client().KV().Get(plt, nil)
+// mapTo map section
+func mapTo(section string, v interface{}) {
+	err := cfg.Section(section).MapTo(v)
 	if err != nil {
-		panic("读取配置文件失败")
+		fmt.Printf("Cfg.MapTo %s err: %v\n", section, err)
+	}
+}
+
+// Setup initialize the configuration instance
+func setupFromRegistry(yamlFile string) {
+	cnt, err := ioutil.ReadFile(yamlFile)
+	if err != nil || len(cnt) == 0 {
+		panic(fmt.Sprintf("配置文件加载失败: %v\n", err))
+	}
+
+	var config Config
+	yaml.Unmarshal(cnt, &config)
+
+	consul.Setup(config.Registry.Consul.URL)
+
+	kv, _, err := consul.Client().KV().Get(config.Name, nil)
+	if err != nil {
+		panic("读取配置文件失败\n")
 	}
 
 	var ret map[string]interface{}
@@ -244,11 +291,11 @@ func SetupFromRegistry(rc string, plt string) {
 		if value, ok := ret[key]; ok {
 			outData, err := yaml.Marshal(value)
 			if err != nil {
-				panic(fmt.Sprintf("配置Marshal异常: %v", err))
+				panic(fmt.Sprintf("配置Marshal异常: %v\n", err))
 			}
 			err = yaml.Unmarshal(outData, out)
 			if err != nil {
-				panic(fmt.Sprintf("配置Unmarshal异常: %v", err))
+				panic(fmt.Sprintf("配置Unmarshal异常: %v\n", err))
 			}
 		}
 	}
@@ -270,12 +317,4 @@ func SetupFromRegistry(rc string, plt string) {
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
 	ServerSetting.WriteTimeout = ServerSetting.WriteTimeout * time.Second
 	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
-}
-
-// mapTo map section
-func mapTo(section string, v interface{}) {
-	err := cfg.Section(section).MapTo(v)
-	if err != nil {
-		fmt.Printf("Cfg.MapTo %s err: %v", section, err)
-	}
 }

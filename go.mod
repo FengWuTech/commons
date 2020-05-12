@@ -12,8 +12,10 @@ require (
 	github.com/getsentry/sentry-go v0.5.1
 	github.com/gin-gonic/gin v1.6.2
 	github.com/go-ini/ini v1.55.0
+	github.com/go-redis/redis v6.14.2+incompatible
 	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/gorilla/websocket v1.4.0
+	github.com/hashicorp/consul/api v1.4.0
 	github.com/json-iterator/go v1.1.9
 	github.com/noaway/dateparse v0.0.0-20171117034806-ad2b19d7b298
 	github.com/parnurzeal/gorequest v0.2.16
@@ -28,6 +30,6 @@ require (
 	gopkg.in/ini.v1 v1.55.0 // indirect
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
+	gopkg.in/yaml.v2 v2.2.8
 	moul.io/http2curl v1.0.0 // indirect
-	github.com/hashicorp/consul/api v1.4.0
 )
