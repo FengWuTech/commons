@@ -23,11 +23,12 @@ type App struct {
 	QrCodeSavePath string `yaml:"QrCodeSavePath"`
 	FontSavePath   string `yaml:"FontSavePath"`
 
-	LogSavePath string `yaml:"LogSavePath"`
-	LogSaveName string `yaml:"LogSaveName"`
-	LogFileExt  string `yaml:"LogFileExt"`
-	LogLevel    string `yaml:"LogLevel"`
-	TimeFormat  string `yaml:"TimeFormat"`
+	LogSavePath    string `yaml:"LogSavePath"`
+	LogSaveName    string `yaml:"LogSaveName"`
+	LogFileExt     string `yaml:"LogFileExt"`
+	LogLevel       string `yaml:"LogLevel"`
+	TimeFormat     string `yaml:"TimeFormat"`
+	LogPushToRedis bool   `yaml:"LogPushToRedis"`
 
 	DivisionPrecision int `yaml:"DivisionPrecision"`
 
