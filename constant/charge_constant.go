@@ -1,10 +1,12 @@
 package constant
 
-import "sort"
+import (
+	"sort"
+)
 
 const (
-	CHARGE_TYPE_SAME_PROJECT_SEQUENCE = 1 //同收费项目顺序支付
-	CHARGE_TYPE_ALL_PROJECT_SEQUENCE  = 2 //所有收费项目顺序支付
+	CHARGE_TYPE_SEQUENCE_PAY = 1 //顺序支付
+	CHARGE_TYPE_RANDOM_PAY   = 2 //随机支付
 
 	CHARGE_PROJECT_TYPE          = 1 //费项类别:0周期性、1临时性、2押金性
 	CHARGE_PROJECT_FEE_PRECISE   = 2 //费用精确位，枚举：1元、2角、3分
@@ -25,11 +27,11 @@ const (
 	CHARGE_RPINT_TPL_CONTENT_NOTICE_FOOTER_ELEMENT  = 13 //通知-页脚显示内容
 	CHARGE_RPINT_TPL_CONTENT_NOTICE_BODY_ELEMENT    = 14 //通知-内容区显示内容
 
-	CHARGE_PAY_METHOD = 15 //付费方式
-	CHARGE_PAY_CYCLE  = 16 //收费周期
+	//CHARGE_PAY_METHOD = 15 //付费方式
+	CHARGE_PAY_CYCLE = 16 //收费周期
 	//17用掉了
 	//---------------------------------------------------
-	CHARGE_PAY_METHOD_ALL = 18 //所有收费方式，统计用
+	//CHARGE_PAY_METHOD_ALL = 18 //所有收费方式，统计用
 
 	//费项基本分类
 	CHARGE_PROJECT_TYPE_BASIC_CYCLE   = 0 //周期类
@@ -116,19 +118,6 @@ const (
 	CHARGE_BIND_TYPE_METER_PUBLIC = 5 //公表费
 	CHARGE_BIND_TYPE_OTHER        = 6 //其他费用
 
-	//支付渠道
-	CHARGE_PAY_METHOD_OFFLINE_CASH           = 1  //线下支付-现金
-	CHARGE_PAY_METHOD_OFFLINE_POS            = 2  //线下支付-POS机刷卡
-	CHARGE_PAY_METHOD_OFFLINE_WEIXIN         = 3  //线下支付-微信转账
-	CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO       = 4  //线下支付-支付宝转账
-	CHARGE_PAY_METHOD_OFFLINE_BANK           = 5  //线下支付-银行卡转账
-	CHARGE_PAY_METHOD_ONLINE_WEIXIN          = 6  //线上支付-微信
-	CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO        = 7  //线上支付-支付宝
-	CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION = 8  //线上支付-银行托收
-	CHARGE_PAY_METHOD_OTHER                  = 9  //其他收款方式
-	CHARGE_PAY_METHOD_DEDUCTE                = 10 //预充值抵扣（不传给fe）
-	CHARGE_PAY_METHOD_BACKEND                = 11 //后台支付（不传给fe）
-
 	//支付状态
 	CHARGE_PAY_STATUS_CREATED  = 1 //账单已创建
 	CHARGE_PAY_STATUS_PAID     = 2 //账单已支付
@@ -139,7 +128,31 @@ const (
 	CHARGE_PAY_CYCLE_SEASON   = 2 //每季度
 	CHARGE_PAY_CYCLE_HALFYEAR = 3 //每半年
 	CHARGE_PAY_CYCLE_YEAR     = 4 //每年
+
+	ACCOUNT_FLOW_TYPE_RECHARGE          = 1 //充值
+	ACCOUNT_FLOW_TYPE_REFUND_TO_ACCOUNT = 2 //退款到用户账户
+	ACCOUNT_FLOW_TYPE_DEDUCT            = 3 //划扣
+	ACCOUNT_FLOW_TYPE_REFUND_TO_USER    = 4 //退款给用户
 )
+
+var ACCOUNT_FLOW_TYPE = []map[string]interface{}{
+	{
+		"type":  ACCOUNT_FLOW_TYPE_RECHARGE,
+		"label": "充值",
+	},
+	{
+		"type":  ACCOUNT_FLOW_TYPE_REFUND_TO_ACCOUNT,
+		"label": "退款",
+	},
+	{
+		"type":  ACCOUNT_FLOW_TYPE_DEDUCT,
+		"label": "划扣",
+	},
+	{
+		"type":  ACCOUNT_FLOW_TYPE_REFUND_TO_USER,
+		"label": "退款",
+	},
+}
 
 //打印模板配置
 var CHARGE_RPINT_TPL_INFO = map[int][]map[string]interface{}{
@@ -356,244 +369,6 @@ var CHARGE_RPINT_TPL_INFO = map[int][]map[string]interface{}{
 	},
 }
 var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
-
-	/*
-		CHARGE_RPINT_TPL_BODY_RECEIVE_HEADER_ELEMENT: {
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_TITLE: {
-				"value": "标题",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_CODE: {
-				"value": "编号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_LOGO: {
-				"value": "LOGO",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RPINTDATE: {
-				"value": "打印日期",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_GROUP: {
-				"value": "小区",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_ROOM: {
-				"value": "房号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_NAME: {
-				"value": "住户姓名",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_MOBILE: {
-				"value": "住户手机号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_STATISTICS: {
-				"value": "合计",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RDATE: {
-				"value": "收款日期",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_PAYUSER: {
-				"value": "付款人",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RECVUSER: {
-				"value": "收款人",
-			},
-		},
-		CHARGE_RPINT_TPL_BODY_RECEIVE_FOOTER_ELEMENT: {
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RPINTDATE: {
-				"value": "打印日期",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_GROUP: {
-				"value": "小区",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_ROOM: {
-				"value": "房号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_NAME: {
-				"value": "住户姓名",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_MOBILE: {
-				"value": "住户手机号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_STATISTICS: {
-				"value": "合计",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RDATE: {
-				"value": "收款日期",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_PAYUSER: {
-				"value": "付款人",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RECVUSER: {
-				"value": "收款人",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_REVCOMMENT: {
-				"value": "收款备注",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_PAYMETHOD: {
-				"value": "收款方式",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_DESC: {
-				"value": "说明",
-			},
-		},
-		CHARGE_RPINT_TPL_BODY_RECEIVE_CONTENT_ELEMENT: {
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_OBJECT: {
-				"value": "内容区显示内容: 1房号/车位号/住户",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_BUILDING: {
-				"value": "楼宇",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_UNIT: {
-				"value": "单元",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_REVPROJECT: {
-				"value": "收费项目",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_REVSTANDARD: {
-				"value": "收费标准",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_STIME: {
-				"value": "开始时间",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_ETIME: {
-				"value": "结束时间",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_SMETER: {
-				"value": "起度",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_EMETER: {
-				"value": "止度",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_AMOUNT: {
-				"value": "数量",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_PRICE: {
-				"value": "单价",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_TOTAL: {
-				"value": "金额",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_DISCOUNT: {
-				"value": "优惠",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_LATEFEE: {
-				"value": "违约金",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_SHOULDFEE: {
-				"value": "应收合计",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_BATCH: {
-				"value": "账单期数",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_REMARK: {
-				"value": "备注",
-			},
-		},
-
-		CHARGE_RPINT_TPL_BODY_NOTICE_HEADER_ELEMENT: {
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_TITLE: {
-				"value": "标题",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_CODE: {
-				"value": "编号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_LOGO: {
-				"value": "LOGO",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RPINTDATE: {
-				"value": "打印日期",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_GROUP: {
-				"value": "小区",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_ROOM: {
-				"value": "房号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_NAME: {
-				"value": "住户姓名",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_MOBILE: {
-				"value": "住户手机号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_STATISTICS: {
-				"value": "合计",
-			},
-		},
-		CHARGE_RPINT_TPL_BODY_NOTICE_FOOTER_ELEMENT: {
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_RPINTDATE: {
-				"value": "打印日期",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_GROUP: {
-				"value": "小区",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_ROOM: {
-				"value": "6房号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_NAME: {
-				"value": "住户姓名",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_MOBILE: {
-				"value": "住户手机号",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_STATISTICS: {
-				"value": "合计",
-			},
-			CHARGE_RPINT_TPL_BODY_HF_ELEMENT_DESC: {
-				"value": "说明",
-			},
-		},
-		CHARGE_RPINT_TPL_BODY_NOTICE_CONTENT_ELEMENT: {
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_OBJECT: {
-				"value": "房号/车位号/住户",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_BUILDING: {
-				"value": "楼宇",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_UNIT: {
-				"value": "单元",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_REVPROJECT: {
-				"value": "收费项目",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_REVSTANDARD: {
-				"value": "收费标准",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_STIME: {
-				"value": "开始时间",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_ETIME: {
-				"value": "结束时间",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_SMETER: {
-				"value": "起度",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_EMETER: {
-				"value": "止度",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_AMOUNT: {
-				"value": "数量",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_PRICE: {
-				"value": "单价",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_TOTAL: {
-				"value": "金额",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_DISCOUNT: {
-				"value": "优惠",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_LATEFEE: {
-				"value": "违约金",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_SHOULDFEE: {
-				"value": "应收合计",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_BATCH: {
-				"value": "账单期数",
-			},
-			CHARGE_RPINT_TPL_BODY_CONTENT_ELEMENT_REMARK: {
-				"value": "备注",
-			},
-		},
-	*/
 	CHARGE_RPINT_TPL_TYPE: {
 		CHARGE_RPINT_TPL_TYPE_NOTICE: {
 			"value": "通知单模板",
@@ -703,55 +478,6 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "车位面积(平方米)",
 		},
 	},
-	CHARGE_PAY_METHOD_ALL: {
-		CHARGE_PAY_METHOD_OFFLINE_CASH: {
-			"value": "线下支付-现金",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_POS: {
-			"value": "线下支付-POS机刷卡",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": "线下支付-微信转账",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": "线下支付-支付宝转账",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": "线下支付-银行卡转账",
-		},
-		CHARGE_PAY_METHOD_ONLINE_WEIXIN: {
-			"value": "线上支付-微信",
-		},
-		CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO: {
-			"value": "线上支付-微信",
-		},
-		CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION: {
-			"value": "线上支付-银行托收",
-		},
-		CHARGE_PAY_METHOD_OTHER: {
-			"value": "其他收款方式",
-		},
-	},
-	CHARGE_PAY_METHOD: {
-		CHARGE_PAY_METHOD_OFFLINE_CASH: {
-			"value": "线下支付-现金",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_POS: {
-			"value": "线下支付-POS机刷卡",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_WEIXIN: {
-			"value": "线下支付-微信转账",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO: {
-			"value": "线下支付-支付宝转账",
-		},
-		CHARGE_PAY_METHOD_OFFLINE_BANK: {
-			"value": "线下支付-银行卡转账",
-		},
-		CHARGE_PAY_METHOD_OTHER: {
-			"value": "其他收款方式",
-		},
-	},
 	CHARGE_PAY_CYCLE: {
 		CHARGE_PAY_CYCLE_MONTH: {
 			"value": "每月",
@@ -795,16 +521,6 @@ func GetChargeFEConf(which int) []map[string]interface{} {
 func GetChargePayCycleFEConf() []map[string]interface{} {
 
 	return GetChargeFEConf(CHARGE_PAY_CYCLE)
-}
-
-func GetAllChargePayMethodFEConf() []map[string]interface{} {
-
-	return GetChargeFEConf(CHARGE_PAY_METHOD_ALL)
-}
-
-func GetChargePayMethodFEConf() []map[string]interface{} {
-
-	return GetChargeFEConf(CHARGE_PAY_METHOD)
 }
 
 func GetChargeTypeFEConf() []map[string]interface{} {
