@@ -26,6 +26,7 @@ type App struct {
 	LogFileExt  string
 	LogLevel    string
 	TimeFormat  string
+	LogPushToRedis bool
 
 	DivisionPrecision int
 

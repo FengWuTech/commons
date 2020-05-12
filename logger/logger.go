@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"github.com/go-redis/redis"
 	"os"
 	"path"
 
@@ -29,6 +30,23 @@ func getLoggerLevel(lvl string) zapcore.Level {
 		return level
 	}
 	return zapcore.InfoLevel
+}
+
+func NewRedisWriter(key string, cli *redis.Client) *redisWriter {
+	return &redisWriter{
+		cli: cli, listKey: key,
+	}
+}
+
+// 为 logger 提供写入 redis 队列的 io 接口
+type redisWriter struct {
+	cli     *redis.Client
+	listKey string
+}
+
+func (w *redisWriter) Write(p []byte) (int, error) {
+	n, err := w.cli.RPush(w.listKey, p).Result()
+	return int(n), err
 }
 
 // Setup initialize the log instance
@@ -64,6 +82,7 @@ func Setup() {
 
 	encoder.EncodeTime = zapcore.ISO8601TimeEncoder
 
+
 	//真正的来配置zap
 	core := zapcore.NewTee(
 		zapcore.NewCore( //文件，json
@@ -77,6 +96,28 @@ func Setup() {
 			zap.NewAtomicLevelAt(debugLevel),
 		),
 	)
+
+	// 只线上环境推
+	if setting.AppSetting.LogPushToRedis {
+		redisCli := redis.NewClient(&redis.Options{
+			Addr:     setting.RedisSetting.Host,
+			Password: setting.RedisSetting.Password,
+			DB:       3,
+		})
+		redisWriter := NewRedisWriter(setting.AppSetting.LogSaveName+"_list", redisCli)
+		core = zapcore.NewTee(
+			zapcore.NewCore( //文件，json
+				zapcore.NewJSONEncoder(encoder),
+				syncWriter,
+				zap.NewAtomicLevelAt(level),
+			),
+			zapcore.NewCore( //redis队列
+				zapcore.NewJSONEncoder(encoder),
+				zapcore.AddSync(redisWriter),
+				zap.NewAtomicLevelAt(level),
+			),
+		)
+	}
 
 	var logger *zap.Logger
 	additionalFields := zap.Fields(
