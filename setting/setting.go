@@ -302,13 +302,13 @@ func setupFromRegistry(yamlFile string) {
 		}
 		err = yaml.NewDecoder(bytes.NewReader(cnt)).Decode(&ret)
 		if err != nil || ret == nil {
-			panic("解析本地配置失败")
+			panic(fmt.Sprintf("解析本地配置失败: %v\n", err))
 		}
 		fmt.Printf("配置中心无法连接，使用本地配置执行 %v\n", err)
 	} else {
 		err = yaml.NewDecoder(bytes.NewReader(kv.Value)).Decode(&ret)
 		if err != nil || ret == nil {
-			panic("解析注册中心配置失败")
+			panic(fmt.Sprintf("解析注册中心配置失败: %v\n", err))
 		}
 		fmt.Printf("使用注册中心配置执行\n")
 		ioutil.WriteFile(cfgFile, kv.Value, 0777)
