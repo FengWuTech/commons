@@ -347,7 +347,7 @@ func setupFromRegistry(yamlFile string) {
 	ServerSetting.WriteTimeout = ServerSetting.WriteTimeout * time.Second
 	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
 
-	go WatchConfigChange(config)
+	//go WatchConfigChange(config)
 }
 
 //func setupFromRegistry(yamlFile string) {
