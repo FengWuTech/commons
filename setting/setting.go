@@ -304,7 +304,7 @@ func setupFromRegistry(yamlFile string) {
 		if err != nil || ret == nil {
 			panic("解析本地配置失败")
 		}
-		fmt.Printf("配置中心无法连接，使用本地配置执行\n")
+		fmt.Printf("配置中心无法连接，使用本地配置执行 %v\n", err)
 	} else {
 		err = yaml.NewDecoder(bytes.NewReader(kv.Value)).Decode(&ret)
 		if err != nil || ret == nil {
