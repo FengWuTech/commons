@@ -290,7 +290,7 @@ func setupFromRegistry(yamlFile string) {
 		os.Mkdir(config.Data.Dir, 0777)
 	}
 
-	consul.Setup(config.Registry.Consul.URL)
+	consul.Setup(config.Registry.Consul.URL, config.Registry.Consul.Token)
 
 	var ret map[string]interface{}
 	cfgFile := fmt.Sprintf("%s/%s.conf", config.Data.Dir, config.Name)
