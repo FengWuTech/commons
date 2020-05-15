@@ -4,13 +4,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"reflect"
+	"strconv"
 
 	jsoniter "github.com/json-iterator/go"
 
 	"github.com/siddontang/go/bson"
 )
 
-func Interface2String(inter interface{}) string {
+func Interface2String(inter interface{}, param ...int) string {
 	switch inter.(type) {
 	case string:
 		return fmt.Sprint(inter.(string))
@@ -22,7 +23,8 @@ func Interface2String(inter interface{}) string {
 		return fmt.Sprintf("%d", inter.(int64))
 		break
 	case float64:
-		return fmt.Sprintf("%f", inter.(float64))
+		format := "%." + strconv.Itoa(param[0]) + "f"
+		return fmt.Sprintf(format, inter.(float64))
 		break
 	}
 	return ""
