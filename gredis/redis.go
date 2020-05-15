@@ -142,7 +142,11 @@ func Subscribe(channel string, fun func(message string)) error {
 			fun(string(v.(redis.Message).Data))
 		case redis.Subscription:
 		case error:
+			//断网重连
 			logger.Warnf("Subscribe异常 %v", v)
+			time.Sleep(time.Second * 5)
+			conn := RedisConn.Get()
+			psc = redis.PubSubConn{Conn: conn}
 			break
 		}
 	}
