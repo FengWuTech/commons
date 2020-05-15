@@ -11,6 +11,7 @@ import (
 	"os"
 	"os/user"
 	"strings"
+	"syscall"
 	"time"
 
 	"github.com/go-ini/ini"
@@ -346,7 +347,7 @@ func setupFromRegistry(yamlFile string) {
 	ServerSetting.WriteTimeout = ServerSetting.WriteTimeout * time.Second
 	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
 
-	//go WatchConfigChange(config)
+	go WatchConfigChange(config)
 }
 
 //func setupFromRegistry(yamlFile string) {
@@ -445,7 +446,7 @@ func setupFromRegistry(yamlFile string) {
 //}
 
 func WatchConfigChange(config Config) {
-	//processStartTime := time.Now()
+	recvNum := 0
 	for {
 		plan, err := watch.Parse(map[string]interface{}{
 			"type": "key",
@@ -456,17 +457,13 @@ func WatchConfigChange(config Config) {
 			return
 		} else {
 			plan.Handler = func(u uint64, raw interface{}) {
-				fmt.Printf("----------u: %v\n", u)
-				//if u <= 344 {
-				//	return
-				//}
-				//fmt.Printf("接收到新的配置，开始重启服务\n")
-				//err := syscall.Kill(syscall.Getpid(), syscall.SIGHUP)
-				//if err != nil {
-				//	fmt.Printf("发送重启信号失败 %v\n", err)
-				//}
-
-				//syscall.Kill(syscall.Getpid(), syscall.SIGUSR2)
+				if recvNum > 0 {
+					fmt.Printf("程序启动后接收到配置更新消息，开始重启\n")
+					syscall.Kill(syscall.Getpid(), syscall.SIGUSR2)
+				} else {
+					fmt.Printf("程序启动接受到配置推送，无需重启\n")
+				}
+				recvNum++
 			}
 			plan.Token = config.Registry.Consul.Token
 			fmt.Printf("开始监听配置修改......\n")
