@@ -19,10 +19,10 @@ func Interface2String(inter interface{}) string {
 		return fmt.Sprint(inter.(int))
 		break
 	case int64:
-		return fmt.Sprint(inter.(int64))
+		return fmt.Sprintf("%d", inter.(int64))
 		break
 	case float64:
-		return fmt.Sprint(inter.(float64))
+		return fmt.Sprintf("%f", inter.(float64))
 		break
 	}
 	return ""

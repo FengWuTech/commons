@@ -11,7 +11,6 @@ import (
 	"os"
 	"os/user"
 	"strings"
-	"syscall"
 	"time"
 
 	"github.com/go-ini/ini"
@@ -450,7 +449,7 @@ func WatchConfigChange(config Config) {
 	for {
 		plan, err := watch.Parse(map[string]interface{}{
 			"type": "key",
-			"key":  "qq",
+			"key":  config.Name,
 		})
 		if err != nil || plan == nil {
 			fmt.Printf("consul无法监听任务，将在10分钟后重试\n")
@@ -458,14 +457,16 @@ func WatchConfigChange(config Config) {
 		} else {
 			plan.Handler = func(u uint64, raw interface{}) {
 				fmt.Printf("----------u: %v\n", u)
-				if u <= 344 {
-					return
-				}
-				fmt.Printf("接收到新的配置，开始重启服务\n")
-				err := syscall.Kill(syscall.Getpid(), syscall.SIGHUP)
-				if err != nil {
-					fmt.Printf("发送重启信号失败 %v\n", err)
-				}
+				//if u <= 344 {
+				//	return
+				//}
+				//fmt.Printf("接收到新的配置，开始重启服务\n")
+				//err := syscall.Kill(syscall.Getpid(), syscall.SIGHUP)
+				//if err != nil {
+				//	fmt.Printf("发送重启信号失败 %v\n", err)
+				//}
+
+				//syscall.Kill(syscall.Getpid(), syscall.SIGUSR2)
 			}
 			plan.Token = config.Registry.Consul.Token
 			fmt.Printf("开始监听配置修改......\n")
