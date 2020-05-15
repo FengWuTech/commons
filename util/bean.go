@@ -2,7 +2,6 @@ package util
 
 import (
 	"encoding/json"
-	"fmt"
 	"reflect"
 	"strconv"
 
@@ -14,18 +13,15 @@ import (
 func Interface2String(inter interface{}, param ...int) string {
 	switch inter.(type) {
 	case string:
-		return fmt.Sprint(inter.(string))
-		break
-	case int:
-		return fmt.Sprint(inter.(int))
-		break
+		return inter.(string)
+	case int, int32:
+		return strconv.FormatInt(int64(inter.(int)), 10)
 	case int64:
-		return fmt.Sprintf("%d", inter.(int64))
-		break
+		return strconv.FormatInt(inter.(int64), 10)
+	case float32:
+		return strconv.FormatFloat(float64(inter.(float32)), 'f', param[0], 32)
 	case float64:
-		format := "%." + strconv.Itoa(param[0]) + "f"
-		return fmt.Sprintf(format, inter.(float64))
-		break
+		return strconv.FormatFloat(inter.(float64), 'f', param[0], 64)
 	}
 	return ""
 }
