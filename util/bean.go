@@ -21,7 +21,11 @@ func Interface2String(inter interface{}, param ...int) string {
 	case float32:
 		return strconv.FormatFloat(float64(inter.(float32)), 'f', param[0], 32)
 	case float64:
-		return strconv.FormatFloat(inter.(float64), 'f', param[0], 64)
+		perc := 2
+		if param != nil {
+			perc = param[0]
+		}
+		return strconv.FormatFloat(inter.(float64), 'f', perc, 64)
 	}
 	return ""
 }
