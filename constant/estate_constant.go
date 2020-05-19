@@ -11,7 +11,26 @@ const (
 	ESTATE_ROOM_AREA_SECTION_4 = 4 //130-200平
 	ESTATE_ROOM_AREA_SECTION_5 = 5 //200-500平
 	ESTATE_ROOM_AREA_SECTION_6 = 6 //>500平
+
+	ESTATE_PROJECT_PHONE_CATEGORY_COMPANY   = 1 //项目电话分类-物业
+	ESTATE_PROJECT_PHONE_CATEGORY_COMMUNITY = 2 //项目电话分类-社会
+	ESTATE_PROJECT_PHONE_CATEGORY_AROUND    = 3 //项目电话分类-周边
 )
+
+var PHONE_CATEGORY = []map[string]interface{}{
+	{
+		"label": "社会公共服务电话",
+		"value": ESTATE_PROJECT_PHONE_CATEGORY_COMPANY,
+	},
+	{
+		"label": "社会公共服务电话",
+		"value": ESTATE_PROJECT_PHONE_CATEGORY_COMMUNITY,
+	},
+	{
+		"label": "周边便民服务电话",
+		"value": ESTATE_PROJECT_PHONE_CATEGORY_AROUND,
+	},
+}
 
 var ESTATE_INFO_MAP = map[int]map[int]map[string]interface{}{
 
