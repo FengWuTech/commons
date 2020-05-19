@@ -19,7 +19,7 @@ const (
 
 var PHONE_CATEGORY = []map[string]interface{}{
 	{
-		"label": "社会公共服务电话",
+		"label": "物业紧急联络电话",
 		"value": ESTATE_PROJECT_PHONE_CATEGORY_COMPANY,
 	},
 	{
