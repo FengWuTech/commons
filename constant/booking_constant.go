@@ -26,6 +26,11 @@ const (
 	BOOKING_TYPE_FURNITURE   = 7 //家具门窗
 	BOOKING_TYPE_HEATING     = 8 //地热暖气
 	BOOKING_TYPE_FLOOR       = 9 //地面墙面
+
+	BOOKING_ORDER_STATUS_NEW    = 0 //新创建
+	BOOKING_ORDER_STATUS_KNOWN  = 1 //已确认
+	BOOKING_ORDER_STATUS_DONE   = 2 //已服务
+	BOOKING_ORDER_STATUS_CANCEL = 3 //已取消
 )
 
 var BOOKING_INFO_MAP = map[int]map[int]map[string]interface{}{
