@@ -133,6 +133,11 @@ const (
 	ACCOUNT_FLOW_TYPE_REFUND_TO_ACCOUNT = 2 //退款到用户账户
 	ACCOUNT_FLOW_TYPE_DEDUCT            = 3 //划扣
 	ACCOUNT_FLOW_TYPE_REFUND_TO_USER    = 4 //退款给用户
+
+	// 有特别含义的固定类型的收费项目
+	ROOM_CHARGE_PROJECT_ID    = 52 //物业费
+	PARKING_CHARGE_PROJECT_ID = 55 //车位管理费
+	BOOKING_CHARGE_PROJECT_ID = 83 //服务预定收费
 )
 
 var ACCOUNT_FLOW_TYPE = []map[string]interface{}{
