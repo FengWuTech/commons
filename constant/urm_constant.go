@@ -12,14 +12,15 @@ const (
 	SMS_TPL_AUDIT_PASS = 1 //审核通过
 	SMS_TPL_AUDIT_FAIL = 2 //审核失败
 
-	SMS_TPL_DISPATCH_ORDER_NEW_NOTICE = 1  //物业维修工单提醒
-	SMS_TPL_LOGIN_CODE                = 2  //登录确认验证码
-	SMS_TPL_DISPATCH_ORDER_REMIND     = 3  //工单催单提醒
-	SMS_TPL_PAY_BILL_NEW              = 4  //物业缴费通知
-	SMS_TPL_BIRTHDAY_WISHES           = 16 //生日祝福
-	SMS_TPL_WEIXIN_RECON              = 17 //微信对账
-	SMS_TPL_USER_CHECKIN_AUDIT_PASS   = 18 //迁入申请审核通过
-	SMS_TPL_USER_CHECKIN_AUDIT_FAIL   = 19 //迁入申请审核拒绝
-	SMS_TPL_INNER_NOTICE              = 22 //内部通知
-	SMS_TPL_RESET_PASSWORD_CODE       = 23 //重置密码
+	SMS_TPL_DISPATCH_ORDER_NEW_NOTICE    = 1  //物业维修工单提醒
+	SMS_TPL_LOGIN_CODE                   = 2  //登录确认验证码
+	SMS_TPL_DISPATCH_ORDER_REMIND        = 3  //工单催单提醒
+	SMS_TPL_PAY_BILL_NEW                 = 4  //物业缴费通知
+	SMS_TPL_BIRTHDAY_WISHES              = 16 //生日祝福
+	SMS_TPL_WEIXIN_RECON                 = 17 //微信对账
+	SMS_TPL_USER_CHECKIN_AUDIT_PASS      = 18 //迁入申请审核通过
+	SMS_TPL_USER_CHECKIN_AUDIT_FAIL      = 19 //迁入申请审核拒绝
+	SMS_TPL_INNER_NOTICE                 = 22 //内部通知
+	SMS_TPL_RESET_PASSWORD_CODE          = 23 //重置密码
+	SMS_TPL_DISPATCH_ORDER_REMIND_LEADER = 46 //推送给领导的催单短信
 )
