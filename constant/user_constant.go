@@ -201,7 +201,7 @@ var USER_INFO_MAP = map[int]map[int]map[string]interface{}{
 	},
 	KEY_USER_ROLE: {
 		USER_ROLE_OWNER: {
-			"value":      "业主本人",
+			"value":      "业主",
 			"validMonth": 0, //0代表无限
 		},
 		USER_ROLE_KIN: {

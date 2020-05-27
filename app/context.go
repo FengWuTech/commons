@@ -88,6 +88,10 @@ func GetAppID(c *gin.Context) int {
 
 func GetGroupID(c *gin.Context) int {
 	groupID := c.GetHeader("groupid")
+	if groupID == "" {
+		// 兼容头大小写
+		groupID = c.GetHeader("Groupid")
+	}
 	return com.StrTo(groupID).MustInt()
 }
 
