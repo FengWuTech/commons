@@ -196,7 +196,7 @@ var USER_INFO_MAP = map[int]map[int]map[string]interface{}{
 			"value": "女",
 		},
 		KEY_USER_SEX_OTHER: {
-			"value": "其他",
+			"value": "保密",
 		},
 	},
 	KEY_USER_ROLE: {
@@ -304,7 +304,6 @@ func GetUserUserSexFEConf() []map[string]interface{} {
 	return GetUserFEConf(KEY_USER_SEX)
 }
 
-
 func confToMap(conf []map[string]interface{}) map[int]string {
 	ret := map[int]string{}
 	for _, item := range conf {
@@ -324,7 +323,7 @@ func confToMap(conf []map[string]interface{}) map[int]string {
 
 var (
 	UserSexyConfMap = confToMap(GetUserUserSexFEConf())
-	UserAgeConfMap = confToMap(GetUserUserAgeFEConf())
-	UserEduConfMap = confToMap(GetUserEduLevelFEConf())
+	UserAgeConfMap  = confToMap(GetUserUserAgeFEConf())
+	UserEduConfMap  = confToMap(GetUserEduLevelFEConf())
 	UserWorkConfMap = confToMap(GetUserWorkTypeFEConf())
 )
