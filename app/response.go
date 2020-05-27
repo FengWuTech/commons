@@ -22,9 +22,11 @@ type Response struct {
 }
 
 func SaveRawRequest(c *gin.Context) {
+	logger.Info("SaveRawRequest begin")
 	requestRawData, _ := ioutil.ReadAll(c.Request.Body)
 	c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(requestRawData))
 	c.Set("http_request_raw_data", string(requestRawData))
+	logger.Info("SaveRawRequest end")
 }
 
 // Response setting gin.JSON

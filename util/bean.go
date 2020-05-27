@@ -2,28 +2,30 @@ package util
 
 import (
 	"encoding/json"
-	"fmt"
 	"reflect"
+	"strconv"
 
 	jsoniter "github.com/json-iterator/go"
 
 	"github.com/siddontang/go/bson"
 )
 
-func Interface2String(inter interface{}) string {
+func Interface2String(inter interface{}, param ...int) string {
 	switch inter.(type) {
 	case string:
-		return fmt.Sprint(inter.(string))
-		break
-	case int:
-		return fmt.Sprint(inter.(int))
-		break
+		return inter.(string)
+	case int, int32:
+		return strconv.FormatInt(int64(inter.(int)), 10)
 	case int64:
-		return fmt.Sprint(inter.(int64))
-		break
+		return strconv.FormatInt(inter.(int64), 10)
+	case float32:
+		return strconv.FormatFloat(float64(inter.(float32)), 'f', param[0], 32)
 	case float64:
-		return fmt.Sprint(inter.(float64))
-		break
+		perc := 2
+		if param != nil {
+			perc = param[0]
+		}
+		return strconv.FormatFloat(inter.(float64), 'f', perc, 64)
 	}
 	return ""
 }

@@ -38,4 +38,11 @@ const (
 	//审核日期：{{keyword3.DATA}}
 	//{{remark.DATA}}
 	MINIP_USER_TEMPLATE_MESSAGE_AUDIT_NOTICE = "OPENTM417949050" //审核通知
+
+	//{{first.DATA}}
+	//申请时间：{{keyword1.DATA}}
+	//服务项目：{{keyword2.DATA}}
+	//地址：{{keyword3.DATA}}
+	//{{remark.DATA}}
+	MINIP_USER_TEMPLATE_MESSAGE_ACCEPTANCE = "OPENTM407308160" //受理通知
 )

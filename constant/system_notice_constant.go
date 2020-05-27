@@ -21,6 +21,7 @@ type SystemNoticeText struct {
 }
 
 type SystemNoticeNewAppeal struct {
+	NoticeID int    `json:"notice_id"`
 	AppealID int    `json:"appeal_id"`
 	Detail   string `json:"detail"`
 }
@@ -31,6 +32,7 @@ type SystemNoticeNewComplaintAppeal SystemNoticeNewAppeal
 type SystemNoticeNewPraiseAppeal SystemNoticeNewAppeal
 
 type SystemNoticeNewServiceBook struct {
+	NoticeID int        `json:"notice_id"`
 	OrderID  int        `json:"order_id"`
 	ItemID   int        `json:"item_id"`
 	ItemName string     `json:"item_name"`
@@ -38,6 +40,7 @@ type SystemNoticeNewServiceBook struct {
 }
 
 type SystemNoticeNewUserAuditApply struct {
+	NoticeID     int    `json:"notice_id"`
 	UserID       int    `json:"user_id"`
 	UserName     string `json:"user_name"`
 	RoomLocation string `json:"room_location"`
