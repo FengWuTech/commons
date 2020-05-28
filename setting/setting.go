@@ -197,6 +197,15 @@ type Machinery struct {
 	ResultsExpireIn int    `yaml:"ResultsExpireIn"`
 }
 
+type Email struct {
+	Host     string
+	Port     int
+	User     string
+	Password string
+}
+
+var EmailSetting = &Email{}
+
 var MachinerySetting = &Machinery{}
 
 var cfg *ini.File
@@ -255,6 +264,7 @@ func setupFromIni(cfgFile string) {
 	mapTo("tencent_cloud", TencentCloudSetting)
 	mapTo("pay_center", PayCenterSetting)
 	mapTo("machinery", MachinerySetting)
+	mapTo("email", EmailSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
@@ -341,6 +351,7 @@ func setupFromRegistry(yamlFile string) {
 	fun("tencent_cloud", TencentCloudSetting)
 	fun("pay_center", PayCenterSetting)
 	fun("machinery", MachinerySetting)
+	fun("email", EmailSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
@@ -349,101 +360,6 @@ func setupFromRegistry(yamlFile string) {
 
 	go WatchConfigChange(config)
 }
-
-//func setupFromRegistry(yamlFile string) {
-//	cnt, err := ioutil.ReadFile(yamlFile)
-//	if err != nil || len(cnt) == 0 {
-//		panic(fmt.Sprintf("配置文件加载失败: %v\n", err))
-//	}
-//
-//	var config Config
-//	yaml.Unmarshal(cnt, &config)
-//
-//	if strings.Index(config.Data.Dir, "~/") == 0 {
-//		cur, err := user.Current()
-//		if err != nil {
-//			panic(fmt.Sprintf("无法确定用户目录: %v", err))
-//		}
-//		config.Data.Dir = strings.ReplaceAll(config.Data.Dir, "~", cur.HomeDir)
-//	}
-//
-//	if !fileutil.Exists(config.Data.Dir) {
-//		os.Mkdir(config.Data.Dir, 0777)
-//	}
-//
-//	consul.Setup(config.Registry.Consul.URL, config.Registry.Consul.Token)
-//
-//	var ret map[string]interface{}
-//	cfgFile := fmt.Sprintf("%s/%s.conf", config.Data.Dir, config.Name)
-//
-//	v := viper.New()
-//	err = v.AddRemoteProvider("consul", config.Registry.Consul.URL, config.Name)
-//	var fun func(key string, out interface{})
-//	if err != nil {
-//		cnt, err := ioutil.ReadFile(cfgFile)
-//		if err != nil {
-//			panic(fmt.Sprintf("读取本地文件失败 %v", err))
-//		}
-//		err = yaml.NewDecoder(bytes.NewReader(cnt)).Decode(&ret)
-//		if err != nil || ret == nil {
-//			panic(fmt.Sprintf("解析本地配置失败: %v\n", err))
-//		}
-//		fmt.Printf("配置中心无法连接，使用本地配置执行 %v\n", err)
-//
-//		fun = func(key string, out interface{}) {
-//			if value, ok := ret[key]; ok {
-//				outData, err := yaml.Marshal(value)
-//				if err != nil {
-//					panic(fmt.Sprintf("配置Marshal异常: %v\n", err))
-//				}
-//				err = yaml.Unmarshal(outData, out)
-//				if err != nil {
-//					panic(fmt.Sprintf("配置Unmarshal异常: %v\n", err))
-//				}
-//			}
-//		}
-//	} else {
-//		v.SetConfigType("yaml")
-//		err = v.ReadRemoteConfig()
-//		if err != nil {
-//			fmt.Printf("读取注册中心配置失败: %v\n", err)
-//		}
-//		fun = func(key string, out interface{}) {
-//			value := v.GetStringMap(key)
-//			if value != nil {
-//				outData, err := yaml.Marshal(value)
-//				if err != nil {
-//					panic(fmt.Sprintf("配置Marshal异常: %v\n", err))
-//				}
-//				err = yaml.Unmarshal(outData, out)
-//				if err != nil {
-//					panic(fmt.Sprintf("配置Unmarshal异常: %v\n", err))
-//				}
-//			}
-//		}
-//	}
-//
-//	fun("app", AppSetting)
-//	fun("server", ServerSetting)
-//	fun("database", DatabaseSetting)
-//	fun("redis", RedisSetting)
-//	fun("sso", SsoSetting)
-//	fun("database_flow", DatabaseFlowSetting)
-//	fun("remote", RemoteSetting)
-//	fun("cas", CasSetting)
-//	fun("urm", UrmSetting)
-//	fun("aliyun", AliyunSetting)
-//	fun("tencent_cloud", TencentCloudSetting)
-//	fun("pay_center", PayCenterSetting)
-//	fun("machinery", MachinerySetting)
-//
-//	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
-//	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
-//	ServerSetting.WriteTimeout = ServerSetting.WriteTimeout * time.Second
-//	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
-//
-//	go WatchConfigChange(config)
-//}
 
 func WatchConfigChange(config Config) {
 	recvNum := 0
