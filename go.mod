@@ -11,6 +11,7 @@ require (
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/getsentry/sentry-go v0.5.1
 	github.com/gin-gonic/gin v1.6.2
+	github.com/go-gomail/gomail v0.0.0-20160411212932-81ebce5c23df // indirect
 	github.com/go-ini/ini v1.55.0
 	github.com/go-redis/redis v6.14.2+incompatible
 	github.com/gomodule/redigo v2.0.0+incompatible
@@ -27,6 +28,7 @@ require (
 	github.com/tencentyun/qcloud-cos-sts-sdk v0.0.0-20200224031959-e05dcbd8be5a // indirect
 	github.com/unknwon/com v1.0.1
 	go.uber.org/zap v1.14.1
+	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/ini.v1 v1.55.0 // indirect
 	gopkg.in/mgo.v2 v2.0.0-20190816093944-a6b53ec6cb22 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
