@@ -198,10 +198,10 @@ type Machinery struct {
 }
 
 type Email struct {
-	Host     string
-	Port     int
-	User     string
-	Password string
+	Host     string `yaml:"Host"`
+	Port     int    `yaml:"Port"`
+	User     string `yaml:"User"`
+	Password string `yaml:"Password"`
 }
 
 var EmailSetting = &Email{}
