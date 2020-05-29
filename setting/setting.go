@@ -75,6 +75,8 @@ type App struct {
 	MinipServiceProviderApiKey string `yaml:"MinipServiceProviderApiKey"`
 
 	NoticeList string `yaml:"NoticeList"`
+
+	DispatchOrderMaxRemindTimes int `yaml:"DispatchOrderMaxRemindTimes"`
 }
 
 var AppSetting = &App{}
