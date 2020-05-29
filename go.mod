@@ -7,6 +7,7 @@ require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.78
 	github.com/astaxie/beego v1.12.1
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394
+	github.com/chanxuehong/wechat v0.0.0-20200409104612-0a1fd76d7a3a
 	github.com/elazarl/goproxy v0.0.0-20200315184450-1f3cb6622dad // indirect
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/getsentry/sentry-go v0.5.1
@@ -17,6 +18,8 @@ require (
 	github.com/gomodule/redigo v2.0.0+incompatible
 	github.com/gorilla/websocket v1.4.0
 	github.com/hashicorp/consul/api v1.4.0
+	github.com/jinzhu/gorm v1.9.12
+	github.com/jmniu/weixin-third-dev v1.0.4
 	github.com/json-iterator/go v1.1.9
 	github.com/noaway/dateparse v0.0.0-20171117034806-ad2b19d7b298
 	github.com/parnurzeal/gorequest v0.2.16
@@ -24,8 +27,8 @@ require (
 	github.com/satori/go.uuid v1.2.0
 	github.com/siddontang/go v0.0.0-20180604090527-bdc77568d726
 	github.com/tencentcloud/tencentcloud-sdk-go v3.0.158+incompatible
-	github.com/tencentyun/cos-go-sdk-v5 v0.7.4 // indirect
-	github.com/tencentyun/qcloud-cos-sts-sdk v0.0.0-20200224031959-e05dcbd8be5a // indirect
+	github.com/tencentyun/cos-go-sdk-v5 v0.7.4
+	github.com/tencentyun/qcloud-cos-sts-sdk v0.0.0-20200224031959-e05dcbd8be5a
 	github.com/unknwon/com v1.0.1
 	go.uber.org/zap v1.14.1
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
