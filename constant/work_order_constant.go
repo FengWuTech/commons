@@ -108,7 +108,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "表扬赞赏",
 			},
 		},
-		"APPEAL_VISION_TYPE": {
+		"APPEAL_TYPE_VISION": {
 			{
 				"value": APPEAL_TYPE_VISION_FIRE_ESCAPE,
 				"label": "消防通道报警",
