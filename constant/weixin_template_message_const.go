@@ -58,7 +58,7 @@ const (
 	//发布时间：{{keyword2.DATA}}
 	//内容：{{keyword3.DATA}}
 	//{{remark.DATA}}
-	TEMPLATE_MESSAGE_MANAGE_NOTICE = "物业管理通知"
+	TEMPLATE_MESSAGE_MANAGE_NOTICE = "OPENTM204594069"
 
 	//工单超时通知
 	//{{first.DATA}}
