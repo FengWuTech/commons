@@ -116,6 +116,11 @@ func Setup() {
 				zapcore.AddSync(redisWriter),
 				zap.NewAtomicLevelAt(level),
 			),
+			zapcore.NewCore( // 控制台
+				zapcore.NewConsoleEncoder(encoder),
+				zapcore.AddSync(os.Stdout),
+				zap.NewAtomicLevelAt(debugLevel),
+			),
 		)
 	}
 
@@ -127,7 +132,7 @@ func Setup() {
 	if runMode == "debug" {
 		logger = zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), zap.Development(), additionalFields)
 	} else {
-		logger = zap.New(core)
+		logger = zap.New(core, zap.AddCaller(), zap.AddCallerSkip(1), additionalFields)
 	}
 	//logger := zap.New(core, zap.AddCaller(), zap.Development())
 	errorLogger = logger.Sugar()
