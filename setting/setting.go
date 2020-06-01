@@ -70,9 +70,9 @@ type App struct {
 	MinipStaffTemplateMsgOrderFinish  string `yaml:"MinipStaffTemplateMsgOrderFinish"`
 	MinipStaffTemplateMsgOrderNew     string `yaml:"MinipStaffTemplateMsgOrderNew"`
 
-	MinipServiceProviderMchID  string `yaml:"MinipServiceProviderMchID"`
-	MinipServiceProviderAppID  string `yaml:"MinipServiceProviderAppID"`
-	MinipServiceProviderApiKey string `yaml:"MinipServiceProviderApiKey"`
+	//MinipServiceProviderMchID  string `yaml:"MinipServiceProviderMchID"`
+	//MinipServiceProviderAppID  string `yaml:"MinipServiceProviderAppID"`
+	//MinipServiceProviderApiKey string `yaml:"MinipServiceProviderApiKey"`
 
 	NoticeList string `yaml:"NoticeList"`
 
