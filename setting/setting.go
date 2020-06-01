@@ -57,18 +57,18 @@ type App struct {
 	QBoxAccess string `yaml:"QBoxAccess"`
 	QBoxSecret string `yaml:"QBoxSecret"`
 
-	MinipStaffName                    string `yaml:"MinipStaffName"`
-	MinipStaffQrCodeURL               string `yaml:"MinipStaffQrCodeURL"`
-	MinipStaffAppID                   string `yaml:"MinipStaffAppID"`
-	MinipStaffSecret                  string `yaml:"MinipStaffSecret"`
-	MinipStaffOriID                   string `yaml:"MinipStaffOriID"`
-	MinipStaffToken                   string `yaml:"MinipStaffToken"`
-	MinipStaffEncodedAESKey           string `yaml:"MinipStaffEncodedAESKey"`
-	MinipStaffTemplateMsgManageNotice string `yaml:"MinipStaffTemplateMsgManageNotice"`
-	MinipStaffTemplateMsgOrderTimeout string `yaml:"MinipStaffTemplateMsgOrderTimeout"`
-	MinipStaffTemplateMsgOrderRemind  string `yaml:"MinipStaffTemplateMsgOrderRemind"`
-	MinipStaffTemplateMsgOrderFinish  string `yaml:"MinipStaffTemplateMsgOrderFinish"`
-	MinipStaffTemplateMsgOrderNew     string `yaml:"MinipStaffTemplateMsgOrderNew"`
+	//MinipStaffName                    string `yaml:"MinipStaffName"`
+	//MinipStaffQrCodeURL               string `yaml:"MinipStaffQrCodeURL"`
+	//MinipStaffAppID                   string `yaml:"MinipStaffAppID"`
+	//MinipStaffSecret                  string `yaml:"MinipStaffSecret"`
+	//MinipStaffOriID                   string `yaml:"MinipStaffOriID"`
+	//MinipStaffToken                   string `yaml:"MinipStaffToken"`
+	//MinipStaffEncodedAESKey           string `yaml:"MinipStaffEncodedAESKey"`
+	//MinipStaffTemplateMsgManageNotice string `yaml:"MinipStaffTemplateMsgManageNotice"`
+	//MinipStaffTemplateMsgOrderTimeout string `yaml:"MinipStaffTemplateMsgOrderTimeout"`
+	//MinipStaffTemplateMsgOrderRemind  string `yaml:"MinipStaffTemplateMsgOrderRemind"`
+	//MinipStaffTemplateMsgOrderFinish  string `yaml:"MinipStaffTemplateMsgOrderFinish"`
+	//MinipStaffTemplateMsgOrderNew     string `yaml:"MinipStaffTemplateMsgOrderNew"`
 
 	//MinipServiceProviderMchID  string `yaml:"MinipServiceProviderMchID"`
 	//MinipServiceProviderAppID  string `yaml:"MinipServiceProviderAppID"`
