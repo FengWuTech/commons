@@ -8,6 +8,7 @@ import (
 	"github.com/FengWuTech/commons/wechat/wxmodel"
 	"github.com/FengWuTech/commons/wechat/wxopen"
 	"github.com/FengWuTech/commons/wechat/wxutil"
+	"github.com/chanxuehong/wechat/mp/menu"
 	"github.com/jmniu/weixin-third-dev/wxopenapi"
 	"time"
 )
@@ -100,6 +101,15 @@ func AuthEventHandle(cmtType int, rawXmlData string, msgSignature string, timest
 	case "authorized":
 		logger.Warnf("authorized %v", notifyAuth)
 	case "unauthorized":
+		//删除公众号菜单
+		app := wxmodel.GetWeixinAppByAuthorizerAppID(notifyAuth.AppId, notifyAuth.AuthorizerAppid)
+		clt := InitComponentAppClient(*app.Id)
+		err := menu.Delete(clt)
+		if err != nil {
+			logger.Warnf("删除公众号菜单失败 %v", err)
+		}
+
+		//删除本机记录
 		wxmodel.DeleteWeixinApp(notifyAuth.AppId, notifyAuth.AuthorizerAppid)
 	case "updateauthorized":
 	default:

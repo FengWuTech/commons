@@ -82,7 +82,20 @@ func AddWeixinApp(app WeixinApp) int {
 	return *app.Id
 }
 
-func DeleteWeixinApp(appID string, authorizerAppid string) {
-	cmt := GetWeixinComponentByAppID(appID)
+func DeleteWeixinApp(cmtAppID string, authorizerAppid string) {
+	cmt := GetWeixinComponentByAppID(cmtAppID)
 	wxdb.DB().Delete(&WeixinApp{}, "component_id = ? and authorizer_appid = ?", *cmt.Id, authorizerAppid)
+}
+
+func GetWeixinAppByAuthorizerAppID(cmtAppID string, authorizerAppid string) *WeixinApp {
+	cmt := GetWeixinComponentByAppID(cmtAppID)
+
+	var app WeixinApp
+	wxdb.DB().Where("component_id = ? and authorizer_appid = ?", *cmt.Id, authorizerAppid).First(&app)
+
+	if app.Id == nil {
+		return nil
+	} else {
+		return &app
+	}
 }
