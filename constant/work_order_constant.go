@@ -9,10 +9,17 @@ const (
 
 	PROCESS_POOL_TYPE_REPAIR = 1 //维修工单
 
+	//人相关
 	APPEAL_TYPE_THING     = 1 //报事
 	APPEAL_TYPE_COMPLAINT = 2 //投诉建议
 	APPEAL_TYPE_PRAISE    = 3 //表扬赞赏
 	APPEAL_TYPE_REPAIR    = 4 //报修
+
+	//视觉(智能硬件)相关
+	APPEAL_TYPE_VISION_FIRE_ESCAPE     = 1 //消防通道
+	APPEAL_TYPE_VISION_DANGER_INVASION = 2 //危险区域
+	APPEAL_TYPE_VISION_CAMERA_FAILURE    = 3 //设备故障
+	APPEAL_TYPE_VISION_GARBAGE_LASTING    = 4 //垃圾溢满
 
 	//表扬投诉
 	APPEAL_OBJECT_TYPE_CLEAN            = 1 //保洁
@@ -100,6 +107,25 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": APPEAL_TYPE_PRAISE,
 				"label": "表扬赞赏",
 			},
+		},
+		"APPEAL_TYPE_VISION": {
+			{
+				"value": APPEAL_TYPE_VISION_FIRE_ESCAPE,
+				"label": "消防通道报警",
+			},
+			{
+				"value": APPEAL_TYPE_VISION_DANGER_INVASION,
+				"label": "危险区域报警",
+			},
+			{
+				"value": APPEAL_TYPE_VISION_CAMERA_FAILURE,
+				"label": "摄像机故障",
+			},
+			{
+				"value": APPEAL_TYPE_VISION_GARBAGE_LASTING,
+				"label": "垃圾溢满报警",
+			},
+
 		},
 		"APPEAL_OBJECT_TYPE": { //表扬投诉用
 			{
