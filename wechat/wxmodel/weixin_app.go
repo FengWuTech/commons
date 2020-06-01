@@ -73,16 +73,6 @@ func GetWeixinApp(id int) *WeixinApp {
 	}
 }
 
-func GetWeixinAppByAuthorizerAppId(appID string) *WeixinApp {
-	var app WeixinApp
-	wxdb.DB().Where("authorizer_appid = ?", &appID).First(&app)
-	if app.Id == nil {
-		return nil
-	} else {
-		return &app
-	}
-}
-
 func UpdateWeixinApp(id int, upd WeixinApp) {
 	wxdb.DB().Model(&WeixinApp{}).Where("id = ?", id).Update(upd)
 }
