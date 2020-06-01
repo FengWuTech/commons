@@ -16,6 +16,9 @@ type WeixinComponent struct {
 	AccessTokenUpdateTime *time.Time `gorm:"access_token_update_time;default:null" json:"access_token_update_time,omitempty"` // 更新时间
 	Token                 *string    `gorm:"token;default:''" json:"token,omitempty"`                                         // 校验token
 	AesKey                *string    `gorm:"aes_key;default:''" json:"aes_key,omitempty"`                                     // 加密串
+	RefAppId              *string    `gorm:"ref_app_id;default:''" json:"ref_app_id,omitempty"`                               // 关联的社区端appid
+	MchId                 *string    `gorm:"mch_id;default:''" json:"mch_id,omitempty"`                                       // 服务商商户ID
+	MchApiKey             *string    `gorm:"mch_api_key;default:''" json:"mch_api_key,omitempty"`                             // 服务商商户apikey
 	CreateTime            *time.Time `gorm:"create_time;default:CURRENT_TIMESTAMP" json:"create_time,omitempty"`              // 创建时间
 	UpdateTime            *time.Time `gorm:"update_time;default:CURRENT_TIMESTAMP" json:"update_time,omitempty"`              // 更新时间
 }
