@@ -106,3 +106,20 @@ func AuthEventHandle(cmtType int, rawXmlData string, msgSignature string, timest
 		logger.Warnf("未找到消息处理函数 infoType[%s] notifyAuth[%v]", notifyAuth.InfoType, notifyAuth)
 	}
 }
+
+func GetOpenIDByAuthCode(appID int, code string) string {
+	app := wxmodel.GetWeixinApp(appID)
+	if app == nil {
+		return ""
+	}
+	wxOpen := wxopen.WxOpenInit(*app.ComponentId)
+
+	cmt := wxmodel.GetWeixinComponent(*app.ComponentId)
+
+	authInfo := wxOpen.GetUserAuthInfo(*app.AuthorizerAppid, code, *cmt.Appid)
+	if authInfo == nil {
+		return ""
+	}
+
+	return authInfo.OpenID
+}
