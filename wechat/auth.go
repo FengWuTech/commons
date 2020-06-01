@@ -35,7 +35,7 @@ func AuthFinish(companyID int, cmtType int, authCode string) int {
 	var authInfo = wxOpen.GetAuthInfo(appID)
 
 	authInfoStr, _ := json.Marshal(authInfo)
-	logger.Infof("authInfo: %v", authInfoStr)
+	logger.Infof("authInfo: %v", string(authInfoStr))
 
 	qrcodeURL := wxutil.UploadFromURL(authInfo.AuthorizerInfo.QrcodeUrl)
 	existApp := wxmodel.IsWeixinAppExist(companyID, appID, *cmt.Id)
