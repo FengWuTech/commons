@@ -42,3 +42,34 @@ type SystemNoticeNewUserAuditApply struct {
 	UserName     string `json:"user_name"`
 	RoomLocation string `json:"room_location"`
 }
+
+var SYSTEM_NOTICE_TYPE = []map[string]interface{}{
+	{
+		"label": "文本",
+		"value": SYSTEM_NOTICE_TYPE_TEXT,
+	},
+	{
+		"label": "报事问题",
+		"value": SYSTEM_NOTICE_TYPE_NEW_THING_APPEAL,
+	},
+	{
+		"label": "报修问题",
+		"value": SYSTEM_NOTICE_TYPE_NEW_REPAIR_APPEAL,
+	},
+	{
+		"label": "投诉建议",
+		"value": SYSTEM_NOTICE_TYPE_NEW_COMPLAINT_APPEAL,
+	},
+	{
+		"label": "表扬赞赏",
+		"value": SYSTEM_NOTICE_TYPE_NEW_PRAISE_APPEAL,
+	},
+	{
+		"label": "服务预订",
+		"value": SYSTEM_NOTICE_TYPE_NEW_SERVICE_BOOKING,
+	},
+	{
+		"label": "住户审核",
+		"value": SYSTEM_NOTICE_TYPE_NEW_USER_AUDIT,
+	},
+}
