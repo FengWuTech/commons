@@ -45,7 +45,7 @@ type SystemNoticeNewUserAuditApply struct {
 
 var SYSTEM_NOTICE_TYPE = []map[string]interface{}{
 	{
-		"label": "文本",
+		"label": "文本消息",
 		"value": SYSTEM_NOTICE_TYPE_TEXT,
 	},
 	{
