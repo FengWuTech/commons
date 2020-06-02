@@ -22,6 +22,7 @@ require (
 	github.com/jmniu/weixin-third-dev v1.0.4
 	github.com/json-iterator/go v1.1.9
 	github.com/noaway/dateparse v0.0.0-20171117034806-ad2b19d7b298
+	github.com/parkingwang/go-sign v1.0.2 // indirect
 	github.com/parnurzeal/gorequest v0.2.16
 	github.com/qiniu/api.v7/v7 v7.4.1
 	github.com/satori/go.uuid v1.2.0

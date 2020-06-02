@@ -199,6 +199,8 @@ type Machinery struct {
 	ResultsExpireIn int    `yaml:"ResultsExpireIn"`
 }
 
+var MachinerySetting = &Machinery{}
+
 type Email struct {
 	Host     string `yaml:"Host"`
 	Port     int    `yaml:"Port"`
@@ -208,7 +210,13 @@ type Email struct {
 
 var EmailSetting = &Email{}
 
-var MachinerySetting = &Machinery{}
+type Vision struct {
+	BaseURL   string `yaml:"BaseURL"`
+	AppID     string `yaml:"AppID"`
+	AppSecret string `yaml:"AppSecret"`
+}
+
+var VisionSetting = &Vision{}
 
 var cfg *ini.File
 
