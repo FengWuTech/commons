@@ -107,6 +107,40 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": APPEAL_TYPE_PRAISE,
 				"label": "表扬赞赏",
 			},
+			{
+				"value": APPEAL_TYPE_VISION_FIRE_ESCAPE,
+				"label": "消防通道报警",
+			},
+			{
+				"value": APPEAL_TYPE_VISION_DANGER_INVASION,
+				"label": "危险区域报警",
+			},
+			{
+				"value": APPEAL_TYPE_VISION_CAMERA_FAILURE,
+				"label": "摄像机故障",
+			},
+			{
+				"value": APPEAL_TYPE_VISION_GARBAGE_LASTING,
+				"label": "垃圾溢满报警",
+			},
+		},
+		"APPEAL_TYPE_PMS": {
+			{
+				"value": APPEAL_TYPE_THING,
+				"label": "报事问题",
+			},
+			{
+				"value": APPEAL_TYPE_REPAIR,
+				"label": "报修问题",
+			},
+			{
+				"value": APPEAL_TYPE_COMPLAINT,
+				"label": "投诉建议",
+			},
+			{
+				"value": APPEAL_TYPE_PRAISE,
+				"label": "表扬赞赏",
+			},
 		},
 		"APPEAL_TYPE_VISION": {
 			{
