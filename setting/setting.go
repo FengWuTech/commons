@@ -275,6 +275,7 @@ func setupFromIni(cfgFile string) {
 	mapTo("pay_center", PayCenterSetting)
 	mapTo("machinery", MachinerySetting)
 	mapTo("email", EmailSetting)
+	mapTo("vision", VisionSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
@@ -362,6 +363,7 @@ func setupFromRegistry(yamlFile string) {
 	fun("pay_center", PayCenterSetting)
 	fun("machinery", MachinerySetting)
 	fun("email", EmailSetting)
+	fun("vision", VisionSetting)
 
 	AppSetting.ImageMaxSize = AppSetting.ImageMaxSize * 1024 * 1024
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
