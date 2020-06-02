@@ -60,18 +60,18 @@ const (
 	DISPATCH_ORDER_STATUS_ACCEPTED   = 2 //已接单
 	DISPATCH_ORDER_STATUS_REPAIRED   = 3 //已修复
 	DISPATCH_ORDER_STATUS_VERIFIED   = 4 //已验证
-	DISPATCH_ORDER_STATUS_TRANSFER   = 5 //已转办
-	DISPATCH_ORDER_STATUS_ENTRUSTED  = 6 //已委托
-	DISPATCH_ORDER_STATUS_REJECTED   = 7 //已驳回
-	DISPATCH_ORDER_STATUS_FROZEN     = 8 //已冻结
-	DISPATCH_ORDER_STATUS_CANCEL     = 9 //已取消
+	//DISPATCH_ORDER_STATUS_TRANSFER   = 5 //已转办
+	//DISPATCH_ORDER_STATUS_ENTRUSTED  = 6 //已委托
+	//DISPATCH_ORDER_STATUS_REJECTED   = 7 //已驳回
+	//DISPATCH_ORDER_STATUS_FROZEN     = 8 //已冻结
+	DISPATCH_ORDER_STATUS_CANCEL = 9 //已取消
 
 	DISPATCH_ORDER_OPERATE_TYPE_APPOINTMENT = 1 //修改预约
-	DISPATCH_ORDER_OPERATE_TYPE_TRANSFER    = 2 //转派
-	DISPATCH_ORDER_OPERATE_TYPE_ENTRUST     = 3 //委托
-	DISPATCH_ORDER_OPERATE_TYPE_FINISH      = 4 //完工
-	DISPATCH_ORDER_OPERATE_TYPE_REJECT      = 5 //驳回
-	DISPATCH_ORDER_OPERATE_TYPE_FROZE       = 6 //冻结
+	//DISPATCH_ORDER_OPERATE_TYPE_TRANSFER    = 2 //转派
+	//DISPATCH_ORDER_OPERATE_TYPE_ENTRUST     = 3 //委托
+	DISPATCH_ORDER_OPERATE_TYPE_FINISH = 4 //完工
+	//DISPATCH_ORDER_OPERATE_TYPE_REJECT      = 5 //驳回
+	//DISPATCH_ORDER_OPERATE_TYPE_FROZE       = 6 //冻结
 
 	RETURN_VISIT_STATUS_CREATED             = 1 //已创建
 	RETURN_VISIT_STATUS_FINISH_WITH_PROBLEM = 2 //回访结束，存在问题
@@ -305,26 +305,26 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": DISPATCH_ORDER_OPERATE_TYPE_APPOINTMENT,
 				"label": "预约",
 			},
-			{
-				"value": DISPATCH_ORDER_OPERATE_TYPE_TRANSFER,
-				"label": "转派",
-			},
-			{
-				"value": DISPATCH_ORDER_OPERATE_TYPE_ENTRUST,
-				"label": "委托",
-			},
+			//{
+			//	"value": DISPATCH_ORDER_OPERATE_TYPE_TRANSFER,
+			//	"label": "转派",
+			//},
+			//{
+			//	"value": DISPATCH_ORDER_OPERATE_TYPE_ENTRUST,
+			//	"label": "委托",
+			//},
 			{
 				"value": DISPATCH_ORDER_OPERATE_TYPE_FINISH,
 				"label": "完工",
 			},
-			{
-				"value": DISPATCH_ORDER_OPERATE_TYPE_REJECT,
-				"label": "驳回",
-			},
-			{
-				"value": DISPATCH_ORDER_OPERATE_TYPE_FROZE,
-				"label": "冻结",
-			},
+			//{
+			//	"value": DISPATCH_ORDER_OPERATE_TYPE_REJECT,
+			//	"label": "驳回",
+			//},
+			//{
+			//	"value": DISPATCH_ORDER_OPERATE_TYPE_FROZE,
+			//	"label": "冻结",
+			//},
 		},
 	}[key]
 }
