@@ -22,6 +22,8 @@ type Message struct {
 	Type      int         `json:"type"`
 	ProjectID int         `json:"project_id"`
 	Content   interface{} `json:"content"`
+	NoticeID  int         `json:"notice_id"`
+	BizID     int         `json:"biz_id"`
 }
 
 type ClientConnect struct {
