@@ -265,22 +265,22 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": DISPATCH_ORDER_STATUS_VERIFIED,
 				"label": "已核验",
 			},
-			{
-				"value": DISPATCH_ORDER_STATUS_TRANSFER,
-				"label": "已转单",
-			},
-			{
-				"value": DISPATCH_ORDER_STATUS_ENTRUSTED,
-				"label": "已委托",
-			},
-			{
-				"value": DISPATCH_ORDER_STATUS_REJECTED,
-				"label": "已驳回",
-			},
-			{
-				"value": DISPATCH_ORDER_STATUS_FROZEN,
-				"label": "已冻结",
-			},
+			//{
+			//	"value": DISPATCH_ORDER_STATUS_TRANSFER,
+			//	"label": "已转单",
+			//},
+			//{
+			//	"value": DISPATCH_ORDER_STATUS_ENTRUSTED,
+			//	"label": "已委托",
+			//},
+			//{
+			//	"value": DISPATCH_ORDER_STATUS_REJECTED,
+			//	"label": "已驳回",
+			//},
+			//{
+			//	"value": DISPATCH_ORDER_STATUS_FROZEN,
+			//	"label": "已冻结",
+			//},
 			{
 				"value": DISPATCH_ORDER_STATUS_CANCEL,
 				"label": "已取消",
