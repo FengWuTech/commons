@@ -15,10 +15,10 @@ type Response struct {
 	Time string      `json:"time"`
 }
 
-func NewClient(baseURL string) *Client {
+func NewClient() *Client {
 	return &Client{
 		AppID:     setting.VisionSetting.AppID,     //直接赋值好了
 		AppSecret: setting.VisionSetting.AppSecret, //直接赋值好了
-		BaseURL:   baseURL,
+		BaseURL:   setting.VisionSetting.BaseURL,
 	}
 }
