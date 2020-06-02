@@ -64,6 +64,7 @@ const (
 	DISPATCH_ORDER_STATUS_ENTRUSTED  = 6 //已委托
 	DISPATCH_ORDER_STATUS_REJECTED   = 7 //已驳回
 	DISPATCH_ORDER_STATUS_FROZEN     = 8 //已冻结
+	DISPATCH_ORDER_STATUS_CANCEL     = 9 //已取消
 
 	DISPATCH_ORDER_OPERATE_TYPE_APPOINTMENT = 1 //修改预约
 	DISPATCH_ORDER_OPERATE_TYPE_TRANSFER    = 2 //转派
@@ -279,6 +280,10 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			{
 				"value": DISPATCH_ORDER_STATUS_FROZEN,
 				"label": "已冻结",
+			},
+			{
+				"value": DISPATCH_ORDER_STATUS_CANCEL,
+				"label": "已取消",
 			},
 		},
 		"RETURN_VISIT_STATUS": {
