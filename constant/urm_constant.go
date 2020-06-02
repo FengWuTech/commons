@@ -23,4 +23,5 @@ const (
 	SMS_TPL_INNER_NOTICE                 = 22 //内部通知
 	SMS_TPL_RESET_PASSWORD_CODE          = 23 //重置密码
 	SMS_TPL_DISPATCH_ORDER_REMIND_LEADER = 46 //推送给领导的催单短信
+	SMS_TPL_DISPATCH_ORDER_VERIFY_FAIL   = 54 //核验不成功
 )
