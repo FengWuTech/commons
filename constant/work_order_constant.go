@@ -259,7 +259,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 		"APPEAL_ORDER_STATUS": {
 			{
 				"value": APPEAL_ORDER_STATUS_CREATED,
-				"label": "已创建",
+				"label": "已提交",
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_ACCEPTED,
@@ -285,7 +285,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 		"APPEAL_ORDER_STATUS_C": {
 			{
 				"value": APPEAL_ORDER_STATUS_CREATED,
-				"label": "已创建",
+				"label": "已提交",
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_ACCEPTED,
