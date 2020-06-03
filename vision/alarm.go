@@ -38,12 +38,14 @@ func (cli *Client) SyncWarningProcessResult(param WarningProcessResultOptions) (
 		return errors.New("参数错误"), Response{}
 	}
 
+	/*
 	//做一下两个系统的id映射
 	err, gMap := GetGroupMap(param.CommunityID.(int))
 	if err != nil {
 		return err, Response{}
 	}
 	param.CommunityID = gMap.COMMUNITY
+	 */
 
 	//发请求
 	paramJSON, _ := json.Marshal(param)

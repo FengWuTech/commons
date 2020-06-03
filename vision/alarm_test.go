@@ -1,12 +1,11 @@
 package vision
 
 import (
-	"github.com/FengWuTech/commons/setting"
 	"testing"
 )
 
 func New() *Client {
-	return NewClient(setting.VisionSetting.BaseURL)
+	return NewClient()
 }
 
 //测试警报结果通知
