@@ -263,7 +263,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_ACCEPTED,
-				"label": "已接待",
+				"label": "已受理",
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_DISPATCHED,
@@ -289,7 +289,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_ACCEPTED,
-				"label": "已接待",
+				"label": "已受理",
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_DISPATCHED,
