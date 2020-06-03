@@ -319,11 +319,11 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_REPAIRED,
-				"label": "已修复",
+				"label": "已处理",
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_VERIFIED,
-				"label": "已核验",
+				"label": "已完成",
 			},
 			//{
 			//	"value": DISPATCH_ORDER_STATUS_TRANSFER,
