@@ -21,7 +21,7 @@ type WarningProcessResultOptions struct {
 //报警处理结果sync给社区
 func (cli *Client) SyncWarningProcessResult(param WarningProcessResultOptions) (error, Response) {
 
-	path := "/community/alarm/sync"
+	path := "/api/alarm/sync"
 	query := cli.genQuery(nil)
 	rawURL := cli.BaseURL + path + "?" + query
 
