@@ -267,11 +267,11 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_DISPATCHED,
-				"label": "已分配",
+				"label": "已派工",
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_REPAIRED,
-				"label": "已修复",
+				"label": "已处理",
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_RETURN_VISITED,
@@ -280,6 +280,32 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			{
 				"value": APPEAL_ORDER_STATUS_FINISHED,
 				"label": "已结单",
+			},
+		},
+		"APPEAL_ORDER_STATUS_C": {
+			//{
+			//	"value": APPEAL_ORDER_STATUS_CREATED,
+			//	"label": "已创建",
+			//},
+			{
+				"value": APPEAL_ORDER_STATUS_ACCEPTED,
+				"label": "已接待",
+			},
+			{
+				"value": APPEAL_ORDER_STATUS_DISPATCHED,
+				"label": "已派工",
+			},
+			{
+				"value": APPEAL_ORDER_STATUS_REPAIRED,
+				"label": "已处理",
+			},
+			{
+				"value": APPEAL_ORDER_STATUS_RETURN_VISITED,
+				"label": "已处理",
+			},
+			{
+				"value": APPEAL_ORDER_STATUS_FINISHED,
+				"label": "已处理",
 			},
 		},
 		"DISPATCH_ORDER_STATUS": {
