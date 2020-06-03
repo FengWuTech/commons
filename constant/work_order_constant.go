@@ -279,7 +279,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_FINISHED,
-				"label": "已结单",
+				"label": "已完成",
 			},
 		},
 		"APPEAL_ORDER_STATUS_C": {
