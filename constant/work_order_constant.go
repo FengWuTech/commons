@@ -49,29 +49,20 @@ const (
 	APPEAL_ORDER_SOURCE_WECHAT           = 2 //微信
 	APPEAL_ORDER_SOURCE_INTEL_HARDWARE   = 3 //智慧硬件
 
-	APPEAL_ORDER_STATUS_CREATED        = 1 //已创建
-	APPEAL_ORDER_STATUS_ACCEPTED       = 2 //已接单
-	APPEAL_ORDER_STATUS_DISPATCHED     = 3 //已分配
-	APPEAL_ORDER_STATUS_REPAIRED       = 4 //维修完成
-	APPEAL_ORDER_STATUS_RETURN_VISITED = 5 //回访完成
-	APPEAL_ORDER_STATUS_FINISHED       = 6 //已结单
+	APPEAL_ORDER_STATUS_CREATED    = 1 //已创建
+	APPEAL_ORDER_STATUS_ACCEPTED   = 2 //已接单
+	APPEAL_ORDER_STATUS_DISPATCHED = 3 //已分配
+	APPEAL_ORDER_STATUS_REPAIRED   = 4 //维修完成
+	APPEAL_ORDER_STATUS_FINISHED   = 6 //已结单
 
 	DISPATCH_ORDER_STATUS_DISPATCHED = 1 //已派工
 	DISPATCH_ORDER_STATUS_ACCEPTED   = 2 //已接单
 	DISPATCH_ORDER_STATUS_REPAIRED   = 3 //已修复
 	DISPATCH_ORDER_STATUS_VERIFIED   = 4 //已验证
-	//DISPATCH_ORDER_STATUS_TRANSFER   = 5 //已转办
-	//DISPATCH_ORDER_STATUS_ENTRUSTED  = 6 //已委托
-	//DISPATCH_ORDER_STATUS_REJECTED   = 7 //已驳回
-	//DISPATCH_ORDER_STATUS_FROZEN     = 8 //已冻结
-	DISPATCH_ORDER_STATUS_CANCEL = 9 //已取消
+	DISPATCH_ORDER_STATUS_CANCEL     = 9 //已取消
 
 	DISPATCH_ORDER_OPERATE_TYPE_APPOINTMENT = 1 //修改预约
-	//DISPATCH_ORDER_OPERATE_TYPE_TRANSFER    = 2 //转派
-	//DISPATCH_ORDER_OPERATE_TYPE_ENTRUST     = 3 //委托
-	DISPATCH_ORDER_OPERATE_TYPE_FINISH = 4 //完工
-	//DISPATCH_ORDER_OPERATE_TYPE_REJECT      = 5 //驳回
-	//DISPATCH_ORDER_OPERATE_TYPE_FROZE       = 6 //冻结
+	DISPATCH_ORDER_OPERATE_TYPE_FINISH      = 4 //完工
 
 	RETURN_VISIT_STATUS_CREATED             = 1 //已创建
 	RETURN_VISIT_STATUS_FINISH_WITH_PROBLEM = 2 //回访结束，存在问题
@@ -86,6 +77,18 @@ const (
 	APPEAL_ORDER_EFFECT_EFFECTIVE    = 1 //有效的
 	APPEAL_ORDER_EFFECT_COMMUNICABLE = 2 //可沟通的
 	APPEAL_ORDER_EFFECT_INVALID      = 3 //无效的
+
+	APPEAL_ORDER_EVENT_CREATED       = 1 //已创建
+	APPEAL_ORDER_EVENT_ACCEPTED      = 2 //已接待
+	APPEAL_ORDER_EVENT_DISPATCHED    = 3 //已派工
+	APPEAL_ORDER_EVENT_HANDLED       = 4 //已处理
+	APPEAL_ORDER_EVENT_FINISHED      = 5 //已完成
+	APPEAL_ORDER_EVENT_USER_EVALUATE = 6 //已评价
+
+	DISPATCH_ORDER_EVENT_DISPATCHED = 1 //已派工
+	DISPATCH_ORDER_EVENT_ACCEPTED   = 2 //已接单
+	DISPATCH_ORDER_EVENT_HANDLED    = 3 //已处理
+	DISPATCH_ORDER_EVENT_VERIFIED   = 4 //已验证
 )
 
 func GetOrderFeConf(key string) []map[string]interface{} {
@@ -274,10 +277,6 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "已处理",
 			},
 			{
-				"value": APPEAL_ORDER_STATUS_RETURN_VISITED,
-				"label": "已回访",
-			},
-			{
 				"value": APPEAL_ORDER_STATUS_FINISHED,
 				"label": "已完成",
 			},
@@ -297,10 +296,6 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_REPAIRED,
-				"label": "已处理",
-			},
-			{
-				"value": APPEAL_ORDER_STATUS_RETURN_VISITED,
 				"label": "已处理",
 			},
 			{
@@ -325,22 +320,6 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": DISPATCH_ORDER_STATUS_VERIFIED,
 				"label": "已完成",
 			},
-			//{
-			//	"value": DISPATCH_ORDER_STATUS_TRANSFER,
-			//	"label": "已转单",
-			//},
-			//{
-			//	"value": DISPATCH_ORDER_STATUS_ENTRUSTED,
-			//	"label": "已委托",
-			//},
-			//{
-			//	"value": DISPATCH_ORDER_STATUS_REJECTED,
-			//	"label": "已驳回",
-			//},
-			//{
-			//	"value": DISPATCH_ORDER_STATUS_FROZEN,
-			//	"label": "已冻结",
-			//},
 			{
 				"value": DISPATCH_ORDER_STATUS_CANCEL,
 				"label": "已取消",
@@ -365,26 +344,10 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": DISPATCH_ORDER_OPERATE_TYPE_APPOINTMENT,
 				"label": "预约",
 			},
-			//{
-			//	"value": DISPATCH_ORDER_OPERATE_TYPE_TRANSFER,
-			//	"label": "转派",
-			//},
-			//{
-			//	"value": DISPATCH_ORDER_OPERATE_TYPE_ENTRUST,
-			//	"label": "委托",
-			//},
 			{
 				"value": DISPATCH_ORDER_OPERATE_TYPE_FINISH,
 				"label": "完工",
 			},
-			//{
-			//	"value": DISPATCH_ORDER_OPERATE_TYPE_REJECT,
-			//	"label": "驳回",
-			//},
-			//{
-			//	"value": DISPATCH_ORDER_OPERATE_TYPE_FROZE,
-			//	"label": "冻结",
-			//},
 		},
 	}[key]
 }
