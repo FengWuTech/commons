@@ -1,14 +1,6 @@
 package constant
 
 const (
-	PROCESS_REPAIR = "id_process_repair" //维修工单对应的BPMN ID
-
-	PROCESS_REPAIR_NODE_ACCEPT = "id_accept"
-	PROCESS_REPAIR_NODE_REPAIR = "id_repair"
-	PROCESS_REPAIR_NODE_VERIFY = "id_verify"
-
-	PROCESS_POOL_TYPE_REPAIR = 1 //维修工单
-
 	//人相关
 	APPEAL_TYPE_THING     = 1 //报事
 	APPEAL_TYPE_COMPLAINT = 2 //投诉建议
