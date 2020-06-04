@@ -52,13 +52,13 @@ const (
 	APPEAL_ORDER_STATUS_CREATED    = 1 //已创建
 	APPEAL_ORDER_STATUS_ACCEPTED   = 2 //已接单
 	APPEAL_ORDER_STATUS_DISPATCHED = 3 //已分配
-	APPEAL_ORDER_STATUS_REPAIRED   = 4 //维修完成
+	APPEAL_ORDER_STATUS_HANDLED    = 4 //已处理
 	APPEAL_ORDER_STATUS_FINISHED   = 6 //已结单
 
 	DISPATCH_ORDER_STATUS_DISPATCHED = 1 //已派工
 	DISPATCH_ORDER_STATUS_ACCEPTED   = 2 //已接单
 	DISPATCH_ORDER_STATUS_REPAIRED   = 3 //已修复
-	DISPATCH_ORDER_STATUS_VERIFIED   = 4 //已验证
+	DISPATCH_ORDER_STATUS_FINISHED   = 4 //已验证
 	DISPATCH_ORDER_STATUS_CANCEL     = 9 //已取消
 
 	DISPATCH_ORDER_OPERATE_TYPE_APPOINTMENT = 1 //修改预约
@@ -274,7 +274,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "已派工",
 			},
 			{
-				"value": APPEAL_ORDER_STATUS_REPAIRED,
+				"value": APPEAL_ORDER_STATUS_HANDLED,
 				"label": "已处理",
 			},
 			{
@@ -296,7 +296,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "已派工",
 			},
 			{
-				"value": APPEAL_ORDER_STATUS_REPAIRED,
+				"value": APPEAL_ORDER_STATUS_HANDLED,
 				"label": "已处理",
 			},
 			{
@@ -318,7 +318,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "已处理",
 			},
 			{
-				"value": DISPATCH_ORDER_STATUS_VERIFIED,
+				"value": DISPATCH_ORDER_STATUS_FINISHED,
 				"label": "已完成",
 			},
 			{
