@@ -65,7 +65,10 @@ func (g *Gin) ResponseWithMsgAndCode(httpCode, errCode int, msg string, data int
 }
 
 func (g *Gin) buildCacheKey() string {
-	key := fmt.Sprintf("%s-%s", g.C.Request.Host, g.C.Request.RequestURI)
+	companyID := GetCompanyID(g.C)
+	host := g.C.Request.Host
+	uri := g.C.Request.RequestURI
+	key := fmt.Sprintf("%d-%s-%s", companyID, host, uri)
 	return key
 }
 
