@@ -121,6 +121,11 @@ func GetLastYear() (year int) {
 	return lastTime.Year()
 }
 
+func GetMonthEndDay(year int, month int) int {
+	endDay := GetMonthStartTime(year, month).AddDate(0, 1, -1).Day()
+	return endDay
+}
+
 func GetYearStartTime(year int) time.Time {
 	return time.Date(year, 1, 1, 0, 0, 0, 0, time.Local)
 }

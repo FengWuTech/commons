@@ -42,3 +42,8 @@ func TestParseExcelDate(t *testing.T) {
 		t.Errorf("Parse %v to %v != Zero Date", dateSpaceStr, parsedSpaceDate)
 	}
 }
+
+func TestGetMonthEndDay(t *testing.T) {
+	day := GetMonthEndDay(2019, 12)
+	fmt.Printf("%v", day)
+}
