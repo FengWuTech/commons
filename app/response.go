@@ -75,7 +75,7 @@ func (g *Gin) ResponseFromCache() bool {
 	if err != nil {
 		return false
 	}
-	g.C.Writer.Write(resData)
+	g.C.JSON(200, resData)
 	return true
 }
 
@@ -94,6 +94,6 @@ func (g *Gin) ResponseAndCache(code int, data interface{}, timeout int) bool {
 		return false
 	}
 
-	g.C.Writer.Write(rawData)
+	g.C.JSON(200, rawData)
 	return true
 }
