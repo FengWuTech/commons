@@ -3,6 +3,8 @@ package app
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"github.com/FengWuTech/commons/gredis"
 	"github.com/FengWuTech/commons/logger"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
@@ -60,4 +62,38 @@ func (g *Gin) ResponseWithMsgAndCode(httpCode, errCode int, msg string, data int
 	logger.Infof("reqURL[%v] reqHeader[%v] reqRawData[%v] resBody[%v]", g.C.Request.RequestURI, string(reqHeader), reqBody, string(resStr))
 	g.C.JSON(httpCode, response)
 	return
+}
+
+func (g *Gin) buildCacheKey() string {
+	key := fmt.Sprintf("%s-%s", g.C.Request.Host, g.C.Request.RequestURI)
+	return key
+}
+
+func (g *Gin) ResponseFromCache() bool {
+	key := g.buildCacheKey()
+	resData, err := gredis.Get(key)
+	if err != nil {
+		return false
+	}
+	g.C.Writer.Write(resData)
+	return true
+}
+
+func (g *Gin) ResponseAndCache(code int, data interface{}, timeout int) bool {
+	key := g.buildCacheKey()
+
+	var s = Response{
+		Code: code,
+		Msg:  GetMsg(code),
+		Data: data,
+		Time: time.Now().Format("2006-01-02 15:04:05"),
+	}
+	rawData, _ := json.Marshal(s)
+	err := gredis.Set(key, string(rawData), timeout)
+	if err != nil {
+		return false
+	}
+
+	g.C.Writer.Write(rawData)
+	return true
 }
