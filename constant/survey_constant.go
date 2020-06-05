@@ -16,6 +16,9 @@ const (
 	// 问卷类型
 	SurveyTopicTemplateTrue  = 1 //模版类型
 	SurveyTopicTemplateFalse = 0 //普通类型
+
+	SurveyTypeNormal = 0
+	SurveyTypeAppend = 1 // 补录
 )
 
 const (
