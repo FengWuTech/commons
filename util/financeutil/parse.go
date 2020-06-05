@@ -13,11 +13,11 @@ func float32ToString(num float32, prec int) string {
 	return strconv.FormatFloat(float64(num), 'f', prec, 32)
 }
 
-func RMBFenToYuan(num int) float64 {
+func RMBFenToYuan(num int64) float64 {
 	return float64(num) / 100
 }
 
-func RMBFenToYuanString(num int) string {
+func RMBFenToYuanString(num int64) string {
 	return float64ToString(RMBFenToYuan(num), 2)
 }
 
