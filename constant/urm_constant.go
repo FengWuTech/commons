@@ -25,4 +25,5 @@ const (
 	SMS_TPL_DISPATCH_ORDER_REMIND_LEADER = 46 //您的员工{1}存在超时工单{2}，请关注处理。
 	SMS_TPL_DISPATCH_ORDER_VERIFY_FAIL   = 54 //您的工单{1}核验不合格，请重新处理。
 	SMS_TPL_NEW_BILL_NOTICE              = 55 //您有新的物业账单需要缴费，您可以前往公众号{1}缴纳。
+	SMS_TPL_DISPATCH_ORDER_CANCEL        = 56 //工单{1}已经取消，请关注。
 )
