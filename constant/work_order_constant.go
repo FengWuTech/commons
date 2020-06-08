@@ -254,6 +254,16 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "智慧硬件",
 			},
 		},
+		"APPEAL_ORDER_SOURCE_USER_REF": {
+			{
+				"value": APPEAL_ORDER_SOURCE_CUSTOMER_SERVICE,
+				"label": "客服",
+			},
+			{
+				"value": APPEAL_ORDER_SOURCE_WECHAT,
+				"label": "微信",
+			},
+		},
 		"APPEAL_ORDER_STATUS": {
 			{
 				"value": APPEAL_ORDER_STATUS_CREATED,
