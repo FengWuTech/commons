@@ -18,6 +18,7 @@ const (
 	CHARGE_STANDARD_COUNT_TYPE               = 17 //数量的计量方式【为了兼容，要一个全集】
 	CHARGE_STANDARD_COUNT_TYPE_CYCLE         = 7  //数量的计量方式（周期性收费项目）
 	CHARGE_STANDARD_COUNT_TYPE_TEMP_PLEDGE   = 17 //数量的计量方式（临时性/押金性收费项目）
+	CHARGE_STANDARD_COUNT_TYPE_METER         = 18 //数量的计量方式（仪表类收费项目）
 
 	CHARGE_RPINT_TPL_TYPE                           = 8  //打印模板类型 1通知单模板、2收据模板
 	CHARGE_RPINT_TPL_CONTENT_RECEIVE_HEADER_ELEMENT = 9  //收据-页眉显示内容
@@ -459,9 +460,6 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 		CHARGE_STANDARD_COUNT_TYPE_POOL_AREA: {
 			"value": "公摊面积(平方米)",
 		},
-		CHARGE_STANDARD_COUNT_TYPE_AMOUNT: {
-			"value": "用量(止度-起度)",
-		},
 		CHARGE_STANDARD_COUNT_TYPE_PARKING_AREA: {
 			"value": "车位面积(平方米)",
 		},
@@ -479,11 +477,13 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 		CHARGE_STANDARD_COUNT_TYPE_POOL_AREA: {
 			"value": "公摊面积(平方米)",
 		},
-		CHARGE_STANDARD_COUNT_TYPE_AMOUNT: {
-			"value": "用量(止度-起度)",
-		},
 		CHARGE_STANDARD_COUNT_TYPE_PARKING_AREA: {
 			"value": "车位面积(平方米)",
+		},
+	},
+	CHARGE_STANDARD_COUNT_TYPE_METER: {
+		CHARGE_STANDARD_COUNT_TYPE_AMOUNT: {
+			"value": "用量(止度-起度)",
 		},
 	},
 	CHARGE_PAY_CYCLE: {
@@ -571,6 +571,12 @@ func GetChargeCountTypeCycleFEConf() []map[string]interface{} {
 func GetChargeCountTypeTempPledgeFEConf() []map[string]interface{} {
 
 	return GetChargeFEConf(CHARGE_STANDARD_COUNT_TYPE_TEMP_PLEDGE)
+}
+
+//获取临时性/押金性性收费标准的 计量方式
+func GetChargeCountTypeMeterFEConf() []map[string]interface{} {
+
+	return GetChargeFEConf(CHARGE_STANDARD_COUNT_TYPE_METER)
 }
 
 //打印模板类型 1通知单模板、2收据模板
