@@ -330,12 +330,8 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "待回访",
 			},
 			{
-				"value": RETURN_VISIT_STATUS_FINISH_WITH_PROBLEM,
-				"label": "已回访，重修复",
-			},
-			{
-				"value": RETURN_VISIT_STATUS_FINISH_NO_PROBLEM,
-				"label": "已回访，无问题",
+				"value": RETURN_VISIT_STATUS_FINISHED,
+				"label": "已回访",
 			},
 		},
 		"DISPATCH_ORDER_OPERATE_TYPE": {
