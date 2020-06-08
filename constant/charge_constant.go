@@ -37,6 +37,7 @@ const (
 	CHARGE_PROJECT_TYPE_BASIC_CYCLE   = 0 //周期类
 	CHARGE_PROJECT_TYPE_BASIC_TMP     = 1 //临时类
 	CHARGE_PROJECT_TYPE_BASIC_DEPOSIT = 2 //押金类
+	CHARGE_PROJECT_TYPE_BASIC_METER   = 3 //仪表类
 
 	//费项精确位
 	CHARGE_PROJECT_FEE_PRECISE_YUAN = 1 //元
@@ -399,7 +400,6 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 	},
 	CHARGE_PROJECT_TYPE: {
-
 		CHARGE_PROJECT_TYPE_BASIC_CYCLE: {
 			"value": "周期类",
 		},
@@ -408,6 +408,9 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 		CHARGE_PROJECT_TYPE_BASIC_DEPOSIT: {
 			"value": "押金类",
+		},
+		CHARGE_PROJECT_TYPE_BASIC_METER: {
+			"value": "仪表类",
 		},
 	},
 	CHARGE_PROJECT_FEE_PRECISE: {
