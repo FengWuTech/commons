@@ -316,7 +316,6 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"label": "已关闭",
 			},
 		},
-
 		"DISPATCH_ORDER_STATUS": {
 			{
 				"value": DISPATCH_ORDER_STATUS_DISPATCHED,
@@ -329,6 +328,28 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			{
 				"value": DISPATCH_ORDER_STATUS_REPAIRED,
 				"label": "已处理",
+			},
+			{
+				"value": DISPATCH_ORDER_STATUS_FINISHED,
+				"label": "已完成",
+			},
+			{
+				"value": DISPATCH_ORDER_STATUS_CANCELED,
+				"label": "已中止",
+			},
+		},
+		"DISPATCH_ORDER_STATUS_C": {
+			{
+				"value": DISPATCH_ORDER_STATUS_DISPATCHED,
+				"label": "已派工",
+			},
+			{
+				"value": DISPATCH_ORDER_STATUS_ACCEPTED,
+				"label": "已响应",
+			},
+			{
+				"value": DISPATCH_ORDER_STATUS_REPAIRED,
+				"label": "已完成",
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_FINISHED,
