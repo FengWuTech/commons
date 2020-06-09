@@ -285,6 +285,10 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 				"value": APPEAL_ORDER_STATUS_FINISHED,
 				"label": "已完成",
 			},
+			{
+				"value": APPEAL_ORDER_STATUS_CANCELED,
+				"label": "已中止",
+			},
 		},
 		"APPEAL_ORDER_STATUS_C": {
 			{
@@ -332,7 +336,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_CANCELED,
-				"label": "已关闭",
+				"label": "已中止",
 			},
 		},
 		"RETURN_VISIT_STATUS": {
