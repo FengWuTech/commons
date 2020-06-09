@@ -16,6 +16,8 @@ const (
 	BILL_BIND_OBJECT_TYPE_ROOM_METER = 4 //户表
 	//BILL_BIND_OBJECT_TYPE_PUBLIC_METER = 5 //公表（暂时不用）
 	BILL_BIND_OBJECT_TYPE_OTHER = 6 //其他
+	BILL_BIND_OBJECT_TYPE_VEHICLE = 7 //车辆
+
 
 	//账单支付状态
 	BILL_PAY_STATUS_UNPAID    = 0 //未支付
@@ -46,6 +48,10 @@ var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
 		BILL_BIND_OBJECT_TYPE_ROOM_METER: {
 			"value":             "户表",
 			"chargeBindNameTPL": "{{.GroupName}}/{{.BuildingName}}/{{.UnitName}}/{{.RoomName}}-{{.MeterName}}",
+		},
+		BILL_BIND_OBJECT_TYPE_VEHICLE: {
+			"value": "车辆",
+			"chargeBindNameTPL": "{{.GroupName}}/{{.VehicleName}}",
 		},
 		BILL_BIND_OBJECT_TYPE_OTHER: {
 			"value": "其他",
