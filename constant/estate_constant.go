@@ -15,6 +15,11 @@ const (
 	ESTATE_PROJECT_PHONE_CATEGORY_COMPANY   = 1 //项目电话分类-物业
 	ESTATE_PROJECT_PHONE_CATEGORY_COMMUNITY = 2 //项目电话分类-社会
 	ESTATE_PROJECT_PHONE_CATEGORY_AROUND    = 3 //项目电话分类-周边
+
+	ESTATE_GATE_ENTRY_BIDIRECT  = 1 // 双向进出
+	ESTATE_GATE_ENTRY_IN        = 2 // 只进
+	ESTATE_GATE_ENTRY_OUT       = 3 // 只出
+	ESTATE_GATE_ENTRY_FORBIDDEN = 4 // 禁止出入
 )
 
 var PHONE_CATEGORY = []map[string]interface{}{
@@ -29,6 +34,25 @@ var PHONE_CATEGORY = []map[string]interface{}{
 	{
 		"label": "周边便民服务电话",
 		"value": ESTATE_PROJECT_PHONE_CATEGORY_AROUND,
+	},
+}
+
+var ESTATE_GATE_ENTRY = []map[string]interface{}{
+	{
+		"label": "双向出入",
+		"value": ESTATE_GATE_ENTRY_BIDIRECT,
+	},
+	{
+		"label": "仅入",
+		"value": ESTATE_GATE_ENTRY_IN,
+	},
+	{
+		"label": "仅出",
+		"value": ESTATE_GATE_ENTRY_OUT,
+	},
+	{
+		"label": "禁止出入",
+		"value": ESTATE_GATE_ENTRY_FORBIDDEN,
 	},
 }
 
