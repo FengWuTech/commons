@@ -451,18 +451,6 @@ var CHARGE_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 	},
 	CHARGE_STANDARD_COUNT_TYPE_TEMP_PLEDGE: {
-		CHARGE_STANDARD_COUNT_TYPE_BUILD_AREA: {
-			"value": "建筑面积(平方米)",
-		},
-		CHARGE_STANDARD_COUNT_TYPE_USE_AREA: {
-			"value": "套内面积(平方米)",
-		},
-		CHARGE_STANDARD_COUNT_TYPE_POOL_AREA: {
-			"value": "公摊面积(平方米)",
-		},
-		CHARGE_STANDARD_COUNT_TYPE_PARKING_AREA: {
-			"value": "车位面积(平方米)",
-		},
 		CHARGE_STANDARD_COUNT_TYPE_CUSTOM_INPUT: {
 			"value": "自定义数量",
 		},
