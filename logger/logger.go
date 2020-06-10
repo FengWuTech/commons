@@ -215,5 +215,5 @@ func GID() string {
 	runtime.Stack(buff, true)
 
 	gid := strings.Split(string(buff), " ")[1]
-	return fmt.Sprintf("gid-%x", md5.New().Sum([]byte(gid)))
+	return fmt.Sprintf("gid-%x", md5.Sum([]byte(gid)))
 }
