@@ -142,7 +142,7 @@ func Setup() {
 }
 
 func Debug(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.Debug(param...)
 }
 
@@ -152,7 +152,7 @@ func Debugf(template string, args ...interface{}) {
 }
 
 func Info(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.Info(param...)
 }
 
@@ -162,7 +162,7 @@ func Infof(template string, args ...interface{}) {
 }
 
 func Warn(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.Warn(param...)
 }
 
@@ -172,7 +172,7 @@ func Warnf(template string, args ...interface{}) {
 }
 
 func Error(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.Error(param...)
 }
 
@@ -182,7 +182,7 @@ func Errorf(template string, args ...interface{}) {
 }
 
 func DPanic(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.DPanic(param...)
 }
 
@@ -192,7 +192,7 @@ func DPanicf(template string, args ...interface{}) {
 }
 
 func Panic(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.Panic(param...)
 }
 
@@ -202,7 +202,7 @@ func Panicf(template string, args ...interface{}) {
 }
 
 func Fatal(args ...interface{}) {
-	param := append([]interface{}{GID()}, args...)
+	param := append([]interface{}{GID(), " "}, args...)
 	errorLogger.Fatal(param...)
 }
 
