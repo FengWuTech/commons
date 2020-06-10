@@ -1,9 +1,13 @@
 package logger
 
 import (
+	"crypto/md5"
+	"fmt"
 	"github.com/go-redis/redis"
 	"os"
 	"path"
+	"runtime"
+	"strings"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -82,7 +86,6 @@ func Setup() {
 
 	encoder.EncodeTime = zapcore.ISO8601TimeEncoder
 
-
 	//真正的来配置zap
 	core := zapcore.NewTee(
 		zapcore.NewCore( //文件，json
@@ -139,57 +142,78 @@ func Setup() {
 }
 
 func Debug(args ...interface{}) {
-	errorLogger.Debug(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Debug(param...)
 }
 
 func Debugf(template string, args ...interface{}) {
-	errorLogger.Debugf(template, args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Debugf("%v "+template, param...)
 }
 
 func Info(args ...interface{}) {
-	errorLogger.Info(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Info(param...)
 }
 
 func Infof(template string, args ...interface{}) {
-	errorLogger.Infof(template, args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Infof("%v "+template, param...)
 }
 
 func Warn(args ...interface{}) {
-	errorLogger.Warn(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Warn(param...)
 }
 
 func Warnf(template string, args ...interface{}) {
-	errorLogger.Warnf(template, args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Warnf("%v "+template, param...)
 }
 
 func Error(args ...interface{}) {
-	errorLogger.Error(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Error(param...)
 }
 
 func Errorf(template string, args ...interface{}) {
-	errorLogger.Errorf(template, args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Errorf("%v "+template, param...)
 }
 
 func DPanic(args ...interface{}) {
-	errorLogger.DPanic(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.DPanic(param...)
 }
 
 func DPanicf(template string, args ...interface{}) {
-	errorLogger.DPanicf(template, args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.DPanicf("%v "+template, param...)
 }
 
 func Panic(args ...interface{}) {
-	errorLogger.Panic(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Panic(param...)
 }
 
 func Panicf(template string, args ...interface{}) {
-	errorLogger.Panicf(template, args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Panicf("%v"+template, param...)
 }
 
 func Fatal(args ...interface{}) {
-	errorLogger.Fatal(args...)
+	param := append([]interface{}{GID()}, args...)
+	errorLogger.Fatal(param...)
 }
 
 func Fatalf(template string, args ...interface{}) {
 	errorLogger.Fatalf(template, args...)
+}
+
+func GID() string {
+	var buff = make([]byte, 128)
+	runtime.Stack(buff, true)
+
+	gid := strings.Split(string(buff), " ")[1]
+	return fmt.Sprintf("gid-%x", md5.New().Sum([]byte(gid)))
 }
