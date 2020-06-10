@@ -84,6 +84,9 @@ const (
 	DISPATCH_ORDER_EVENT_FINISHED   = 4 //已完工
 	DISPATCH_ORDER_EVENT_AUDIT_FAIL = 5 //已返工
 	DISPATCH_ORDER_EVENT_CANCELED   = 6 //已取消
+
+	USER_VOTE_DOWN = 1 //踩
+	USER_VOTE_UP   = 2 //赞
 )
 
 func GetOrderFeConf(key string) []map[string]interface{} {
