@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/FengWuTech/commons/gredis"
 	"github.com/FengWuTech/commons/logger"
+	"github.com/FengWuTech/commons/setting"
 	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"net/http"
@@ -92,6 +93,10 @@ func (g *Gin) ResponseAndCache(code int, data interface{}, timeout int) bool {
 		Time: time.Now().Format("2006-01-02 15:04:05"),
 	}
 	rawData, _ := json.Marshal(s)
+	//debug模式统一10秒过期
+	if setting.ServerSetting.RunMode == "debug" {
+		timeout = 10
+	}
 	err := gredis.Set(key, string(rawData), timeout)
 	if err != nil {
 		return false
