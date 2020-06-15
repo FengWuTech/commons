@@ -1,5 +1,7 @@
 package util
 
+import "time"
+
 func IntPtr(i int) *int {
 	return &i
 }
@@ -22,4 +24,8 @@ func Float64Ptr(f float64) *float64 {
 
 func StringPtr(s string) *string {
 	return &s
+}
+
+func TimePtr(t time.Time) *time.Time {
+	return &t
 }
