@@ -1,7 +1,5 @@
 package constant
 
-import "github.com/FengWuTech/commons/util"
-
 const (
 	//支付渠道
 	CHARGE_PAY_METHOD_OFFLINE_CASH           = 1  //线下支付-现金
@@ -70,50 +68,6 @@ var PAY_METHOD_ALLOW_EDIT_REAL_AMOUNT = []int{
 	CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
 	CHARGE_PAY_METHOD_OFFLINE_POS,
 	CHARGE_PAY_METHOD_OFFLINE_BANK,
-}
-
-//用于表格展示的支付渠道
-var PAY_METHOD_TABLE_SHOW = map[string][]util.KV{
-	"OFFLINE": {
-		{
-			"label": "现金",
-			"value": CHARGE_PAY_METHOD_OFFLINE_CASH,
-		},
-		{
-			"label": "POS刷卡",
-			"value": CHARGE_PAY_METHOD_OFFLINE_POS,
-		},
-		{
-			"label": "微信支付码",
-			"value": CHARGE_PAY_METHOD_OFFLINE_WEIXIN,
-		},
-		{
-			"label": "支付宝支付码",
-			"value": CHARGE_PAY_METHOD_OFFLINE_ZHIFUBAO,
-		},
-		{
-			"label": "聚合支付码",
-			"value": CHARGE_PAY_METHOD_OFFLINE_QRCODE_SCAN,
-		},
-		{
-			"label": "转账",
-			"value": CHARGE_PAY_METHOD_OFFLINE_BANK,
-		},
-	},
-	"ONLINE": {
-		{
-			"label": "微信",
-			"value": CHARGE_PAY_METHOD_ONLINE_WEIXIN,
-		},
-		{
-			"label": "支付宝",
-			"value": CHARGE_PAY_METHOD_ONLINE_ZHIFUBAO,
-		},
-		{
-			"label": "银行托收",
-			"value": CHARGE_PAY_METHOD_ONLINE_BANK_COLLECTION,
-		},
-	},
 }
 
 func GetPayMethodName(methodID int) string {
