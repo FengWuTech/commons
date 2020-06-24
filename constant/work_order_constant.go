@@ -316,7 +316,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": APPEAL_ORDER_STATUS_CANCELED,
-				"label": "已关闭",
+				"label": "已中止",
 			},
 		},
 		"DISPATCH_ORDER_STATUS": {
