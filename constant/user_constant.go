@@ -75,6 +75,9 @@ const (
 	KEY_USER_CHECK_ACTION_IN  = 0 //迁入
 	KEY_USER_CHECK_ACTION_OUT = 1 //迁出
 
+	USER_CHECKIN_AUDIT_TYPE_DEFAULT = 0 // 迁入审核来源 0-后台审核 1-业主邀请住户 2-业主主动审核
+	USER_CHECKIN_AUDIT_TYPE_INVITE  = 1
+	USER_CHECKIN_AUDIT_TYPE_APPROVE = 2
 )
 
 var USER_INFO_MAP = map[int]map[int]map[string]interface{}{
