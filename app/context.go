@@ -87,12 +87,20 @@ func GetAppID(c *gin.Context) int {
 }
 
 func GetGroupID(c *gin.Context) int {
-	groupID := c.GetHeader("groupid")
-	if groupID == "" {
+	HeaderGroupID := c.GetHeader("groupid")
+	if HeaderGroupID == "" {
 		// 兼容头大小写
-		groupID = c.GetHeader("Groupid")
+		HeaderGroupID = c.GetHeader("Groupid")
 	}
-	return com.StrTo(groupID).MustInt()
+	if HeaderGroupID == "" {
+		// 兼容头大小写
+		HeaderGroupID = c.GetHeader("Group-Id")
+	}
+	QueryGroupId := com.StrTo(c.DefaultQuery("group_id", "-1")).MustInt()
+	if QueryGroupId > 0 {
+		return QueryGroupId
+	}
+	return com.StrTo(HeaderGroupID).MustInt()
 }
 
 func IsWebRequest(c *gin.Context) bool {
