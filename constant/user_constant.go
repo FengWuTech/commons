@@ -280,7 +280,15 @@ func GetUserFEConf(which int) []map[string]interface{} {
 }
 
 func GetUserRoleFEConf() []map[string]interface{} {
-	return GetUserFEConf(KEY_USER_ROLE)
+	var ret []map[string]interface{}
+	for k, v := range USER_INFO_MAP[KEY_USER_ROLE] {
+		ret = append(ret, map[string]interface{}{
+			"label":      v["value"],
+			"value":      k,
+			"validMonth": v["validMonth"],
+		})
+	}
+	return ret
 }
 
 func GetUserStatusFEConf() []map[string]interface{} {
