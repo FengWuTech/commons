@@ -59,14 +59,12 @@ var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
 }
 
 type ChargeBindRoom struct {
-	GroupName    string
 	BuildingName string
 	UnitName     string
 	RoomName     string
 }
 
 type ChargeBindParking struct {
-	GroupName   string
 	ParkingName string
 }
 
@@ -76,7 +74,6 @@ type ChargeBindUser struct {
 }
 
 type ChargeBindMeterRoom struct {
-	GroupName    string
 	BuildingName string
 	UnitName     string
 	RoomName     string
