@@ -20,7 +20,7 @@ var Upgrader = websocket.Upgrader{
 type Message struct {
 	CompanyID int         `json:"company_id"`
 	Type      int         `json:"type"`
-	ProjectID int         `json:"project_id"`
+	GroupID   int         `json:"group_id"`
 	Content   interface{} `json:"content"`
 	NoticeID  int         `json:"notice_id"`
 	BizID     int         `json:"biz_id"`
@@ -37,7 +37,7 @@ type Channel struct {
 	Upgrader       websocket.Upgrader
 	RedisSubPubKey string
 	ClientConnect  map[int]map[string]ClientConnect
-	SendCheckFunc  func(staffID int, projectID int, message Message) bool
+	SendCheckFunc  func(staffID int, groupID int, message Message) bool
 }
 
 func Init(channelName string) *Channel {
@@ -88,7 +88,7 @@ func (channel *Channel) sendMessage(wsMsg Message) {
 	}
 
 	for connUUID, conn := range connMap {
-		if channel.SendCheckFunc != nil && wsMsg.ProjectID > 0 && conn.StaffID > 0 && channel.SendCheckFunc(conn.StaffID, wsMsg.ProjectID, wsMsg) {
+		if channel.SendCheckFunc != nil && wsMsg.GroupID > 0 && conn.StaffID > 0 && channel.SendCheckFunc(conn.StaffID, wsMsg.GroupID, wsMsg) {
 			err := conn.Conn.WriteMessage(msgBytes)
 			if err != nil {
 				delete(channel.ClientConnect[wsMsg.CompanyID], connUUID)
