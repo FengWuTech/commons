@@ -34,11 +34,11 @@ var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
 	BILL_BIND_OBJECT_TYPE: {
 		BILL_BIND_OBJECT_TYPE_ROOM: {
 			"value":             "房屋",
-			"chargeBindNameTPL": "{{.GroupName}}/{{.BuildingName}}/{{.UnitName}}/{{.RoomName}}",
+			"chargeBindNameTPL": "{{.BuildingName}}/{{.UnitName}}/{{.RoomName}}",
 		},
 		BILL_BIND_OBJECT_TYPE_PARKING: {
 			"value":             "车位",
-			"chargeBindNameTPL": "{{.GroupName}}/{{.ParkingName}}",
+			"chargeBindNameTPL": "{{.ParkingName}}",
 		},
 		BILL_BIND_OBJECT_TYPE_USER: {
 			"value":             "住户",
@@ -46,11 +46,11 @@ var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
 		},
 		BILL_BIND_OBJECT_TYPE_ROOM_METER: {
 			"value":             "户表",
-			"chargeBindNameTPL": "{{.GroupName}}/{{.BuildingName}}/{{.UnitName}}/{{.RoomName}}-{{.MeterName}}",
+			"chargeBindNameTPL": "{{.BuildingName}}/{{.UnitName}}/{{.RoomName}}-{{.MeterName}}",
 		},
 		BILL_BIND_OBJECT_TYPE_VEHICLE: {
 			"value": "车辆",
-			"chargeBindNameTPL": "{{.GroupName}}/{{.VehicleName}}",
+			"chargeBindNameTPL": "{{.VehicleName}}",
 		},
 		BILL_BIND_OBJECT_TYPE_OTHER: {
 			"value": "其他",
@@ -59,14 +59,12 @@ var BILL_INFO_MAP = map[int]map[int]map[string]interface{}{
 }
 
 type ChargeBindRoom struct {
-	GroupName    string
 	BuildingName string
 	UnitName     string
 	RoomName     string
 }
 
 type ChargeBindParking struct {
-	GroupName   string
 	ParkingName string
 }
 
@@ -76,7 +74,6 @@ type ChargeBindUser struct {
 }
 
 type ChargeBindMeterRoom struct {
-	GroupName    string
 	BuildingName string
 	UnitName     string
 	RoomName     string
