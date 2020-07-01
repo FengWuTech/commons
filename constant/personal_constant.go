@@ -1,0 +1,7 @@
+package constant
+
+const (
+	DEPARTMENT_TYPE_NORMAL  = 1
+	DEPARTMENT_TYPE_COMPANY = 2
+	DEPARTMENT_TYPE_GROUP   = 3
+)
