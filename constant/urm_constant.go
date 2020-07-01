@@ -28,4 +28,5 @@ const (
 	SMS_TPL_DISPATCH_ORDER_CANCEL        = 56 //工单{1}已经取消，请关注。
 	SMS_TPL_EXPORT_CONFIRM               = 57 //您正在使用高级导出功能，验证码{1}
 	SMS_TPL_USER_CHECKIN_NOTICE          = 59 //主人，您已迁入{1}，可以登录公众号{2}在线获取物业服务。登录用户名:{3} 密码:{4}
+	SMS_TPL_PASSWORD_RESET_NOTICE        = 60 //您的密码已被重置，新密码为:{1}
 )
