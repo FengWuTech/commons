@@ -281,7 +281,16 @@ func GetUserFEConf(which int) []map[string]interface{} {
 
 func GetUserRoleFEConf() []map[string]interface{} {
 	var ret []map[string]interface{}
-	for k, v := range USER_INFO_MAP[KEY_USER_ROLE] {
+
+	var keyIDS []int
+	for k := range USER_INFO_MAP[KEY_USER_ROLE] {
+		keyIDS = append(keyIDS, k)
+	}
+
+	sort.Ints(keyIDS)
+
+	for k := range keyIDS {
+		v := USER_INFO_MAP[KEY_USER_ROLE][k]
 		ret = append(ret, map[string]interface{}{
 			"label":      v["value"],
 			"value":      k,
