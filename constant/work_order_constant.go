@@ -326,7 +326,7 @@ func GetOrderFeConf(key string) []map[string]interface{} {
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_ACCEPTED,
-				"label": "已响应",
+				"label": "已接单",
 			},
 			{
 				"value": DISPATCH_ORDER_STATUS_REPAIRED,
