@@ -289,11 +289,11 @@ func GetUserRoleFEConf() []map[string]interface{} {
 
 	sort.Ints(keyIDS)
 
-	for k := range keyIDS {
-		v := USER_INFO_MAP[KEY_USER_ROLE][k]
+	for _, id := range keyIDS {
+		v := USER_INFO_MAP[KEY_USER_ROLE][id]
 		ret = append(ret, map[string]interface{}{
 			"label":      v["value"],
-			"value":      k,
+			"value":      id,
 			"validMonth": v["validMonth"],
 		})
 	}
