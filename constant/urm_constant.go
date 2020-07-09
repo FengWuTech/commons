@@ -30,4 +30,5 @@ const (
 	SMS_TPL_USER_CHECKIN_NOTICE            = 59 //主人，您已迁入{1}，可以登录公众号{2}在线获取物业服务。登录用户名:{3} 密码:{4}
 	SMS_TPL_PASSWORD_RESET_NOTICE          = 60 //您的密码已被重置，新密码为:{1}
 	SMS_TPL_COMPANY_CREATE_PASSWORD_NOTICE = 61 //您被设置为锋物物管平台管理员，账号:{1} 密码:{2}
+	SMS_TPL_VISITOR_ARRIVED                = 63 //您邀请的访客{1}已经到访，请您关注。
 )
