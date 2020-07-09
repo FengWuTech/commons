@@ -82,6 +82,7 @@ type App struct {
 var AppSetting = &App{}
 
 type Remote struct {
+	PmsBaseUrl        string `yaml:"PmsBaseUrl"`
 	MinipUserBaseUrl  string `yaml:"MinipUserBaseUrl"`
 	MinipStaffBaseUrl string `yaml:"MinipStaffBaseUrl"`
 	PayCenterBaseUrl  string `yaml:"PayCenterBaseUrl"`
