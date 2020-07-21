@@ -32,4 +32,6 @@ const (
 	SMS_TPL_COMPANY_CREATE_PASSWORD_NOTICE = 61 //您被设置为锋物物管平台管理员，账号:{1} 密码:{2}
 	SMS_TPL_VISITOR_ARRIVED                = 63 //您邀请的访客{1}已经到访，请您关注。
 	SMS_TPL_STAFF_ADD_NOTICE               = 64 //您的员工账号为用户名:{1} 密码:{2}，请及时修改密码，避免密码泄露。
+	SMS_TPL_FLOW_NOTICE_AT_START           = 67 //流程引擎任务到达前的通知
+	SMS_TPL_FLOW_NOTICE_WHEN_TIMEOUT       = 69 //流程引擎任务超时的通知
 )
