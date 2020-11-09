@@ -87,11 +87,17 @@ func Str2Time(st string) (time.Time, error) {
 
 //获取某一天的0点时间
 func GetZeroTimeOfDay(d time.Time) time.Time {
+	if d.IsZero(){
+		return d
+	}
 	return time.Date(d.Year(), d.Month(), d.Day(), 0, 0, 0, 0, d.Location())
 }
 
 //获取某一天的最后的时间
 func GetEndTimeOfDay(d time.Time) time.Time {
+	if d.IsZero(){
+		return d
+	}
 	nowStr := d.Format("2006-01-02")
 	endTime, _ := time.ParseInLocation("2006-01-02 15:04:05", nowStr+" 23:59:59", time.Local)
 	return endTime
